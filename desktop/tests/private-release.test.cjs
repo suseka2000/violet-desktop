@@ -58,14 +58,60 @@ async function setup(t, options = {}) {
   t.after(() => fs.rm(cacheDir, {recursive: true, force: true}));
   const source = fixture(options);
   const progress = [];
-  const config = {enabled: true, provider: 'github-private', owner: 'Violet-Example',
+  const config = {enabled: true, provider: options.provider || 'github-private', owner: 'Violet-Example',
     repo: 'private-releases', channel: 'stable', updateProtocol: 'violet-ed25519-v1', publicKeyPem};
+  if (config.provider === 'github-public') {
+    source.responses.set(API, () => response({private: false, full_name: 'Violet-Example/private-releases'}));
+  }
   const client = new PrivateReleaseClient({config, token: TOKEN, currentVersion: '0.4.0',
     platform: source.platform, arch: source.arch, cacheDir, request: source.request,
     progress: value => progress.push(value)});
   return {...source, client, cacheDir, progress, config};
 }
 const rejects = (operation, code) => assert.rejects(operation, error => error.code === code && !error.message.includes(TOKEN));
+
+test('public signed releases need no token and never send credentials to API or CDN', async t => {
+  const item = await setup(t, {provider: 'github-public'});
+  const cdn = 'https://release-assets.githubusercontent.com/public-installer?temporary=signature';
+  item.responses.set(`${API}/releases/assets/3`, () => response('', 302, {location: cdn}));
+  item.responses.set(cdn, () => response(bytes));
+  // The fixture supplied TOKEN deliberately: public mode must ignore it.
+  const info = await item.client.check();
+  assert.deepEqual(await fs.readFile(await item.client.download(info)), bytes);
+  assert.ok(item.calls.some(call => call.url === cdn));
+  for (const call of item.calls) {
+    assert.equal(call.headers.Authorization, undefined);
+    assert.equal(call.headers.Cookie, undefined);
+  }
+  const noToken = new PrivateReleaseClient({config:item.config, platform:item.platform, arch:item.arch,
+    currentVersion:'0.4.0', cacheDir:item.cacheDir, request:item.request});
+  assert.equal((await noToken.check()).version, '0.4.1');
+});
+
+test('public mode requires public repository identity and cannot fall back to private access', async t => {
+  for (const metadata of [
+    {private:true,full_name:'Violet-Example/private-releases'},
+    {private:false,full_name:'Attacker/private-releases'},
+    {full_name:'Violet-Example/private-releases'}
+  ]) {
+    const item = await setup(t, {provider:'github-public'});
+    item.responses.set(API, () => response(metadata));
+    await rejects(item.client.check(), 'access');
+    assert.equal(item.calls.length, 1);
+    assert.equal(item.calls[0].headers.Authorization, undefined);
+  }
+});
+
+test('public mode still rejects changed signatures, corrupt bytes and unsafe redirects', async t => {
+  const signature = await setup(t, {provider:'github-public', signature:Buffer.from(Buffer.alloc(64).toString('base64'))});
+  await rejects(signature.client.check(), 'signature');
+  const digest = await setup(t, {provider:'github-public'});
+  digest.responses.set(`${API}/releases/assets/3`, () => response(Buffer.alloc(bytes.length)));
+  await rejects(digest.client.download(await digest.client.check()), 'digest');
+  const redirect = await setup(t, {provider:'github-public'});
+  redirect.responses.set(`${API}/releases/assets/3`, () => response('',302,{location:'https://attacker.invalid/file'}));
+  await rejects(redirect.client.download(await redirect.client.check()), 'redirect');
+});
 
 test('signed macOS update streams to an atomic verified cache; subsequent download rechecks bytes', async t => {
   const item = await setup(t);

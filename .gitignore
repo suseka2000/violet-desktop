@@ -160,6 +160,7 @@
 !/tests/test_desktop_runtime.py
 !/tests/test_desktop_source_staging.py
 !/tests/verify_desktop_frozen.py
+!/tests/verify_desktop_windows_install.py
 /.github/workflows/*
 !/.github/workflows/desktop-build.yml
 /backend/api/*

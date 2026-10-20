@@ -23,21 +23,21 @@ function isSafeExternal(value) {
 
 function validateReleaseConfig(value) {
   if (!value || value.enabled !== true) return Object.freeze({enabled: false});
-  if (value.provider === 'github-private') {
+  if (['github-private', 'github-public'].includes(value.provider)) {
     if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,38})$/.test(value.owner || '') ||
         !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/.test(value.repo || '') ||
-        value.repo === '..' || value.channel !== 'stable') throw new Error('Некорректный закрытый канал GitHub');
+        value.repo === '..' || value.channel !== 'stable') throw new Error('Некорректный канал GitHub');
     if (value.updateProtocol !== 'violet-ed25519-v1' || typeof value.publicKeyPem !== 'string' ||
         value.publicKeyPem.length > 4096 || !value.publicKeyPem.startsWith('-----BEGIN PUBLIC KEY-----'))
       throw new Error('Для обновлений нужен открытый ключ выпуска Violet');
     let key;
     try { key = createPublicKey(value.publicKeyPem); } catch { throw new Error('Некорректный открытый ключ выпуска'); }
     if (key.asymmetricKeyType !== 'ed25519') throw new Error('Ключ выпуска должен иметь тип Ed25519');
-    return Object.freeze({enabled: true, provider: 'github-private', owner: value.owner, repo: value.repo,
+    return Object.freeze({enabled: true, provider: value.provider, owner: value.owner, repo: value.repo,
       channel: 'stable', updateProtocol:'violet-ed25519-v1',
       publicKeyPem:key.export({type:'spki',format:'pem'})});
   }
-  throw new Error('Поддерживаются только закрытые подписанные выпуски Violet');
+  throw new Error('Поддерживаются только подписанные выпуски Violet из GitHub');
 }
 
 function authenticatedHeaders(url, origin, token, headers = {}) {

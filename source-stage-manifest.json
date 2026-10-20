@@ -1,16 +1,16 @@
 {
   "schema_version": "violet-staged-sources/1",
-  "private_distribution_only": true,
+  "private_distribution_only": false,
   "git_initialized": false,
   "uploaded": false,
-  "file_count": 347,
-  "total_bytes": 74758079,
+  "file_count": 348,
+  "total_bytes": 74781153,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 5702,
-      "sha256": "5bae4f8d51c644031b2a40c47f7b05faa7469a0a17a5c2ab6896c4fa81105a33",
+      "bytes": 5929,
+      "sha256": "3d6e06dd028426ca2ed9eeb4fb89fa459fab047c6e5ab72e095347fd8bd37f97",
       "kind": "source"
     },
     {
@@ -807,8 +807,8 @@
     },
     {
       "path": "desktop/build/approved-step-library.json",
-      "bytes": 16314,
-      "sha256": "37a2d61348ae0b7d70fe1378343bbc559bba5e7b3a6a901425c38d9194e83af4",
+      "bytes": 16396,
+      "sha256": "8f2c02585283eba5d97522d77961e72367386349a925a2de32658d350cd9aec0",
       "kind": "source"
     },
     {
@@ -1095,8 +1095,8 @@
     },
     {
       "path": "desktop/build/source-files.json",
-      "bytes": 10676,
-      "sha256": "735cfc1c53d6f1852896462bff09b8a42a950238e645b5a4132007c141457e1f",
+      "bytes": 10723,
+      "sha256": "98608528f6a457d834885666340d723a4e89956c1c5843cad8a2f0be363cdb11",
       "kind": "source"
     },
     {
@@ -1119,8 +1119,8 @@
     },
     {
       "path": "desktop/electron-builder.cjs",
-      "bytes": 4029,
-      "sha256": "c21662bddf30553e24773055845be2502b57eb9bf0d8d39bb8d361f524acd1ad",
+      "bytes": 4053,
+      "sha256": "ff7c1a13f46d4ead84a5a03190be060c6b0f9339e4227500193d8cad8a6b6007",
       "kind": "source"
     },
     {
@@ -1137,8 +1137,8 @@
     },
     {
       "path": "desktop/main.cjs",
-      "bytes": 14244,
-      "sha256": "9baa127c12bfb098987e0e44e3786beff1b29ec4266db62c63b9ab0150132c23",
+      "bytes": 14513,
+      "sha256": "ed1883ddc4bf3a56fe1a9123402148f3c2d1c30e3029521b56d7daa64f4e9971",
       "kind": "source"
     },
     {
@@ -1167,8 +1167,8 @@
     },
     {
       "path": "desktop/private-release.cjs",
-      "bytes": 17757,
-      "sha256": "eb658c4de4718f3eda22d262fc952ffae20bd6ce3845d28b4d46383c1e7f5b9f",
+      "bytes": 18110,
+      "sha256": "37b3fe3a1b4734131f5aa9df91896dd2eac4045b93efa68fac6417a03c30edb6",
       "kind": "source"
     },
     {
@@ -1191,8 +1191,8 @@
     },
     {
       "path": "desktop/scripts/prepare_release.py",
-      "bytes": 5007,
-      "sha256": "7c2872bc74f151d7bade1be7725848d4d5ac224232711763b07646688f2c3d4c",
+      "bytes": 5224,
+      "sha256": "01974e140ac18857c013d1e4c71751b53a60981e40cdf3c3acfff4648e76d39e",
       "kind": "source"
     },
     {
@@ -1203,14 +1203,14 @@
     },
     {
       "path": "desktop/scripts/stage_sources.py",
-      "bytes": 12217,
-      "sha256": "4063e53a7614266929ac66bddef75ea9783f62b584cb1f25b85efea82c7b137f",
+      "bytes": 12348,
+      "sha256": "040870e24bd5b276a573b492f45a00bc4f739e1669e7c78eeff87360ad8646cc",
       "kind": "source"
     },
     {
       "path": "desktop/security.cjs",
-      "bytes": 2808,
-      "sha256": "7015b96b2dd3cdfc28d22005ac46baf088ba94c19fccd57dced7eced26079ddc",
+      "bytes": 2809,
+      "sha256": "0c0fffa42a25bcb23b89d6433590495dfc6892c1e76c871d31cddc5dc14401c8",
       "kind": "source"
     },
     {
@@ -1233,8 +1233,8 @@
     },
     {
       "path": "desktop/tests/main-lifecycle.test.cjs",
-      "bytes": 11197,
-      "sha256": "7fa242753c20789e8a5665698fa2c4a3cb1a90589a35266055d789717a883c17",
+      "bytes": 12253,
+      "sha256": "7d8d3619bbdf3db2df59e3d7520e47b8988554036fb6f551454a79418ac9fb5f",
       "kind": "source"
     },
     {
@@ -1245,14 +1245,14 @@
     },
     {
       "path": "desktop/tests/private-release.test.cjs",
-      "bytes": 17498,
-      "sha256": "b1d90ce54bfeebef7462f18c9e020e97095605b7cd1264521a5034fc18203fc9",
+      "bytes": 20109,
+      "sha256": "a29a7ca681b5c78fe4976e28d589edf5d1af555dc6967922740ffe0319433052",
       "kind": "source"
     },
     {
       "path": "desktop/tests/security-review.test.cjs",
-      "bytes": 7085,
-      "sha256": "ef41361efa732aa81052246a6d91aba29a070fc2fe1c1ed6227aecd883e71ecc",
+      "bytes": 8617,
+      "sha256": "68c0d81cd98a82396c2368ffb3f50a6c6a4078594a2873211c708388c3e62c15",
       "kind": "source"
     },
     {
@@ -1263,8 +1263,8 @@
     },
     {
       "path": "desktop/tests/update-install.test.cjs",
-      "bytes": 16982,
-      "sha256": "c7e78efc7a9fc1528ec0a586d5435706cb115494ea361ffccb96082c8bc2059a",
+      "bytes": 17067,
+      "sha256": "e1602d4f1fab8e3d640c45e25dcb115b3f2b645b5a8299161ef29686a65dc27e",
       "kind": "source"
     },
     {
@@ -1275,8 +1275,8 @@
     },
     {
       "path": "desktop/update-helpers/windows-install.ps1",
-      "bytes": 2924,
-      "sha256": "26d65acad87a9e67c5b4451764150978c5c6c3e11221aef02e2c58d676e851d1",
+      "bytes": 3514,
+      "sha256": "af37cf71c71bc67e575aa1eadc9e274a8ca1507262f456afe444cac5fdfaf72b",
       "kind": "source"
     },
     {
@@ -1293,14 +1293,14 @@
     },
     {
       "path": "desktop/updater.cjs",
-      "bytes": 6422,
-      "sha256": "264c6d9e2d3e3383653cf30d723237d5eeb1aef645be7160ff59d9cec739f5b8",
+      "bytes": 6890,
+      "sha256": "6cd6c1531b5d988776c9958e4c2471c81ddcc396453329ae9ec062233e36367d",
       "kind": "source"
     },
     {
       "path": "docs/desktop-release.md",
-      "bytes": 12896,
-      "sha256": "93be5be986e1612d1e56a45d83c4b30e3d621590726783a1a4190a0a1d87be86",
+      "bytes": 14635,
+      "sha256": "300303f90c22e342aeb921a76ad49f817c23ed2dd3c2c89baacd62fb8f979237",
       "kind": "source"
     },
     {
@@ -2067,8 +2067,8 @@
     },
     {
       "path": "tests/test_desktop_packaging.py",
-      "bytes": 5924,
-      "sha256": "341a0ae42e364c2080efe613cc56567b6c4dee40e9ae4fe0e034c103259cc220",
+      "bytes": 6352,
+      "sha256": "535a8d540798eeb6ea91cf5346f2244945b6310dc43c6b3aef4dc54b2d8e375f",
       "kind": "source"
     },
     {
@@ -2079,14 +2079,20 @@
     },
     {
       "path": "tests/test_desktop_source_staging.py",
-      "bytes": 5139,
-      "sha256": "683c6d7f68169a74edb6e45941bf61f784a54f7e0d79e45f7e9f248c2fbb0fb3",
+      "bytes": 5383,
+      "sha256": "6d64185350c27d4ecfac8032517359295279c82e612c4fe97be84e03d510aae7",
       "kind": "source"
     },
     {
       "path": "tests/verify_desktop_frozen.py",
       "bytes": 11402,
       "sha256": "dff6b5e487fb5e7deb8c57d39f729a9f06fc1e3a9a729bfd977a0faf386240b2",
+      "kind": "source"
+    },
+    {
+      "path": "tests/verify_desktop_windows_install.py",
+      "bytes": 12970,
+      "sha256": "1eb416c7d63094e847750f3ad424ca780eb1f2662173b39baf4ff1b7fb592b29",
       "kind": "source"
     }
   ],

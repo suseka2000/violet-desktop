@@ -1,7 +1,8 @@
 {
   "schema_version": "violet-private-library/1",
   "redistribution_confirmed": true,
-  "confirmation": "User explicitly authorized STEP models and supplier manuals for invited recipients on 2026-10-20; no personal projects, DWG, Armory reference PDF, or original SolidWorks files.",
+  "redistribution_scope": "public",
+  "confirmation": "On 2026-10-20 the user explicitly changed the authorization to public source, installers, all 80 STEP models and supplier manuals. No personal projects, DWG, Armory reference PDF, or original SolidWorks files are included.",
   "files": [
     {
       "path": "for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1.stp",

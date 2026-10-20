@@ -73,11 +73,17 @@ class DesktopPackagingTests(unittest.TestCase):
                "CSC_LINK": "private-certificate", "CSC_KEY_PASSWORD": "private-password",
                "VIOLET_WINDOWS_PUBLISHER_NAME": "Example Inc"}
         config = release.release_configuration(env, "Windows", "AMD64")
-        self.assertEqual(config["provider"], "github-private")
+        self.assertEqual(config["provider"], "github-public")
         self.assertNotIn("private-password", json.dumps(config))
         self.assertNotIn("CSC_LINK", config)
         self.assertEqual(config["updateProtocol"], "violet-ed25519-v1")
         self.assertFalse(config["osSigned"])
+        private = release.release_configuration({**env, "VIOLET_UPDATE_PROVIDER": "github-private"},
+                                                 "Windows", "AMD64")
+        self.assertEqual(private["provider"], "github-private")
+        with self.assertRaises(ValueError):
+            release.release_configuration({**env, "VIOLET_UPDATE_PROVIDER": "unsigned"},
+                                          "Windows", "AMD64")
         with self.assertRaises(ValueError):
             release.release_configuration({"VIOLET_UPDATE_PUBLIC_KEY": "not a key"}, "Windows", "AMD64")
         with self.assertRaises(ValueError):

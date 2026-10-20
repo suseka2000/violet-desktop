@@ -40,6 +40,7 @@ TEST_FILES = {
     "tests/__init__.py", "tests/test_desktop_packaging.py",
     "tests/test_desktop_library_io.py", "tests/test_desktop_runtime.py",
     "tests/test_desktop_source_staging.py", "tests/verify_desktop_frozen.py",
+    "tests/verify_desktop_windows_install.py",
 }
 FIXED_FILES = ROOT_FILES | TEST_FILES | set(RESOURCE_FILES) | {
     "backend/documents/fonts/NotoSans-Regular.ttf",
@@ -236,7 +237,7 @@ def stage(root: Path, destination: Path) -> dict:
     (destination / ".gitignore").write_text(gitignore_for([row["path"] for row in records]), encoding="utf-8")
     report = {
         "schema_version": "violet-staged-sources/1",
-        "private_distribution_only": True,
+        "private_distribution_only": json.loads(read_checked(root, LIBRARY_MANIFEST)).get("redistribution_scope") != "public",
         "git_initialized": False,
         "uploaded": False,
         "file_count": len(records),

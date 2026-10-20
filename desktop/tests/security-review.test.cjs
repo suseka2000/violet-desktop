@@ -68,6 +68,27 @@ test('only the per-user private repository token is used, never ambient publishi
   }
 });
 
+test('public updates do not read or require an encrypted credential store', async () => {
+  const {updates, options, calls} = fakeUpdates({
+    config:{...releaseConfig,provider:'github-public'},result:{version:'0.4.1'}
+  });
+  updates.credentials = {read() { throw new Error('Public updates must not touch credentials'); }};
+  await updates.check(true);
+  assert.equal(updates.state,'downloaded');
+  assert.equal(options().token,undefined);
+  assert.equal(options().config.provider,'github-public');
+  assert.deepEqual(calls,[['check'],['download']]);
+});
+
+test('public update errors never ask for invitations or access tokens', async () => {
+  const {updates, notices} = fakeUpdates({config:{...releaseConfig,provider:'github-public'},
+    result:{version:'0.4.1'},downloadError:new Error('rate limited')});
+  updates.credentials = null;
+  await updates.check(true);
+  assert.equal(updates.state,'error');
+  assert.doesNotMatch(notices.join('\n'),/персональный|ключ доступа|приглашение/);
+});
+
 test('private provider error details cannot disclose access secrets in logs or notifications', async () => {
   const {updates, logs, notices} = fakeUpdates({result:{version:'0.4.1'},
     downloadError:new Error('authorization: token github_pat_personal_fake_test_token')});
@@ -127,6 +148,14 @@ test('private updates require the pinned Ed25519 public key and cannot switch to
     {publicKeyPem:generateKeyPairSync('rsa',{modulusLength:2048}).publicKey.export({type:'spki',format:'pem'})}]) {
     assert.throws(() => validateReleaseConfig({...releaseConfig,...patch}));
   }
+});
+
+test('public release configuration preserves its explicit provider and pinned signing key', () => {
+  const publicConfig = {...releaseConfig,provider:'github-public'};
+  assert.equal(validateReleaseConfig(publicConfig).provider,'github-public');
+  assert.equal(validateReleaseConfig(publicConfig).publicKeyPem,publicKeyPem);
+  assert.throws(() => validateReleaseConfig({...publicConfig,publicKeyPem:''}));
+  assert.throws(() => validateReleaseConfig({...publicConfig,updateProtocol:'unsigned'}));
 });
 
 test('failed download cannot create an install plan', async () => {

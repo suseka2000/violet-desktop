@@ -62,7 +62,9 @@ class Updates {
     this.manual = false;
     this.setState('error');
     this.log('Не удалось проверить или скачать обновление (секреты ответа не записываются).');
-    if (wasManual) this.notify('Не удалось получить обновление. Проверьте интернет, приглашение в закрытый репозиторий и персональный ключ доступа. Установленная версия продолжает работать.');
+    if (wasManual) this.notify(this.config.provider === 'github-private'
+      ? 'Не удалось получить обновление. Проверьте интернет, приглашение в закрытый репозиторий и персональный ключ доступа. Установленная версия продолжает работать.'
+      : 'Не удалось получить обновление. Проверьте интернет и повторите позже: GitHub также ограничивает частоту запросов. Установленная версия продолжает работать.');
   }
   async check(manual = false) {
     if (!this.enabled) {
@@ -74,14 +76,15 @@ class Updates {
     this.manual = manual;
     this.setState('checking');
     try {
-      const token = this.credentials.read();
-      if (!token) {
+      const privateChannel = this.config.provider === 'github-private';
+      const token = privateChannel ? this.credentials?.read() : undefined;
+      if (privateChannel && !token) {
         this.manual = false; this.setState('access-required');
         if (manual) this.notify('Откройте «Доступ к обновлениям» в меню Violet и укажите свой персональный ключ для закрытого репозитория.');
         return;
       }
-      // The client accepts only this per-recipient key; ambient build credentials
-      // are never consulted, passed to the installer, or written to logs.
+      // Only private channels read a per-recipient key. Public channels need no
+      // credentials at all; neither channel consults ambient build credentials.
       const client = this.clientFactory({config:this.config,token,platform:this.platform,
         arch:this.arch,currentVersion:this.currentVersion,cacheDir:this.cacheDir,
         progress:info => {

@@ -39,7 +39,8 @@ function refreshMenu() {
     {label:updates?.label() || 'Проверить обновления…', click:() => updates?.check(true),
       enabled:!['checking','downloading'].includes(updates?.state)},
     {label:'Установить обновление и перезапустить', enabled:updates?.state === 'downloaded', click:() => requestClose(true)},
-    {label:'Доступ к закрытым обновлениям…', click:showAccess},
+    ...(updates?.config?.provider === 'github-private'
+      ? [{label:'Доступ к закрытым обновлениям…', click:showAccess}] : []),
     {type:'separator'},
     {label:'Открыть папку проектов', click:() => shell.openPath(path.join(app.getPath('userData'), 'workspace'))},
     {label:'Открыть журналы', click:() => shell.openPath(path.join(app.getPath('userData'), 'logs'))},
@@ -74,6 +75,7 @@ function secureWindow(win, allowedOrigin, loadingURL = null) {
   });
 }
 function showAccess() {
+  if (updates?.config?.provider !== 'github-private') return;
   if (accessWindow && !accessWindow.isDestroyed()) { accessWindow.focus(); return; }
   accessWindow = new BrowserWindow({width:560,height:455,parent:window,modal:true,resizable:false,
     title:'Доступ к обновлениям',autoHideMenuBar:true,
@@ -199,6 +201,7 @@ async function createWindow(startBackend = true) {
   if (startBackend) origin = await backend.start();
   if (closeAuthorized || allowQuit || !window || window.isDestroyed()) return;
   await window.loadURL(origin + '/');
+  log('Редактор загружен.');
 }
 
 if (!hasLock) app.quit();
@@ -210,13 +213,14 @@ else {
     const userData = app.getPath('userData');
     fs.mkdirSync(path.join(userData,'logs'), {recursive:true});
     logStream = fs.createWriteStream(path.join(userData,'logs',`desktop-${new Date().toISOString().slice(0,10)}.log`), {flags:'a',mode:0o600});
-    credentials = new Credentials(userData, safeStorage);
+    const releaseConfig = readReleaseConfig();
+    credentials = releaseConfig?.provider === 'github-private' ? new Credentials(userData, safeStorage) : null;
     process.env.VIOLET_DESKTOP_VERSION = app.getVersion();
     backend = new BackendProcess({packaged:app.isPackaged,resourcesPath:process.resourcesPath,
       appPath:app.getAppPath(),dataDir:path.join(userData,'workspace'),log});
     backend.on('unexpected-exit', async () => notify('3D-движок неожиданно остановился. Перезапустите Violet; сохранённые проекты останутся на месте. Подробности находятся в журнале.'));
     try {
-      updates = new Updates({config:readReleaseConfig(),currentVersion:app.getVersion(),
+      updates = new Updates({config:releaseConfig,currentVersion:app.getVersion(),
         cacheDir:path.join(userData,'update-downloads'),
         packaged:app.isPackaged,credentials,notify,changed:refreshMenu,log});
       refreshMenu();

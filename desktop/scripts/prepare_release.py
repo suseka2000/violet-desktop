@@ -1,4 +1,4 @@
-"""Create non-secret private updater policy; paid OS certificates are optional."""
+"""Create non-secret signed updater policy; paid OS certificates are optional."""
 from __future__ import annotations
 import argparse
 import json
@@ -35,10 +35,13 @@ def release_configuration(env, system=None, architecture=None):
         raise ValueError("Unsupported native build target")
     owner = env.get("VIOLET_GITHUB_OWNER") or "suseka2000"
     repo = env.get("VIOLET_GITHUB_REPOSITORY") or "violet-desktop"
+    provider = env.get("VIOLET_UPDATE_PROVIDER") or "github-public"
+    if provider not in {"github-public", "github-private"}:
+        raise ValueError("VIOLET_UPDATE_PROVIDER must be github-public or github-private")
     if not re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})", owner):
-        raise ValueError("Production needs VIOLET_GITHUB_OWNER for the actual private release repository")
+        raise ValueError("Production needs VIOLET_GITHUB_OWNER for the actual release repository")
     if not re.fullmatch(r"[A-Za-z0-9_.-]{1,100}", repo) or repo in {".", ".."}:
-        raise ValueError("Production needs VIOLET_GITHUB_REPOSITORY for the actual private release repository")
+        raise ValueError("Production needs VIOLET_GITHUB_REPOSITORY for the actual release repository")
     pinned = ROOT / "desktop/build/update-public-key.json"
     pem = env.get("VIOLET_UPDATE_PUBLIC_KEY") or (json.loads(pinned.read_text()).get("publicKeyPem") if pinned.is_file() else "")
     key = public_key_pem(pem)
@@ -55,7 +58,7 @@ def release_configuration(env, system=None, architecture=None):
                 raise ValueError("Optional certified macOS release needs notarization credentials")
         elif not env.get("VIOLET_WINDOWS_PUBLISHER_NAME"):
             raise ValueError("Windows publisher must match the Authenticode certificate")
-    return {"enabled": True, "provider": "github-private", "owner": owner, "repo": repo, "channel": "stable",
+    return {"enabled": True, "provider": provider, "owner": owner, "repo": repo, "channel": "stable",
             "platform": target, "architecture": arch, "updateProtocol": "violet-ed25519-v1",
             "publicKeyPem": key, "osSigned": certified}
 
@@ -64,7 +67,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--release", action="store_true")
     args = parser.parse_args()
-    config = {"enabled": False, "provider": "github-private", "channel": "stable"}
+    config = {"enabled": False, "provider": "github-public", "channel": "stable"}
     if args.release:
         try:
             config = release_configuration(os.environ)
@@ -85,7 +88,8 @@ def main():
     destination = ROOT / "desktop/stage/release-config.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(config, indent=2), encoding="utf-8")
-    print("Updater policy:", "private Ed25519 updates; artifacts must be signed separately" if args.release else "local preview; network updates disabled")
+    print("Updater policy:", f"{config['provider']} Ed25519 updates; artifacts must be signed separately"
+          if args.release else "local preview; network updates disabled")
 
 
 if __name__ == "__main__":

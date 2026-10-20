@@ -9,9 +9,9 @@ const policy = fs.existsSync(policyPath) ? JSON.parse(fs.readFileSync(policyPath
 if (release !== Boolean(policy.enabled)) {
   throw new Error("Run scripts/prepare_release.py for the selected preview/release mode first.");
 }
-if (release && (policy.provider !== "github-private" || !policy.owner || !policy.repo ||
+if (release && (!["github-private", "github-public"].includes(policy.provider) || !policy.owner || !policy.repo ||
     policy.updateProtocol !== "violet-ed25519-v1" || !policy.publicKeyPem)) {
-  throw new Error("Private release requires a pinned Ed25519 key and private GitHub repository.");
+  throw new Error("Release requires a pinned Ed25519 key and explicit public/private GitHub provider.");
 }
 if (certified && (!release || !policy.osSigned || !process.env.CSC_LINK && !process.env.CSC_NAME)) {
   throw new Error("Optional OS signing requires a validated signing identity.");
@@ -51,7 +51,7 @@ module.exports = {
   afterPack: electronNotices.verify,
   npmRebuild: false,
   forceCodeSigning: certified,
-  // Free private updates use our pinned-key manifests, not latest.yml trust.
+  // Free updates use our pinned-key manifests, not latest.yml trust.
   publish: null,
   mac: {
     target: [{ target: "dmg", arch: [arch] }, { target: "zip", arch: [arch] }],

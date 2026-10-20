@@ -6,8 +6,22 @@ $utf8 = New-Object System.Text.UTF8Encoding($false)
 function Write-Status([string] $value) {
     [IO.File]::WriteAllText((Join-Path $plan.transaction 'status'), $value, $utf8)
 }
+function Get-ArchiveHash([string] $filename) {
+    # Windows PowerShell launched from PowerShell Core may inherit a module
+    # path without Get-FileHash. Use the built-in .NET implementation directly;
+    # never import a module from the caller's profile or relax execution policy.
+    $stream = [IO.File]::Open($filename, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+    $algorithm = $null
+    try {
+        $algorithm = [Security.Cryptography.SHA256]::Create()
+        return [BitConverter]::ToString($algorithm.ComputeHash($stream)).Replace('-', '').ToLowerInvariant()
+    } finally {
+        if ($algorithm) { $algorithm.Dispose() }
+        $stream.Dispose()
+    }
+}
 try {
-    if ((Get-FileHash -LiteralPath $plan.archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $plan.info.sha256) {
+    if ((Get-ArchiveHash $plan.archive) -ne $plan.info.sha256) {
         throw 'changed-archive'
     }
     $old = Get-Process -Id $plan.pid -ErrorAction SilentlyContinue
@@ -19,7 +33,7 @@ try {
         if (-not $old.WaitForExit([int]$plan.parentTimeout * 1000)) { throw 'previous-process-still-running' }
     }
     if (Test-Path -LiteralPath (Join-Path $plan.transaction 'cancel')) { throw 'cancelled' }
-    if ((Get-FileHash -LiteralPath $plan.archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $plan.info.sha256) {
+    if ((Get-ArchiveHash $plan.archive) -ne $plan.info.sha256) {
         throw 'changed-archive'
     }
     # Exact electron-builder 26 NSIS flags. /D must remain the last argument;

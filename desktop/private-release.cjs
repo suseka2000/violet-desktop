@@ -1,6 +1,6 @@
 'use strict';
 
-// A small, independent update trust boundary. GitHub authenticates access;
+// A small, independent update trust boundary. GitHub optionally authenticates access;
 // the pinned Ed25519 key authenticates the bytes that may be installed.
 const crypto = require('node:crypto');
 const fs = require('node:fs');
@@ -17,7 +17,7 @@ const ASSET_HOSTS = new Set([
 ]);
 const MESSAGES = Object.freeze({
   configuration: 'Некорректная настройка защищённых обновлений.',
-  access: 'Не удалось подтвердить доступ к закрытому репозиторию обновлений.',
+  access: 'Не удалось подтвердить доступ и настройки репозитория обновлений.',
   network: 'Не удалось загрузить обновление. Проверьте соединение и повторите попытку.',
   redirect: 'Сервер обновлений вернул недопустимое перенаправление.',
   metadata: 'Метаданные выпуска не прошли проверку.',
@@ -123,25 +123,28 @@ class PrivateReleaseClient {
   constructor({config, token, platform = process.platform, arch = process.arch,
                currentVersion, cacheDir, progress = () => {}, request = requestHttps}) {
     try {
-      if (!config || config.enabled !== true || config.provider !== 'github-private' ||
+      if (!config || config.enabled !== true || !['github-private', 'github-public'].includes(config.provider) ||
           config.channel !== 'stable' || config.updateProtocol !== 'violet-ed25519-v1' ||
           typeof config.owner !== 'string' || typeof config.repo !== 'string' ||
           !/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(config.owner) ||
           !/^[A-Za-z0-9_.-]{1,100}$/.test(config.repo) || ['.', '..'].includes(config.repo) ||
           !['darwin', 'win32'].includes(platform) || !['arm64', 'x64'].includes(arch) ||
-          typeof token !== 'string' || !/^[\x21-\x7e]{1,512}$/.test(token) ||
+          (config.provider === 'github-private' &&
+            (typeof token !== 'string' || !/^[\x21-\x7e]{1,512}$/.test(token))) ||
           !path.isAbsolute(cacheDir) || typeof request !== 'function') fail('configuration');
       versionParts(currentVersion);
       this.#key = crypto.createPublicKey(config.publicKeyPem);
       if (this.#key.asymmetricKeyType !== 'ed25519') fail('configuration');
-      this.config = Object.freeze({owner: config.owner, repo: config.repo});
+      this.config = Object.freeze({owner: config.owner, repo: config.repo, provider: config.provider});
       this.platform = platform;
       this.arch = arch;
       this.currentVersion = currentVersion;
       this.cacheDir = path.resolve(cacheDir);
       this.progress = progress;
       this.#request = request;
-      this.#token = token;
+      // Public clients ignore even an accidentally supplied per-user key.
+      // They never consult ambient GitHub/CI credentials.
+      this.#token = config.provider === 'github-private' ? token : undefined;
     } catch {
       fail('configuration');
     }
@@ -162,12 +165,12 @@ class PrivateReleaseClient {
           (api ? leftApi || current.pathname !== original.pathname || current.search !== original.search
                : !ASSET_HOSTS.has(current.hostname))) fail('redirect');
       const headers = {
-        'User-Agent': 'Violet-Private-Updater/1',
+        'User-Agent': 'Violet-Updater/1',
         'Accept': binary ? 'application/octet-stream' : 'application/vnd.github+json',
         'Accept-Encoding': 'identity'
       };
       if (api) {
-        headers.Authorization = `Bearer ${this.#token}`;
+        if (this.#token) headers.Authorization = `Bearer ${this.#token}`;
         headers['X-GitHub-Api-Version'] = '2022-11-28';
       }
       if (range !== undefined) headers.Range = `bytes=${range}-`;
@@ -223,7 +226,7 @@ class PrivateReleaseClient {
   async check() {
     try {
       const repository = await this.#json(this.#api());
-      if (repository?.private !== true || typeof repository.full_name !== 'string' ||
+      if (repository?.private !== (this.config.provider === 'github-private') || typeof repository.full_name !== 'string' ||
           repository.full_name.toLowerCase() !== `${this.config.owner}/${this.config.repo}`.toLowerCase()) fail('access');
       const release = await this.#json(this.#api('/releases/latest'), {missing: true});
       if (release === null) return null;

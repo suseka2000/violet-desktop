@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: "Build private Ed25519-update app (sign artifacts offline after download)"
+        description: "Build Ed25519-update app (sign artifacts offline after download)"
         type: boolean
         default: false
       certified:
-        description: "Optional paid OS certificates/notarization (not needed for private Ed25519 updates)"
+        description: "Optional paid OS certificates/notarization (not needed for Ed25519 updates)"
         type: boolean
         default: false
       target:
@@ -21,7 +21,6 @@ permissions:
   contents: read
 jobs:
   desktop:
-    if: ${{ github.event.repository.private == true }}
     timeout-minutes: 30
     strategy:
       fail-fast: false
@@ -48,6 +47,9 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 11.25.0
+      - name: Verify desktop shell
+        working-directory: desktop
+        run: node --test tests/*.test.cjs
       - name: Install native Python wheel dependencies
         run: python -m pip install -r requirements-desktop-build.txt
       - name: Install locked Electron dependencies
@@ -55,9 +57,6 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Verify bundle allowlist and runtime tests
         run: python -m unittest -v tests.test_desktop_packaging tests.test_desktop_library_io tests.test_desktop_runtime tests.test_desktop_source_staging
-      - name: Verify desktop shell
-        working-directory: desktop
-        run: pnpm test
       - name: Build native backend (approved assets, no personal projects)
         run: python desktop/scripts/build_backend.py
       - name: Verify frozen STEP/PDF workers and safe data upgrade
@@ -65,7 +64,7 @@ jobs:
       - name: Select preview updater policy
         if: ${{ !inputs.release }}
         run: python desktop/scripts/prepare_release.py
-      - name: Validate free private updater policy
+      - name: Validate free updater policy
         if: ${{ inputs.release && !inputs.certified }}
         run: python desktop/scripts/prepare_release.py --release
       - name: Validate optional OS-certified release
@@ -81,7 +80,7 @@ jobs:
         if: ${{ !inputs.release && !inputs.certified }}
         working-directory: desktop
         run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
-      - name: Package free private release (no private signing key in CI)
+      - name: Package free release (no private signing key in CI)
         if: ${{ inputs.release && !inputs.certified }}
         working-directory: desktop
         run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
@@ -95,10 +94,13 @@ jobs:
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
+      - name: Verify actual Windows installer and application in an isolated runner
+        if: ${{ matrix.platform == 'win' }}
+        run: python -m tests.verify_desktop_windows_install desktop/dist desktop/stage/windows-install-smoke.json
       - name: Keep native build artifacts for explicit review
         uses: actions/upload-artifact@v4
         with:
-          name: Violet-${{ matrix.platform }}-${{ matrix.arch }}-${{ inputs.release && 'private' || 'preview' }}
+          name: Violet-${{ matrix.platform }}-${{ matrix.arch }}-${{ inputs.release && 'release' || 'preview' }}
           if-no-files-found: error
           retention-days: 1
           path: |
@@ -109,3 +111,4 @@ jobs:
             desktop/dist/*.yml
             desktop/stage/notices/inventory.json
             desktop/stage/frozen-smoke.json
+            desktop/stage/windows-install-smoke.json

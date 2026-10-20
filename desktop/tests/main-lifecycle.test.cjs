@@ -18,9 +18,10 @@ async function settle() { for (let i = 0; i < 8; i++) await tick(); }
 function event() { return {defaultPrevented:false,preventDefault() { this.defaultPrevented = true; }}; }
 
 function harness({startup = null, stop = null, activeJobs = 0, response = 1, discard = 0,
-  prepareError = null, launchError = null} = {}) {
+  prepareError = null, launchError = null, provider = 'github-private'} = {}) {
   const windows = [], notices = [], stops = [], timers = new Set(), order = [];
   const app = new EventEmitter();
+  let menu, credentialConstructors = 0;
   let backend, updates, quitCount = 0, installCount = 0, healthCount = 0, startCount = 0;
   const ready = deferred();
   Object.assign(app, {
@@ -76,7 +77,7 @@ function harness({startup = null, stop = null, activeJobs = 0, response = 1, dis
     }
   }
   class Updates {
-    constructor() { updates = this; this.state = 'downloaded'; this.version = '0.5.0'; this.enabled = true; this.checks = []; }
+    constructor(options) { updates = this; this.config = options.config; this.state = 'downloaded'; this.version = '0.5.0'; this.enabled = true; this.checks = []; }
     check(manual) { this.checks.push(manual); }
     label() { return 'mock update'; }
     async prepareInstall() {
@@ -91,7 +92,7 @@ function harness({startup = null, stop = null, activeJobs = 0, response = 1, dis
   }
   const electron = {
     app,BrowserWindow:Window,
-    Menu:{buildFromTemplate:value => value,setApplicationMenu() {}},
+    Menu:{buildFromTemplate:value => value,setApplicationMenu(value) { menu = value; }},
     dialog:{
       async showMessageBox(...args) {
         const options = args.at(-1); notices.push(options);
@@ -111,12 +112,12 @@ function harness({startup = null, stop = null, activeJobs = 0, response = 1, dis
       if (name === 'electron') return electron;
       if (name === './update-install.cjs') return {async acknowledgeUpdateReady() {}};
       if (name === './backend-process.cjs') return {BackendProcess:Backend};
-      if (name === './credentials.cjs') return {Credentials:class {}};
+      if (name === './credentials.cjs') return {Credentials:class { constructor() { credentialConstructors++; } }};
       if (name === './updater.cjs') return {Updates};
       if (name === './security.cjs') return require('../security.cjs');
       if (name === 'node:fs') return {
         mkdirSync() {},createWriteStream:() => ({write() {}}),
-        readFileSync:() => '{"enabled":false}'
+        readFileSync:() => JSON.stringify({enabled:false,provider})
       };
       return require(name);
     },
@@ -129,12 +130,32 @@ function harness({startup = null, stop = null, activeJobs = 0, response = 1, dis
   ready.resolve();
   return {
     app,windows,notices,stops,timers,order,
+    menu:() => menu,credentialConstructors:() => credentialConstructors,
+    access:() => vm.runInContext('showAccess()',context),
     close:install => vm.runInContext(`requestClose(${Boolean(install)})`,context),
     state:() => vm.runInContext('({closeAuthorized,closePending,installOnClose,allowQuit})',context),
     backend:() => backend,updates:() => updates,
     counts:() => ({quitCount,installCount,healthCount,startCount})
   };
 }
+
+test('public channel starts without credential storage or an access-key menu', async () => {
+  const h = harness({provider:'github-public'});
+  await settle();
+  assert.equal(h.credentialConstructors(),0);
+  assert.equal(h.menu()[0].submenu.some(item => item.label?.includes('Доступ к закрытым')),false);
+  h.access();
+  assert.equal(h.windows.length,1);
+});
+
+test('private channel retains its protected access-key menu', async () => {
+  const h = harness({provider:'github-private'});
+  await settle();
+  assert.equal(h.credentialConstructors(),1);
+  assert.equal(h.menu()[0].submenu.some(item => item.label?.includes('Доступ к закрытым')),true);
+  h.access();
+  assert.equal(h.windows.length,2);
+});
 
 test('beforeunload cancellation keeps window, backend and downloaded update untouched', async () => {
   const h = harness({discard:0});

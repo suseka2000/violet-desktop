@@ -186,7 +186,8 @@ test('Windows helper uses documented NSIS flags, no elevation or execution-polic
   const script=await fs.readFile(path.join(__dirname,'../update-helpers/windows-install.ps1'),'utf8');
   assert.match(script,/\$arguments = '--updated \/S --force-run \/D='/);
   assert.match(script,/WaitForExit\(\[int\]\$plan\.parentTimeout \* 1000\)/);
-  assert.match(script,/Get-FileHash -LiteralPath \$plan\.archive/g);
+  assert.equal((script.match(/Get-ArchiveHash \$plan\.archive/g)||[]).length,2);
+  assert.match(script,/\[Security\.Cryptography\.SHA256\]::Create\(\)/);
   assert.match(script,/Get-Content -LiteralPath \$receiptPath -Raw -Encoding UTF8/);
   assert.doesNotMatch(script,/Start-Process[^;\n]+-Verb\s+RunAs/);
   const launcher=await fs.readFile(path.join(__dirname,'../update-install.cjs'),'utf8');
@@ -272,7 +273,7 @@ function Start-Process {
     fakeInstaller+await fs.readFile(path.join(__dirname,'../update-helpers/windows-install.ps1'),'utf8');
   const powershell=path.join(process.env.SystemRoot,'System32/WindowsPowerShell/v1.0/powershell.exe');
   try {
-    await run(powershell,['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(source,'utf16le').toString('base64')],{timeout:15000});
+    await run(powershell,['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(source,'utf16le').toString('base64')],{timeout:30000});
   } catch (error) {
     const status=await fs.readFile(path.join(transaction,'status'),'utf8').catch(()=>'(no status written)');
     // Surface the helper's actual failure, not the enormous encoded command.

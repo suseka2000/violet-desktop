@@ -67,6 +67,8 @@ class DesktopSourceStagingTests(unittest.TestCase):
             (root / "frontend").mkdir(parents=True)
             (root / "frontend/app.js").write_bytes(b"safe")
             (root / "private.dwg").write_bytes(b"never copy")
+            (root / staging.LIBRARY_MANIFEST).parent.mkdir(parents=True)
+            (root / staging.LIBRARY_MANIFEST).write_text(json.dumps({"redistribution_scope": "public"}))
             record = {"path": "frontend/app.js", "bytes": 4,
                       "sha256": hashlib.sha256(b"safe").hexdigest(), "kind": "source"}
             target = base / "clean"
@@ -80,6 +82,7 @@ class DesktopSourceStagingTests(unittest.TestCase):
             self.assertFalse((target / "private.dwg").exists())
             self.assertFalse((target / ".git").exists())
             self.assertFalse(report["uploaded"])
+            self.assertFalse(report["private_distribution_only"])
             self.assertNotIn(str(root), json.dumps(report))
             self.assertEqual(json.loads((target / staging.REPORT).read_text())["file_count"], 1)
 
