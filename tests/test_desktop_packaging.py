@@ -76,8 +76,27 @@ class DesktopPackagingTests(unittest.TestCase):
         self.assertEqual(config["provider"], "github-private")
         self.assertNotIn("private-password", json.dumps(config))
         self.assertNotIn("CSC_LINK", config)
+        self.assertEqual(config["updateProtocol"], "violet-ed25519-v1")
+        self.assertFalse(config["osSigned"])
         with self.assertRaises(ValueError):
-            release.release_configuration({}, "Windows", "AMD64")
+            release.release_configuration({"VIOLET_UPDATE_PUBLIC_KEY": "not a key"}, "Windows", "AMD64")
+        with self.assertRaises(ValueError):
+            release.release_configuration({"VIOLET_OS_SIGNING": "1"}, "Windows", "AMD64")
+
+    def test_native_inventory_keeps_unknown_components_unreviewed(self):
+        from types import SimpleNamespace
+        entry = importlib.util.spec_from_file_location("collect_notices", ROOT / "desktop/scripts/collect_notices.py")
+        notices = importlib.util.module_from_spec(entry)
+        entry.loader.exec_module(notices)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "unknown.dll").write_bytes(b"unmapped binary input")
+            distribution = SimpleNamespace(metadata={"Name": "cadquery-ocp-novtk"}, version="7.9.3.0",
+                files=[Path("unknown.dll")], locate_file=lambda p: root / p)
+            report = notices.native_inventory({"cadquery-ocp-novtk": distribution}, {"component_map": []})
+            self.assertEqual(report[0]["sha256"], policy.digest(root / "unknown.dll"))
+            self.assertIsNone(report[0]["source_version"])
+            self.assertEqual(report[0]["license_text_status"], "unmapped")
 
 
 if __name__ == "__main__":

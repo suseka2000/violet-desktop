@@ -47,12 +47,15 @@ FIXED_FILES = ROOT_FILES | TEST_FILES | set(RESOURCE_FILES) | {
     "desktop/package.json", "desktop/pnpm-lock.yaml", "desktop/pnpm-workspace.yaml",
     "desktop/build/violet-backend.spec", "desktop/build/bundle_policy.py",
     "desktop/build/entitlements.mac.plist", "desktop/build/native-license-review.json",
+    "desktop/build/update-public-key.json",
+    "desktop/build/licenses/native-evidence-macos-arm64.json",
+    "desktop/update-helpers/mac-install.sh", "desktop/update-helpers/windows-install.ps1",
     MANIFEST, LIBRARY_MANIFEST, ".github/workflows/desktop-build.yml",
     "docs/desktop-release.md",
 }
 TEXT_EXTENSIONS = {
     ".py", ".js", ".cjs", ".css", ".html", ".svg", ".json", ".yml", ".yaml",
-    ".md", ".txt", ".toml", ".spec", ".plist", ".step", ".stp",
+    ".md", ".txt", ".toml", ".spec", ".plist", ".step", ".stp", ".sh", ".ps1",
 }
 # High-confidence credential formats, not environment-variable names or test
 # placeholders. Values are never printed in an error or copied into the report.

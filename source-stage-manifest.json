@@ -3,14 +3,14 @@
   "private_distribution_only": true,
   "git_initialized": false,
   "uploaded": false,
-  "file_count": 297,
-  "total_bytes": 74363887,
+  "file_count": 336,
+  "total_bytes": 74702927,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 4616,
-      "sha256": "177250116b79502217797b36684b969967d3374eec471c3f69e7394501f756f1",
+      "bytes": 5464,
+      "sha256": "7c729db271da021a8dd1978fb23bc568cc9de19ddfcf8a5f1b6d5ac6dbe31782",
       "kind": "source"
     },
     {
@@ -195,8 +195,8 @@
     },
     {
       "path": "backend/desktop_entry.py",
-      "bytes": 11266,
-      "sha256": "f952f8be5c0f51cc1ce08ad6968b9ab566634ecd799f071f0e03386d71bde68c",
+      "bytes": 11529,
+      "sha256": "cb32ae0b51605cf3c2af5dcdab7325f92b55dc14e5b3f8e3457c090be202f719",
       "kind": "source"
     },
     {
@@ -495,8 +495,8 @@
     },
     {
       "path": "backend/library_io.py",
-      "bytes": 8628,
-      "sha256": "3b27e712a3457473209c6d2b99842d0647669ab4d43c0f140a75664ca749a802",
+      "bytes": 10157,
+      "sha256": "5c6a278c32a7a181c2d99894cbc04c52a127c55b9d50ed192b9b40b339a55825",
       "kind": "source"
     },
     {
@@ -801,8 +801,8 @@
     },
     {
       "path": "desktop/backend-process.cjs",
-      "bytes": 7288,
-      "sha256": "6ff24b04583143e27a0d48b043414f85f252d8f592a55ebccf277b141816de09",
+      "bytes": 7442,
+      "sha256": "8ccbd31dbd95a8e13dabfd429bf42efdf85eae70c1d32ba5e6dccaa6d80a6e95",
       "kind": "source"
     },
     {
@@ -824,6 +824,114 @@
       "kind": "source"
     },
     {
+      "path": "desktop/build/licenses/FreeImage-3.18.0-FIPL-1.0.txt",
+      "bytes": 17436,
+      "sha256": "e3b09d535de646cb3126958c56a89677b39882b75fc5e7c630fa298b76e3f781",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeImage-3.18.0-FIPL-archive.txt",
+      "bytes": 17436,
+      "sha256": "e3b09d535de646cb3126958c56a89677b39882b75fc5e7c630fa298b76e3f781",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeImage-3.18.0-GPL-2.0.txt",
+      "bytes": 17752,
+      "sha256": "74359bb57c9f87df8c6f26091050dc7a6405d89705f08a2c347e4498bc198f85",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeImage-3.18.0-GPL-3.0.txt",
+      "bytes": 34737,
+      "sha256": "8f22ed44fc507b06173107fe181b8d55880cf5173f9f449b09d59c9d5d333834",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeType-2.12.1-BDF-notice.txt",
+      "bytes": 2322,
+      "sha256": "d97ce69c9dff1f885ad6341b58bdfeecf241337597f78ecc9544776b8f1d7416",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeType-2.12.1-FTL.txt",
+      "bytes": 6743,
+      "sha256": "08c135755dd589039470f1fdbb400daaabaaa50d0b366d19cebff4d22986baa1",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeType-2.12.1-GPL-2.0.txt",
+      "bytes": 17994,
+      "sha256": "c4120c6752c910c299e3bd9cb3a46ff262c268303ca2069b61f92f10a5656c18",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeType-2.12.1-LICENSE.txt",
+      "bytes": 1870,
+      "sha256": "c85e842b7ff04d95dab7d68e812773de0f8b67940e5449d35b42c66eb0f619fe",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeType-2.12.1-PCF-notice.txt",
+      "bytes": 1088,
+      "sha256": "acb4adde9db25f992623adb83a3c95db21fb157aae02a19b56aad9194fe8cc64",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/FreeType-2.12.1-bundled-zlib-notice.txt",
+      "bytes": 1327,
+      "sha256": "918799ecdb978d256263a2e6e5f24706d8817e642b3555aa9024406172bfc348",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/Imath-3.2.2-LICENSE.txt",
+      "bytes": 1497,
+      "sha256": "c20236d3b39fd20eba8e3d1fb3b892a5483df2e7d8d61bf43f165d3fac22f601",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LibRaw-0.21.4-CDDL-1.0.txt",
+      "bytes": 16905,
+      "sha256": "2d6601e01f772a4a0be92b66e3d862c9077cd985a11518057c9632338a608b11",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LibRaw-0.21.4-COPYRIGHT.txt",
+      "bytes": 1152,
+      "sha256": "2ecef66bff1a5139be9460bf65e0d68cf7fd34a1857eb8ff00d4eb963954dcf7",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LibRaw-0.21.4-DCB-notice.txt",
+      "bytes": 1721,
+      "sha256": "0eb0872acf4378ec6fb297943c68790f94de995f60683ce2e4e3ca67cb889d78",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LibRaw-0.21.4-LGPL-2.1.txt",
+      "bytes": 24389,
+      "sha256": "eea173a556abac0370461e57e12aab266894ea6be3874c2be05fd87871f75449",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LibRaw-0.21.4-X3F-notice.txt",
+      "bytes": 1729,
+      "sha256": "4960ed8d4fe17a84fae9a50b0d18cd3e24abb4d68cdc4217610910b10e597e67",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LibTIFF-4.7.1-LICENSE.txt",
+      "bytes": 2416,
+      "sha256": "0e27c2382d7b8147972bbb746e04059a1152c8d0fda9d03ef1399d1a433c4ade",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LittleCMS-2.17-LICENSE.txt",
+      "bytes": 1080,
+      "sha256": "6dbd60437f8ef91d8de1f08ad75882547fd4931bfcc3566a0735f28db1484d31",
+      "kind": "source"
+    },
+    {
       "path": "desktop/build/licenses/OCCT-7.9.3-LGPL-2.1.txt",
       "bytes": 26434,
       "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c",
@@ -842,15 +950,99 @@
       "kind": "source"
     },
     {
+      "path": "desktop/build/licenses/OpenEXR-3.4.4-LICENSE.txt",
+      "bytes": 1501,
+      "sha256": "84853c91d4c2e0310741d4773469d98bb93e61029608e0ba0882a3fffdf330bd",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/OpenJPEG-2.5.4-LICENSE.txt",
+      "bytes": 2112,
+      "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/OpenJPH-0.26.0-LICENSE.txt",
+      "bytes": 1448,
+      "sha256": "5ddf5177863dfc9ab65fa129d587db651241f00e21ed2427b218bea997591f98",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/XZ-5.8.1-0BSD.txt",
+      "bytes": 607,
+      "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/XZ-5.8.1-COPYING.txt",
+      "bytes": 3118,
+      "sha256": "1d2d9338d5c0620e34ade2153730eff686d07f02a42f889a33d659a30c41eac1",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/Zstandard-1.5.7-LICENSE.txt",
+      "bytes": 1549,
+      "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/libjpeg-turbo-3.1.2-LICENSE.txt",
+      "bytes": 5620,
+      "sha256": "2189dc45a8fe96204069f8124caa53a148dfdc193f50f584c6ca7849a6072872",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/libjpeg-turbo-3.1.2-README-IJG.txt",
+      "bytes": 12799,
+      "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/libpng-1.6.53-LICENSE.txt",
+      "bytes": 5345,
+      "sha256": "16d9daaafbf63a31a5bdc91d4600972548fef5aaa1244202393288dbd079c49a",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/libwebp-1.6.0-COPYING.txt",
+      "bytes": 1495,
+      "sha256": "e293d1dddc9785200b1f58a4f5293543cf8566d9e0b8a3c02fad955035b19f42",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/libwebp-1.6.0-PATENTS.txt",
+      "bytes": 1436,
+      "sha256": "cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/native-evidence-macos-arm64.json",
+      "bytes": 22819,
+      "sha256": "e664b33516352cdd71088a9907c632fa7d181d883116a10510f60643e077aa1d",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/zlib-1.3.1-LICENSE.txt",
+      "bytes": 1002,
+      "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243",
+      "kind": "source"
+    },
+    {
       "path": "desktop/build/native-license-review.json",
-      "bytes": 1292,
-      "sha256": "56c31abadcc748dcc8c2eaa7a75eaf93366f7b617506f3e363dede68d468bcc2",
+      "bytes": 7013,
+      "sha256": "523ad7a3242f45c5f14e526c097ac9b9eccb4a46ab4e98f40b84e33e28fa30c2",
       "kind": "source"
     },
     {
       "path": "desktop/build/source-files.json",
-      "bytes": 7881,
-      "sha256": "c1a94d3a5f918a00a809099bd26a35d83ffbca0fabdb302a92e41c2995251479",
+      "bytes": 10003,
+      "sha256": "28f62e0c270a7d96f9c5bb2e50f23524f3ecd5fb6ac810894901c30c05cfe749",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/update-public-key.json",
+      "bytes": 251,
+      "sha256": "989dc96c7c002b9398683cde6e9dfb157eb8cdf6f8e5b4bdd719891a948f6af3",
       "kind": "source"
     },
     {
@@ -867,8 +1059,8 @@
     },
     {
       "path": "desktop/electron-builder.cjs",
-      "bytes": 3279,
-      "sha256": "36a156ff4e9fba5f45ee6b5398ca6ca2eacca3ea549754747529768b2c4245c8",
+      "bytes": 3817,
+      "sha256": "4a695fa7fbfa9cb16c9f90bb69cdfdd0e5196a9ed8b8f7fd64a12a547acb2f0e",
       "kind": "source"
     },
     {
@@ -885,20 +1077,20 @@
     },
     {
       "path": "desktop/main.cjs",
-      "bytes": 13364,
-      "sha256": "faf9e563b3081d83a2048a77b77c73fef06ea55b5131f6ecdf147f7e6d6400da",
+      "bytes": 14244,
+      "sha256": "9baa127c12bfb098987e0e44e3786beff1b29ec4266db62c63b9ab0150132c23",
       "kind": "source"
     },
     {
       "path": "desktop/package.json",
-      "bytes": 813,
-      "sha256": "08f5f39c9eaa124a7d756e8f52d7412e71297c0df6bbda3d5a3d1fd59f374e8f",
+      "bytes": 784,
+      "sha256": "35c127f39be336f02e9e7f4a28225937059677eed32d0ad38fa18cfad4776e93",
       "kind": "source"
     },
     {
       "path": "desktop/pnpm-lock.yaml",
-      "bytes": 71748,
-      "sha256": "55a80526e5ddeb7a1001e4b9a96c0bdd2ffd07545269f20138f4afbf60fe67ff",
+      "bytes": 70479,
+      "sha256": "a4a0b0ddfed337e2f3c0be38778138fe84e6fd36342184983a1f8628db25f1e3",
       "kind": "source"
     },
     {
@@ -914,6 +1106,12 @@
       "kind": "source"
     },
     {
+      "path": "desktop/private-release.cjs",
+      "bytes": 17757,
+      "sha256": "eb658c4de4718f3eda22d262fc952ffae20bd6ce3845d28b4d46383c1e7f5b9f",
+      "kind": "source"
+    },
+    {
       "path": "desktop/scripts/build_backend.py",
       "bytes": 3172,
       "sha256": "c3f7caa13a8861a7dfa913148cc2e18aca60cb684311f983b9812da6c184d558",
@@ -921,50 +1119,44 @@
     },
     {
       "path": "desktop/scripts/collect_notices.py",
-      "bytes": 5139,
-      "sha256": "cb5b1eef14a76ea0652e222f595c50649e2f7eeb81428f58f2f6a68e928a7b5e",
-      "kind": "source"
-    },
-    {
-      "path": "desktop/scripts/combine-release.cjs",
-      "bytes": 5101,
-      "sha256": "adcd4c33264c475fe8da33e0d68b74c3d1deb2b1be606257afd0fa54ba6a7692",
+      "bytes": 9673,
+      "sha256": "e45c12d28a6a05e3ceea73684550b85b0473a9e6a89745b7cad4e975b6a01cc7",
       "kind": "source"
     },
     {
       "path": "desktop/scripts/package.cjs",
-      "bytes": 1478,
-      "sha256": "1015019cc87cbbedbc3af972c6d29e98173e6add627444adb04241fa3f886e53",
+      "bytes": 1594,
+      "sha256": "ef671e1097d2b8f652eb98f5b91ab0271f47170bb5e5b67f04353c6474fd760c",
       "kind": "source"
     },
     {
       "path": "desktop/scripts/prepare_release.py",
-      "bytes": 3556,
-      "sha256": "c41e96bf0884d81915581ea262ca6c5d96256a6d5e2d408b8254aecdac7065db",
+      "bytes": 5007,
+      "sha256": "7c2872bc74f151d7bade1be7725848d4d5ac224232711763b07646688f2c3d4c",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/sign-release.cjs",
+      "bytes": 6126,
+      "sha256": "312e33e9c1665e5c40cd51310d29adc9a2917183e1df8b5b89d3ef6198afcd40",
       "kind": "source"
     },
     {
       "path": "desktop/scripts/stage_sources.py",
-      "bytes": 11896,
-      "sha256": "49330de606dba83745679af98fe67b7e438944af95952fb1047268f0b3a7d30a",
+      "bytes": 12109,
+      "sha256": "c568b814af9e2164daed896201ee10994671f543f15b853eaf105261632061d7",
       "kind": "source"
     },
     {
       "path": "desktop/security.cjs",
-      "bytes": 2532,
-      "sha256": "26be0a3277c00741ea8b1af3e1f854e59ece14e56c6a68a1438e2055908e46ac",
+      "bytes": 2808,
+      "sha256": "7015b96b2dd3cdfc28d22005ac46baf088ba94c19fccd57dced7eced26079ddc",
       "kind": "source"
     },
     {
       "path": "desktop/tests/backend-process.test.cjs",
-      "bytes": 2850,
-      "sha256": "4f8df684aefe4c02d6d432d0a8572f1f0b5cc59cf82a588ffb81011a9556e9aa",
-      "kind": "source"
-    },
-    {
-      "path": "desktop/tests/combine-release.test.cjs",
-      "bytes": 1973,
-      "sha256": "94294672a421b73f9a75f0217d4769387615f9b6d153630d14eb3ddc840c3425",
+      "bytes": 3595,
+      "sha256": "0520d50aea5d20d036fd5dd46f4c99b185493ef1d0428e9acd7b8eb2a8642da1",
       "kind": "source"
     },
     {
@@ -975,8 +1167,8 @@
     },
     {
       "path": "desktop/tests/main-lifecycle.test.cjs",
-      "bytes": 10053,
-      "sha256": "96ba9884aece8f59fa69d8ad470694973b1d67b03c09d972793f9af5a1cac868",
+      "bytes": 11197,
+      "sha256": "7fa242753c20789e8a5665698fa2c4a3cb1a90589a35266055d789717a883c17",
       "kind": "source"
     },
     {
@@ -986,21 +1178,63 @@
       "kind": "source"
     },
     {
+      "path": "desktop/tests/private-release.test.cjs",
+      "bytes": 17498,
+      "sha256": "b1d90ce54bfeebef7462f18c9e020e97095605b7cd1264521a5034fc18203fc9",
+      "kind": "source"
+    },
+    {
       "path": "desktop/tests/security-review.test.cjs",
-      "bytes": 5272,
-      "sha256": "2f9d45749d320e3ce1b6032a32e71c0c39f092bedfc8d09bf302a7d049ca631b",
+      "bytes": 7085,
+      "sha256": "ef41361efa732aa81052246a6d91aba29a070fc2fe1c1ed6227aecd883e71ecc",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/sign-release.test.cjs",
+      "bytes": 2387,
+      "sha256": "0be1a41915b0b4ab81c48a182b3787cce58709a0cc8963633b66f92d991f30f9",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/update-install.test.cjs",
+      "bytes": 16652,
+      "sha256": "c2708e05dc27d50e456902970847ea87e1d5d6426a1544b1733f8ad4f32f2a7a",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/update-helpers/mac-install.sh",
+      "bytes": 3608,
+      "sha256": "8b262b229627af490ca82ed672d66809aab21150396b3e8ffc26396e0061104c",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/update-helpers/windows-install.ps1",
+      "bytes": 2924,
+      "sha256": "26d65acad87a9e67c5b4451764150978c5c6c3e11221aef02e2c58d676e851d1",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/update-install.cjs",
+      "bytes": 13734,
+      "sha256": "8add019d11941e6690ed6fe0b44f44510d8617d0593915647e5307c08768b2f1",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/update-zip.cjs",
+      "bytes": 10045,
+      "sha256": "ee131fcdda75262389d0c09f0e5f7326b1bd2a188a0ec7af688170aa5f9174aa",
       "kind": "source"
     },
     {
       "path": "desktop/updater.cjs",
-      "bytes": 6325,
-      "sha256": "1951e5a19549e4a66f908b0124e08b0cd32034ed49e7d3df6e5ccc388d783b6a",
+      "bytes": 6422,
+      "sha256": "264c6d9e2d3e3383653cf30d723237d5eeb1aef645be7160ff59d9cec739f5b8",
       "kind": "source"
     },
     {
       "path": "docs/desktop-release.md",
-      "bytes": 15877,
-      "sha256": "381586951a071d675703869d7ff5d9310e8867630225d031f21b26225fd3223b",
+      "bytes": 12896,
+      "sha256": "93be5be986e1612d1e56a45d83c4b30e3d621590726783a1a4190a0a1d87be86",
       "kind": "source"
     },
     {
@@ -1761,20 +1995,20 @@
     },
     {
       "path": "tests/test_desktop_library_io.py",
-      "bytes": 10678,
-      "sha256": "10446603a2aa32199b92149a1f11d6f6eace13c842ee5387e4209f8faaf43c64",
+      "bytes": 13943,
+      "sha256": "e17ea833df0238eb841473a4c6f31d1c90854be3542f705174b433643fbda255",
       "kind": "source"
     },
     {
       "path": "tests/test_desktop_packaging.py",
-      "bytes": 4627,
-      "sha256": "b00ca50d68f60ccccaec8d33ef5fb1a079e75a6b46e3b63007aa58bf9d8da3c3",
+      "bytes": 5924,
+      "sha256": "341a0ae42e364c2080efe613cc56567b6c4dee40e9ae4fe0e034c103259cc220",
       "kind": "source"
     },
     {
       "path": "tests/test_desktop_runtime.py",
-      "bytes": 20383,
-      "sha256": "4beb74fc92248e1bb32d232295dcfe005a906d201455b6acd16c66bbab808cb8",
+      "bytes": 22091,
+      "sha256": "abc70563055de67e61f66361ce9dc6adb0fc9857884a95975b0f82e11fc64db0",
       "kind": "source"
     },
     {
@@ -1785,8 +2019,8 @@
     },
     {
       "path": "tests/verify_desktop_frozen.py",
-      "bytes": 11150,
-      "sha256": "9760df64d5ea95326f2d77af766d807af52560ea66ecb1da5bd544d953b49391",
+      "bytes": 11402,
+      "sha256": "dff6b5e487fb5e7deb8c57d39f729a9f06fc1e3a9a729bfd977a0faf386240b2",
       "kind": "source"
     }
   ],

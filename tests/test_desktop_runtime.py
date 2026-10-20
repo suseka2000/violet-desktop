@@ -200,10 +200,37 @@ class DesktopProcessTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, timeout=10,
                 env={**os.environ, "VIOLET_DESKTOP_TOKEN": TOKEN})
             self.assertEqual(process.returncode, 0, process.stderr)
-            ready = json.loads(process.stdout)
-            self.assertEqual(ready["type"], "ready")
-            with self.assertRaises(OSError):
-                request(ready["port"], "GET", "/api/v1/desktop/health")
+            self.assertEqual(process.stdout, b"")
+            self.assertFalse((Path(temporary) / "projects.sqlite3").exists())
+
+    def test_live_backend_stops_after_its_owner_exits(self):
+        with tempfile.TemporaryDirectory(prefix="violet-parent-exit-test-") as temporary:
+            owner = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(600)"])
+            with tempfile.TemporaryFile("w+b") as errors:
+                process = subprocess.Popen(
+                    [sys.executable, "-m", "backend.desktop_entry", "--data-dir", temporary,
+                     "--assets-root", str(ROOT), "--parent-pid", str(owner.pid)],
+                    cwd=ROOT, stdout=subprocess.PIPE, stderr=errors, text=True,
+                    env={**os.environ, "VIOLET_DESKTOP_TOKEN": TOKEN})
+                try:
+                    line = process.stdout.readline()
+                    if not line:
+                        errors.seek(0)
+                        self.fail(errors.read().decode("utf-8", errors="replace"))
+                    ready = json.loads(line)
+                    self.assertEqual(ready["type"], "ready")
+                    owner.terminate()
+                    owner.wait(timeout=5)
+                    process.wait(timeout=10)
+                    self.assertEqual(process.returncode, 0)
+                    with self.assertRaises(OSError):
+                        request(ready["port"], "GET", "/api/v1/desktop/health")
+                finally:
+                    for child in (owner, process):
+                        if child.poll() is None:
+                            child.kill()
+                        child.wait()
+                    process.stdout.close()
 
     def test_orphan_worker_stops_even_when_waiting_for_input(self):
         owner = subprocess.Popen([sys.executable, "-c", "pass"])
@@ -231,7 +258,11 @@ class DesktopProcessTests(unittest.TestCase):
                     cwd=ROOT, stdout=subprocess.PIPE, stderr=errors, text=True,
                     env={**os.environ, "VIOLET_DESKTOP_TOKEN": TOKEN})
                 try:
-                    ready = json.loads(process.stdout.readline())
+                    line = process.stdout.readline()
+                    if not line:
+                        errors.seek(0)
+                        self.fail("Desktop exited before readiness: " + errors.read().decode("utf-8", errors="replace"))
+                    ready = json.loads(line)
                     self.assertEqual(ready["type"], "ready")
                     self.assertEqual(ready["protocol"], 1)
                     self.assertEqual(ready["pid"], process.pid)

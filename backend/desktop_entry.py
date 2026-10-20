@@ -18,7 +18,7 @@ import sys
 import tempfile
 import threading
 
-from backend.desktop_runtime import WORKER_MODULES, asset_root, stop_workers, watch_parent
+from backend.desktop_runtime import WORKER_MODULES, asset_root, process_alive, stop_workers, watch_parent
 
 
 VERSION_MARKER = "desktop-data-version.json"
@@ -186,6 +186,10 @@ def main(argv=None) -> int:
         raise ValueError("Нужны абсолютные пути приложения и пользовательских данных")
     if args.parent_pid is not None and args.parent_pid <= 0:
         raise ValueError("Некорректный родительский процесс")
+    # An owner that already quit cannot consume readiness. Avoid expensive CAD
+    # imports, database creation and library scans just to immediately stop.
+    if args.parent_pid is not None and not process_alive(args.parent_pid):
+        return 0
     assets = args.assets_root.resolve(strict=True)
     if not (assets / "frontend" / "index.html").is_file():
         raise ValueError("В сборке отсутствует интерфейс приложения")

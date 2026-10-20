@@ -2,12 +2,15 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {EventEmitter} = require('node:events');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
 const {BackendProcess, launchArguments, backendEnvironment} = require('../backend-process.cjs');
 
 test('frozen backend uses resources and separate user directory without source paths or secrets in arguments', () => {
   for (const platform of ['darwin','win32']) {
     const launch = launchArguments({packaged:true,resourcesPath:'/installed/resources',dataDir:'/user/workspace',platform});
-    assert.equal(launch.command, `/installed/resources/backend/violet-backend${platform === 'win32' ? '.exe' : ''}`);
+    assert.equal(launch.command, path.join('/installed/resources','backend',`violet-backend${platform === 'win32' ? '.exe' : ''}`));
     assert.deepEqual(launch.args,['--data-dir','/user/workspace','--parent-pid',String(process.pid)]);
     assert.equal(launch.cwd, undefined);
   }
@@ -58,4 +61,17 @@ test('plain quit can cancel startup before health endpoint exists', async () => 
   const {backend,kills} = fakeBackend();
   await backend.stop();
   assert.equal(kills(),1);
+});
+
+test('restart clears the old endpoint and stopping flag; duplicate launch is refused', async t => {
+  const dataDir = fs.mkdtempSync(path.join(os.tmpdir(),'violet-restart-test-'));
+  t.after(() => fs.rmSync(dataDir,{recursive:true,force:true}));
+  const backend = new BackendProcess({packaged:true,resourcesPath:dataDir,dataDir});
+  backend.origin = 'http://127.0.0.1:12345';
+  backend.stopping = true;
+  await assert.rejects(backend.start(),/не найден/);
+  assert.equal(backend.origin,null);
+  assert.equal(backend.stopping,false);
+  backend.child = {};
+  await assert.rejects(backend.start(),/уже запущен/);
 });

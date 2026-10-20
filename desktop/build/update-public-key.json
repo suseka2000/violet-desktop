@@ -1,0 +1,5 @@
+{
+  "algorithm": "Ed25519",
+  "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAjSFGEu6GOArJZ5IyjQBHS7TDPaU2Xfv0oEvjgi8zmRM=\n-----END PUBLIC KEY-----\n",
+  "sha256Spki": "853ff0c2ae6a38f2f422a325ef0d9c6afeb88e7c6c6f96180fbdc76ab2ae8877"
+}

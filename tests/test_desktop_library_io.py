@@ -137,6 +137,29 @@ class DesktopLibraryIOTests(unittest.TestCase):
         self.assertEqual(io._normal_windows_path(r"\\?\UNC\server\share\file"),
                          io._normal_windows_path(r"\\server\share\file"))
 
+    def test_windows_short_name_alias_matches_only_expanded_identical_path(self):
+        requested = r"C:\Users\RUNNER~1\AppData\Local\Temp\LIBRAR~1\PROFILE~1.STP"
+        expanded = r"C:\Users\runneradmin\AppData\Local\Temp\Library With Long Name\Profile Long.stp"
+        calls = []
+        def expand(value):
+            calls.append(value)
+            return expanded
+        self.assertTrue(io._same_windows_path("\\\\?\\" + expanded, requested, expand))
+        self.assertEqual([requested], calls)
+        for changed in (r"C:\Users\attacker\Profile Long.stp",
+                        r"D:\Users\runneradmin\AppData\Local\Temp\Library With Long Name\Profile Long.stp",
+                        expanded + ".other"):
+            self.assertFalse(io._same_windows_path(changed, requested, expand))
+        with self.assertRaises(OSError):
+            io._same_windows_path(expanded, requested,
+                                  lambda _: (_ for _ in ()).throw(OSError("cannot expand")))
+
+    def test_windows_matching_full_path_needs_no_name_lookup(self):
+        def forbidden(_):
+            self.fail("Already identical paths need no extra filesystem operation")
+        self.assertTrue(io._same_windows_path(r"\\?\C:\Users\Person\Profile.step",
+                                             r"c:\users\person\profile.step", forbidden))
+
     def test_windows_components_reject_streams_devices_and_ambiguous_names(self):
         with patch.object(io, "WINDOWS", True):
             for name in ("../x", "C:x", "part.step:secret", "NUL", "con.txt", "LPT¹.txt",
@@ -163,6 +186,41 @@ class DesktopLibraryIOTests(unittest.TestCase):
 
 @unittest.skipUnless(os.name == "nt", "Actual Win32 handle checks run on Windows CI")
 class NativeWindowsLibraryIOTests(unittest.TestCase):
+    def test_native_short_name_ancestor_and_leaf_are_read_without_resolving_links(self):
+        import ctypes
+        from ctypes import wintypes
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel.GetShortPathNameW.argtypes = (wintypes.LPCWSTR, wintypes.LPWSTR, wintypes.DWORD)
+        kernel.GetShortPathNameW.restype = wintypes.DWORD
+        def short_name(value):
+            size = kernel.GetShortPathNameW(str(value), None, 0)
+            if not size:
+                raise ctypes.WinError(ctypes.get_last_error())
+            buffer = ctypes.create_unicode_buffer(size + 1)
+            count = kernel.GetShortPathNameW(str(value), buffer, len(buffer))
+            self.assertTrue(0 < count < len(buffer))
+            return Path(buffer.value)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "Library With Long Name"
+            root.mkdir()
+            original = root / "Profile With Long Name.step"
+            content = b"ISO-10303-21;short-name-fixture"
+            original.write_bytes(content)
+            alias_root, alias_file = short_name(root), short_name(original)
+            # Even on volumes with 8.3 creation disabled, existing TEMP/user
+            # ancestors may use a short alias. Both spellings must be usable.
+            opened = io.root_directory(alias_root)
+            try:
+                descriptor = io.open_file(opened, alias_file.name)
+                with os.fdopen(descriptor, "rb") as stream:
+                    self.assertEqual(content, stream.read())
+                with self.assertRaises(OSError):
+                    root.rename(root.with_name("Renamed Library"))
+            finally:
+                io.close_directory(opened)
+            self.assertEqual(1, len(ModelLibrary(alias_root).inventory()["assets"]))
+            self.assertEqual(1, len(VendorLibrary(alias_root).inventory()["assets"]))
+
     def test_native_files_are_read_and_cache_survives_restart(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

@@ -38,6 +38,9 @@ class BackendProcess extends EventEmitter {
     this.log = options.log || (() => {});
   }
   async start() {
+    if (this.child) throw new Error('Движок уже запущен');
+    this.stopping = false;
+    this.origin = null;
     fs.mkdirSync(this.options.dataDir, {recursive: true});
     const launch = launchArguments(this.options);
     if (!fs.existsSync(launch.command)) throw new Error('Встроенный движок не найден. Установите полный комплект приложения.');
@@ -56,6 +59,7 @@ class BackendProcess extends EventEmitter {
       child.once('error', fail);
       child.once('exit', (code, signal) => {
         this.child = null;
+        this.origin = null;
         if (!ready) fail(new Error(`Движок завершился до запуска (${code ?? signal}). Откройте журнал приложения.`));
         else if (!this.stopping) this.emit('unexpected-exit', {code, signal});
       });

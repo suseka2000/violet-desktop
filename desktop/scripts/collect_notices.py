@@ -8,10 +8,75 @@ import shutil
 import sys
 import sysconfig
 import platform
+import hashlib
 from packaging.requirements import Requirement
 
 ROOT = Path(__file__).resolve().parents[2]
 DIRECT = ["pydantic", "ezdxf", "reportlab", "pypdf", "Pillow", "pypdfium2", "shapely", "cadquery-ocp-novtk"]
+
+
+def native_inventory(distributions, review):
+    """Inventory the actual installed wheel binaries, not guessed dependencies.
+
+    Soname numbers are ABI identifiers, not necessarily source release numbers.
+    Never infer an exact source version or license coverage from those numbers.
+    """
+    result = []
+    evidence_by_binary = {}
+    target_id = f"{sys.platform}-{platform.machine()}"
+    for evidence_file in (ROOT / "desktop/build/licenses").glob("native-evidence-*.json"):
+        evidence = json.loads(evidence_file.read_text())
+        distribution = evidence.get("distribution", {})
+        if distribution.get("target") != target_id:
+            continue
+        for record in evidence.get("components", []):
+            texts = record.get("license_files", [])
+            if not texts:
+                continue
+            for text in texts:
+                if Path(text["file"]).name != text["file"]:
+                    raise ValueError("Noncanonical native license filename")
+                source = evidence_file.parent / text["file"]
+                if source.is_symlink():
+                    raise ValueError("Symlink native license")
+                with source.open("rb") as stream:
+                    digest = hashlib.file_digest(stream, "sha256").hexdigest()
+                if digest != text["sha256"]:
+                    raise ValueError(f"Changed native license text: {text['file']}")
+            for binary in record.get("version_evidence", {}).get("binaries", []):
+                evidence_by_binary[(distribution.get("name"), distribution.get("version"),
+                                    binary["file"], binary["sha256"])] = record
+    for owner, dist in sorted(distributions.items()):
+        for item in dist.files or []:
+            relative = str(item).replace("\\", "/")
+            if Path(relative).suffix.lower() not in {".so", ".dylib", ".dll", ".pyd"}:
+                continue
+            source = Path(dist.locate_file(item))
+            if not source.is_file():
+                continue
+            component = None
+            if owner == "cadquery-ocp-novtk":
+                basename = Path(relative).name.lower()
+                component = next((record for record in review.get("component_map", [])
+                                  if any(basename.startswith(prefix.lower()) for prefix in record["prefixes"])), None)
+            with source.open("rb") as stream:
+                digest = hashlib.file_digest(stream, "sha256").hexdigest()
+            observed = evidence_by_binary.get((dist.metadata["Name"], dist.version, Path(relative).name, digest))
+            result.append({
+                "distribution": dist.metadata["Name"], "distribution_version": dist.version,
+                "path": relative, "size": source.stat().st_size,
+                "sha256": digest,
+                "component": component["component"] if component else None,
+                "source": component.get("source") if component else None,
+                "source_version": observed["observed_version"] if observed else component.get("source_version") if component else None,
+                "license_text_status": "upstream-texts-collected" if observed else
+                    component.get("license_text_status", "unmapped") if component else
+                    ("unmapped" if owner == "cadquery-ocp-novtk" else "see-distribution-notices"),
+                "upstream_license_files": ["native/" + text["file"] for text in observed["license_files"]] if observed else [],
+                "source_provenance_status": observed.get("source_build_provenance") if observed else None,
+                "note": "The filename is evidence of binary identity, not proof of the exact upstream build or license compliance.",
+            })
+    return result
 
 
 def dependency_closure(names):
@@ -86,12 +151,20 @@ def main():
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, destination)
     target_id = f"{sys.platform}-{platform.machine()}"
+    native_files = native_inventory(dependencies_to_collect, review)
+    native_unresolved = sorted({record["component"] or record["path"] for record in native_files
+                                if record["distribution"].lower() == "cadquery-ocp-novtk"
+                                and record["license_text_status"] not in {"included", "upstream-texts-collected"}})
     report = {
         "schema_version": "violet-notices/1", "dependencies": dependencies,
         "missing_distribution_license_texts": unresolved,
         "native_review": review,
         "target": target_id,
-        "release_ready": not unresolved and review.get("redistribution_reviewed") is True and target_id in review.get("reviewed_targets", []),
+        "native_binary_inventory": native_files,
+        "native_components_missing_matching_license_texts": native_unresolved,
+        "native_components_with_upstream_texts_pending_source_review": sorted({
+            record["component"] for record in native_files if record["license_text_status"] == "upstream-texts-collected"}),
+        "release_ready": not unresolved and not native_unresolved and review.get("redistribution_reviewed") is True and target_id in review.get("reviewed_targets", []),
         "note": "Electron/Chromium licenses are also supplied by electron-builder in the installed app. This report does not authorize customer-file redistribution.",
     }
     (target / "inventory.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")

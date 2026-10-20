@@ -1,0 +1,553 @@
+{
+  "schema_version": "violet-native-license-evidence/1",
+  "observed_at_utc": "2026-10-20T15:33:04Z",
+  "distribution": {
+    "name": "cadquery-ocp-novtk",
+    "version": "7.9.3.0",
+    "target": "darwin-arm64"
+  },
+  "redistribution_reviewed": false,
+  "source_obligations_complete": false,
+  "notice": "Technical evidence only. This is not a license selection, a legal clearance, or proof that upstream archives reproduce the bundled patched binaries. Windows and macOS x64 require independent version evidence.",
+  "text_normalization": "License text copied from indicated upstream versions; CRLF normalized to LF and one final newline. Complete license terms preserved. Extracted third-party sections identify their source and extraction boundary. FreeImage source archive text decoded CP1252 to UTF-8.",
+  "components": [
+    {
+      "component": "FreeImage",
+      "observed_version": "3.18.0",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "FreeImage-3.18.0-FIPL-1.0.txt",
+          "sha256": "e3b09d535de646cb3126958c56a89677b39882b75fc5e7c630fa298b76e3f781",
+          "url": "https://freeimage.sourceforge.net/freeimage-license.txt",
+          "bytes": 17437
+        },
+        {
+          "file": "FreeImage-3.18.0-FIPL-archive.txt",
+          "sha256": "e3b09d535de646cb3126958c56a89677b39882b75fc5e7c630fa298b76e3f781",
+          "url": "https://downloads.sourceforge.net/project/freeimage/Source%20Distribution/3.18.0/FreeImage3180.zip",
+          "archive_path": "FreeImage/license-fi.txt",
+          "archive_sha256": "f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd",
+          "transformation": "CP1252 decoded to UTF-8; line endings normalized to LF"
+        },
+        {
+          "file": "FreeImage-3.18.0-GPL-2.0.txt",
+          "sha256": "74359bb57c9f87df8c6f26091050dc7a6405d89705f08a2c347e4498bc198f85",
+          "url": "https://downloads.sourceforge.net/project/freeimage/Source%20Distribution/3.18.0/FreeImage3180.zip",
+          "archive_path": "FreeImage/license-gplv2.txt",
+          "archive_sha256": "f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd",
+          "transformation": "CP1252 decoded to UTF-8; line endings normalized to LF"
+        },
+        {
+          "file": "FreeImage-3.18.0-GPL-3.0.txt",
+          "sha256": "8f22ed44fc507b06173107fe181b8d55880cf5173f9f449b09d59c9d5d333834",
+          "url": "https://downloads.sourceforge.net/project/freeimage/Source%20Distribution/3.18.0/FreeImage3180.zip",
+          "archive_path": "FreeImage/license-gplv3.txt",
+          "archive_sha256": "f41379682f9ada94ea7b34fe86bf9ee00935a3147be41b6569c9605a53e438fd",
+          "transformation": "CP1252 decoded to UTF-8; line endings normalized to LF"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API FreeImage_GetVersion()",
+        "value": "3.18.0",
+        "binaries": [
+          {
+            "file": "libfreeimage.3.18.0.dylib",
+            "sha256": "4965e7e93c89fe7a64f9b6d87e29738671484fc880df4a56498595cb0137b69e"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "FreeType",
+      "observed_version": "2.12.1",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "FreeType-2.12.1-GPL-2.0.txt",
+          "sha256": "c4120c6752c910c299e3bd9cb3a46ff262c268303ca2069b61f92f10a5656c18",
+          "url": "https://raw.githubusercontent.com/freetype/freetype/VER-2-12-1/docs/GPLv2.TXT",
+          "bytes": 17994
+        },
+        {
+          "file": "FreeType-2.12.1-LICENSE.txt",
+          "sha256": "c85e842b7ff04d95dab7d68e812773de0f8b67940e5449d35b42c66eb0f619fe",
+          "url": "https://raw.githubusercontent.com/freetype/freetype/VER-2-12-1/LICENSE.TXT",
+          "bytes": 1870
+        },
+        {
+          "file": "FreeType-2.12.1-FTL.txt",
+          "sha256": "08c135755dd589039470f1fdbb400daaabaaa50d0b366d19cebff4d22986baa1",
+          "url": "https://raw.githubusercontent.com/freetype/freetype/VER-2-12-1/docs/FTL.TXT",
+          "bytes": 6742
+        },
+        {
+          "file": "FreeType-2.12.1-BDF-notice.txt",
+          "sha256": "d97ce69c9dff1f885ad6341b58bdfeecf241337597f78ecc9544776b8f1d7416",
+          "url": "https://raw.githubusercontent.com/freetype/freetype/VER-2-12-1/src/bdf/README",
+          "excerpt": "complete License section"
+        },
+        {
+          "file": "FreeType-2.12.1-PCF-notice.txt",
+          "sha256": "acb4adde9db25f992623adb83a3c95db21fb157aae02a19b56aad9194fe8cc64",
+          "url": "https://raw.githubusercontent.com/freetype/freetype/VER-2-12-1/src/pcf/README",
+          "excerpt": "complete License section"
+        },
+        {
+          "file": "FreeType-2.12.1-bundled-zlib-notice.txt",
+          "sha256": "918799ecdb978d256263a2e6e5f24706d8817e642b3555aa9024406172bfc348",
+          "url": "https://raw.githubusercontent.com/freetype/freetype/VER-2-12-1/src/gzip/zlib.h",
+          "excerpt": "first complete license comment"
+        }
+      ],
+      "version_evidence": {
+        "method": "FT_Init_FreeType(), FT_Library_Version(), FT_Done_FreeType()",
+        "value": "2.12.1",
+        "binaries": [
+          {
+            "file": "libfreetype.6.dylib",
+            "sha256": "e992493ed93264fd33621c5c56d31cb07e96d26bd6181bd0e644e23574157b7c"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "LibRaw",
+      "observed_version": "0.21.4",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "LibRaw-0.21.4-COPYRIGHT.txt",
+          "sha256": "2ecef66bff1a5139be9460bf65e0d68cf7fd34a1857eb8ff00d4eb963954dcf7",
+          "url": "https://raw.githubusercontent.com/LibRaw/LibRaw/0.21.4/COPYRIGHT",
+          "bytes": 1153
+        },
+        {
+          "file": "LibRaw-0.21.4-CDDL-1.0.txt",
+          "sha256": "2d6601e01f772a4a0be92b66e3d862c9077cd985a11518057c9632338a608b11",
+          "url": "https://raw.githubusercontent.com/LibRaw/LibRaw/0.21.4/LICENSE.CDDL",
+          "bytes": 16906
+        },
+        {
+          "file": "LibRaw-0.21.4-LGPL-2.1.txt",
+          "sha256": "eea173a556abac0370461e57e12aab266894ea6be3874c2be05fd87871f75449",
+          "url": "https://raw.githubusercontent.com/LibRaw/LibRaw/0.21.4/LICENSE.LGPL",
+          "bytes": 24389
+        },
+        {
+          "file": "LibRaw-0.21.4-DCB-notice.txt",
+          "sha256": "0eb0872acf4378ec6fb297943c68790f94de995f60683ce2e4e3ca67cb889d78",
+          "url": "https://raw.githubusercontent.com/LibRaw/LibRaw/0.21.4/src/demosaic/dcb_demosaic.cpp",
+          "excerpt": "first complete license comment"
+        },
+        {
+          "file": "LibRaw-0.21.4-X3F-notice.txt",
+          "sha256": "4960ed8d4fe17a84fae9a50b0d18cd3e24abb4d68cdc4217610910b10e597e67",
+          "url": "https://raw.githubusercontent.com/LibRaw/LibRaw/0.21.4/src/x3f/x3f_utils_patched.cpp",
+          "excerpt": "first complete license comment"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API libraw_version()",
+        "value": "0.21.4-Release",
+        "binaries": [
+          {
+            "file": "libraw.23.dylib",
+            "sha256": "5eaec1e8d0c80af82721f696ea12472a9092a4262e2ab9bcccdb78c403ca7161"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "OpenEXR",
+      "observed_version": "3.4.4",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "OpenEXR-3.4.4-LICENSE.txt",
+          "sha256": "84853c91d4c2e0310741d4773469d98bb93e61029608e0ba0882a3fffdf330bd",
+          "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr/v3.4.4/LICENSE.md",
+          "bytes": 1501
+        }
+      ],
+      "version_evidence": {
+        "method": "Full source version encoded in dylib filenames; no runtime version probe",
+        "value": "3.4.4",
+        "binaries": [
+          {
+            "file": "libIex.33.3.4.4.dylib",
+            "sha256": "fc309cffc9fa57c5cb2df4834daaa68609d1df9369b735a3fa597e38f00d95ba"
+          },
+          {
+            "file": "libIlmThread.33.3.4.4.dylib",
+            "sha256": "e82b260a8da115823ed566bd6489bb1d6dec086646289c1c7d38a650ebd3ff67"
+          },
+          {
+            "file": "libOpenEXR.33.3.4.4.dylib",
+            "sha256": "853ffb73bc6fa83d89ee18156b10e61c872c353476f4059de42da9b778ff90e3"
+          },
+          {
+            "file": "libOpenEXRCore.33.3.4.4.dylib",
+            "sha256": "9c03359d1b5b1b967b0908c9bad3489d01ee16d19586930f7b88462de5e428d4"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "Imath",
+      "observed_version": "3.2.2",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "Imath-3.2.2-LICENSE.txt",
+          "sha256": "c20236d3b39fd20eba8e3d1fb3b892a5483df2e7d8d61bf43f165d3fac22f601",
+          "url": "https://raw.githubusercontent.com/AcademySoftwareFoundation/Imath/v3.2.2/LICENSE.md",
+          "bytes": 1497
+        }
+      ],
+      "version_evidence": {
+        "method": "Full source version encoded in dylib filename; no runtime version probe",
+        "value": "3.2.2",
+        "binaries": [
+          {
+            "file": "libImath.30.3.2.2.dylib",
+            "sha256": "0b3d73941e2281276344959dff1fb8f84ca91cdd72cb11e0877b16dafd251bac"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "Zstandard",
+      "observed_version": "1.5.7",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "Zstandard-1.5.7-LICENSE.txt",
+          "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+          "url": "https://raw.githubusercontent.com/facebook/zstd/v1.5.7/LICENSE"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API ZSTD_versionString()",
+        "value": "1.5.7",
+        "binaries": [
+          {
+            "file": "libzstd.1.5.7.dylib",
+            "sha256": "f5971d3828534992bc81dce5273b86f8893d643bcfeae210e9c86103af7c390d"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "zlib",
+      "observed_version": "1.3.1",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "zlib-1.3.1-LICENSE.txt",
+          "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243",
+          "url": "https://raw.githubusercontent.com/madler/zlib/v1.3.1/LICENSE"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API zlibVersion()",
+        "value": "1.3.1",
+        "binaries": [
+          {
+            "file": "libz.1.3.1.dylib",
+            "sha256": "db1b84ac74c678ebc434f6482868ba74dbe1a025554c1397c20c6b97d73fd0a9"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "XZ liblzma",
+      "observed_version": "5.8.1",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "XZ-5.8.1-0BSD.txt",
+          "sha256": "0b01625d853911cd0e2e088dcfb743261034a091bb379246cb25a14cc4c74bf1",
+          "url": "https://raw.githubusercontent.com/tukaani-project/xz/v5.8.1/COPYING.0BSD"
+        },
+        {
+          "file": "XZ-5.8.1-COPYING.txt",
+          "sha256": "1d2d9338d5c0620e34ade2153730eff686d07f02a42f889a33d659a30c41eac1",
+          "url": "https://raw.githubusercontent.com/tukaani-project/xz/v5.8.1/COPYING"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API lzma_version_string()",
+        "value": "5.8.1",
+        "binaries": [
+          {
+            "file": "liblzma.5.dylib",
+            "sha256": "fd5e9879f46fc1e6671e9ae79b2479f02cb7ce74cc2ddde45fe4933c61d4b8cc"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "LibTIFF",
+      "observed_version": "4.7.1",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "LibTIFF-4.7.1-LICENSE.txt",
+          "sha256": "0e27c2382d7b8147972bbb746e04059a1152c8d0fda9d03ef1399d1a433c4ade",
+          "url": "https://gitlab.com/libtiff/libtiff/-/raw/v4.7.1/LICENSE.md"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API TIFFGetVersion()",
+        "value": "LIBTIFF, Version 4.7.1",
+        "binaries": [
+          {
+            "file": "libtiff.6.dylib",
+            "sha256": "d7f8deae666253c78e56232c11c75a59f838d1d8cf94bcd27bc504cf6be3e88a"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "OpenJPEG",
+      "observed_version": "2.5.4",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "OpenJPEG-2.5.4-LICENSE.txt",
+          "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6",
+          "url": "https://raw.githubusercontent.com/uclouvain/openjpeg/v2.5.4/LICENSE"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API opj_version()",
+        "value": "2.5.4",
+        "binaries": [
+          {
+            "file": "libopenjp2.2.5.4.dylib",
+            "sha256": "b6f78fe42e8cda2780c57f8de55bc307a826b1cf3c747803f44534c8c5871287"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "OpenJPH",
+      "observed_version": "0.26.0",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "OpenJPH-0.26.0-LICENSE.txt",
+          "sha256": "5ddf5177863dfc9ab65fa129d587db651241f00e21ed2427b218bea997591f98",
+          "url": "https://raw.githubusercontent.com/aous72/OpenJPH/0.26.0/LICENSE"
+        }
+      ],
+      "version_evidence": {
+        "method": "Full source version encoded in dylib filename; no runtime version probe",
+        "value": "0.26.0",
+        "binaries": [
+          {
+            "file": "libopenjph.0.26.0.dylib",
+            "sha256": "bc700dccbca4078244d87fb6173355b6e854813ca95c8b9fc347b1a06fa31def"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "libpng",
+      "observed_version": "1.6.53",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "libpng-1.6.53-LICENSE.txt",
+          "sha256": "16d9daaafbf63a31a5bdc91d4600972548fef5aaa1244202393288dbd079c49a",
+          "url": "https://raw.githubusercontent.com/pnggroup/libpng/v1.6.53/LICENSE"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API png_get_libpng_ver(NULL)",
+        "value": "1.6.53",
+        "binaries": [
+          {
+            "file": "libpng16.16.dylib",
+            "sha256": "9f5f21eca97de3d680709b58e7efbfc604b7ca83c362e015dc7a1bd02167b572"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "Little CMS",
+      "observed_version": "2.17",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "LittleCMS-2.17-LICENSE.txt",
+          "sha256": "6dbd60437f8ef91d8de1f08ad75882547fd4931bfcc3566a0735f28db1484d31",
+          "url": "https://raw.githubusercontent.com/mm2/Little-CMS/lcms2.17/LICENSE"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API cmsGetEncodedCMMversion()",
+        "value": "2170",
+        "binaries": [
+          {
+            "file": "liblcms2.2.dylib",
+            "sha256": "98e545314221f5d08612b68a0f02631be405b905f9098af69db169a29ba3da36"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "libwebp",
+      "observed_version": "1.6.0",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "libwebp-1.6.0-COPYING.txt",
+          "sha256": "e293d1dddc9785200b1f58a4f5293543cf8566d9e0b8a3c02fad955035b19f42",
+          "url": "https://raw.githubusercontent.com/webmproject/libwebp/v1.6.0/COPYING"
+        },
+        {
+          "file": "libwebp-1.6.0-PATENTS.txt",
+          "sha256": "cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c",
+          "url": "https://raw.githubusercontent.com/webmproject/libwebp/v1.6.0/PATENTS"
+        }
+      ],
+      "version_evidence": {
+        "method": "Exported C API WebPGetDecoderVersion() decoded major/minor/revision",
+        "value": "0x010600; applies to inspected libwebp.7.2.0.dylib, companion library version alignment requires conda records",
+        "binaries": [
+          {
+            "file": "libsharpyuv.0.1.2.dylib",
+            "sha256": "25c02eea9e6bda382e58c23de7d3d7341b1e1b52163f0f0b13be83e67bd69684"
+          },
+          {
+            "file": "libwebp.7.2.0.dylib",
+            "sha256": "a94f12da93488504004edcd7696c377808069864df37410f4d478eafd042fb3f"
+          },
+          {
+            "file": "libwebpmux.3.1.2.dylib",
+            "sha256": "bbcbb656eef4086849678e47de0302b7736f329f6bd13bbcdcbcb1d3329e4de5"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    },
+    {
+      "component": "libjpeg-turbo",
+      "observed_version": "3.1.2",
+      "observed_targets": [
+        "darwin-arm64"
+      ],
+      "license_files": [
+        {
+          "file": "libjpeg-turbo-3.1.2-LICENSE.txt",
+          "sha256": "2189dc45a8fe96204069f8124caa53a148dfdc193f50f584c6ca7849a6072872",
+          "url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/3.1.2/LICENSE.md"
+        },
+        {
+          "file": "libjpeg-turbo-3.1.2-README-IJG.txt",
+          "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6",
+          "url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/3.1.2/README.ijg"
+        }
+      ],
+      "version_evidence": {
+        "method": "Embedded version string extracted from the binary",
+        "value": "libjpeg-turbo version 3.1.2 (build 20251102)",
+        "binaries": [
+          {
+            "file": "libjpeg.8.3.2.dylib",
+            "sha256": "c7824974cd1de7cca0b1fa16835ef7818dd622be6bdf27202e94df3c6cb56297"
+          }
+        ]
+      },
+      "source_build_provenance": "Upstream version matched; exact conda package build, patches and complete corresponding source not established.",
+      "status": "upstream_license_texts_collected_for_review"
+    }
+  ],
+  "still_unmatched_components": [
+    {
+      "component": "Lerc",
+      "observed": "libLerc.4.dylib ABI4; otool current version 0.0.0 does not establish source version",
+      "needs": "Exact source version, conda build and license text"
+    },
+    {
+      "component": "LLVM libc++",
+      "observed": "libc++.1.0.dylib ABI1; source release not established",
+      "needs": "Exact LLVM source release, applicable libc++ license/exceptions, conda build and source provenance"
+    },
+    {
+      "component": "libdeflate",
+      "observed": "libdeflate.0.dylib; no version export/string found",
+      "needs": "Exact source version, conda build and license text"
+    },
+    {
+      "component": "JPEG XR",
+      "observed": "libjpegxr.1.1.dylib and libjxrglue.1.1.dylib; ABI1.1 only",
+      "needs": "Corresponding jxrlib source revision and license/third-party notices"
+    }
+  ],
+  "outstanding": [
+    "Choose and document the applicable licensing alternatives for FreeImage, FreeType and LibRaw; merely copying both alternatives does not make that decision.",
+    "Preserve complete corresponding source and modification/build records where required; source-version probes alone do not identify conda patch sets.",
+    "Add the required FreeImage, FreeType and Independent JPEG Group acknowledgements to distributed user-facing documentation.",
+    "LibRaw COPYRIGHT references Adobe DNG-derived MIT code; provenance of those copied fragments and exact included build features still needs review.",
+    "Verify bundled codec/helper source alignment and all relevant third-party notices against exact conda package records.",
+    "Do not apply these macOS arm64 observations automatically to Windows or macOS x64."
+  ]
+}

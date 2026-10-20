@@ -45,6 +45,21 @@ def _normal_windows_path(path):
     return ntpath.normcase(ntpath.normpath(path))
 
 
+def _same_windows_path(opened_path, requested_path, expand_short_name):
+    """Allow only Windows' short/long name aliases, not a resolved link.
+
+    The final name from a handle is normally the long name even when TEMP or
+    an ancestor was supplied as RUNNER~1. A lexical comparison therefore
+    rejects legitimate handles. Expansion is performed only after the leaf
+    and every ancestor are held open and checked for reparse points; do not
+    replace this with realpath/resolve, which would also accept junctions.
+    """
+    opened = _normal_windows_path(opened_path)
+    if opened == _normal_windows_path(requested_path):
+        return True
+    return opened == _normal_windows_path(expand_short_name(requested_path))
+
+
 @lru_cache(maxsize=1)
 def _windows_api():
     import ctypes
@@ -68,6 +83,8 @@ def _windows_api():
     kernel.GetFileInformationByHandle.restype = wintypes.BOOL
     kernel.GetFinalPathNameByHandleW.argtypes = (wintypes.HANDLE, wintypes.LPWSTR, wintypes.DWORD, wintypes.DWORD)
     kernel.GetFinalPathNameByHandleW.restype = wintypes.DWORD
+    kernel.GetLongPathNameW.argtypes = (wintypes.LPCWSTR, wintypes.LPWSTR, wintypes.DWORD)
+    kernel.GetLongPathNameW.restype = wintypes.DWORD
     kernel.GetFileType.argtypes = (wintypes.HANDLE,)
     kernel.GetFileType.restype = wintypes.DWORD
 
@@ -75,6 +92,19 @@ def _windows_api():
         @staticmethod
         def close(handle):
             kernel.CloseHandle(handle)
+
+        @staticmethod
+        def long_name(path):
+            # This expands 8.3 spellings. It does not excuse a different final
+            # target: the equality check below and all no-reparse handles stay.
+            size = kernel.GetLongPathNameW(str(path), None, 0)
+            if not size:
+                raise ctypes.WinError(ctypes.get_last_error())
+            buffer = ctypes.create_unicode_buffer(size + 1)
+            count = kernel.GetLongPathNameW(str(path), buffer, len(buffer))
+            if not count or count >= len(buffer):
+                raise OSError(errno.EIO, "Could not expand opened library path")
+            return buffer.value
 
         @staticmethod
         def open(path, *, directory=False, create=False):
@@ -100,7 +130,7 @@ def _windows_api():
                 count = kernel.GetFinalPathNameByHandleW(handle, buffer, len(buffer), 0)
                 if not count or count >= len(buffer):
                     raise OSError(errno.EIO, "Could not validate opened library path")
-                if _normal_windows_path(buffer.value) != _normal_windows_path(str(path)):
+                if not _same_windows_path(buffer.value, str(path), API.long_name):
                     raise OSError(errno.ELOOP, "Opened library path changed")
                 return handle
             except BaseException:

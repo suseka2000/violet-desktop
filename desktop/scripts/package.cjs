@@ -9,7 +9,8 @@ const [mode, ...args] = process.argv.slice(2);
 if (!["preview", "release"].includes(mode)) throw new Error("Specify preview or release");
 const nativePython = path.join(root, ".venv", process.platform === "win32" ? "Scripts/python.exe" : "bin/python");
 const python = process.env.VIOLET_BUILD_PYTHON || (fs.existsSync(nativePython) ? nativePython : (process.platform === "win32" ? "python" : "python3"));
-const env = { ...process.env, VIOLET_RELEASE: mode === "release" ? "1" : "0" };
+const env = { ...process.env, VIOLET_RELEASE: mode === "release" ? "1" : "0",
+  ELECTRON_BUILDER_CACHE: process.env.ELECTRON_BUILDER_CACHE || path.join(desktop, "stage/electron-builder-cache") };
 function run(command, arguments_) {
   const result = spawnSync(command, arguments_, { cwd: desktop, env, stdio: "inherit", shell: false });
   if (result.error) throw result.error;

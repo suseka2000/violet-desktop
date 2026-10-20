@@ -160,6 +160,10 @@ def verify(executable):
             session.ok("POST", project_path + "/rooms",
                        {"expected_revision": 3, "floor_id": floor_id, "code": "001", "name": "Комната",
                         "width_mm": 3000, "depth_mm": 2500, "height_mm": 2800})
+            deadline = time.monotonic() + 90
+            while session.ok("GET", "/api/v1/desktop/health")["active_jobs"]:
+                assert time.monotonic() < deadline, "Room background preparation did not finish"
+                time.sleep(0.1)
             pdf = session.ok("GET", project_path + "/documents.pdf?format=ALBUM")
             assert pdf.startswith(b"%PDF-") and b"%%EOF" in pdf and b"/FontFile2" in pdf
             album_dxf = session.ok("GET", project_path + "/documents.dxf?format=ALBUM")

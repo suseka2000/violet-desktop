@@ -6,6 +6,7 @@ const { pathToFileURL } = require('node:url');
 const { BackendProcess } = require('./backend-process.cjs');
 const { Credentials } = require('./credentials.cjs');
 const { Updates } = require('./updater.cjs');
+const { acknowledgeUpdateReady } = require('./update-install.cjs');
 const { isAppURL, isSafeExternal, authenticatedHeaders, trustedIPC } = require('./security.cjs');
 
 app.setName('Violet');
@@ -145,16 +146,21 @@ function finishClose() {
 async function finishCloseOnce() {
   clearInterval(refreshTimer);
   try {
+    // Validate and stage before stopping the live backend; a corrupt download or
+    // a read-only installation must not interrupt an otherwise working editor.
+    const plan = installOnClose ? await updates.prepareInstall({appPath:app.getAppPath(),
+      execPath:process.execPath,userData:app.getPath('userData'),currentPid:process.pid}) : null;
     await backend?.stop({requireIdle:installOnClose});
+    if (plan) await updates.launchInstall(plan);
     allowQuit = true;
-    if (installOnClose) require('electron-updater').autoUpdater.quitAndInstall(false, true);
-    else app.quit();
+    app.quit();
   } catch (error) {
+    allowQuit = false;
     installOnClose = false; closeAuthorized = false;
     await notify(error.message);
     // Do not install over a live backend. Its parent monitor will close it if
     // the OS later terminates this process.
-    if (!window || window.isDestroyed()) await createWindow(false);
+    if (!window || window.isDestroyed()) await createWindow(!backend?.child);
     scheduleUpdates();
   }
 }
@@ -210,11 +216,16 @@ else {
       appPath:app.getAppPath(),dataDir:path.join(userData,'workspace'),log});
     backend.on('unexpected-exit', async () => notify('3D-движок неожиданно остановился. Перезапустите Violet; сохранённые проекты останутся на месте. Подробности находятся в журнале.'));
     try {
-      updates = new Updates({updater:require('electron-updater').autoUpdater,config:readReleaseConfig(),
+      updates = new Updates({config:readReleaseConfig(),currentVersion:app.getVersion(),
+        cacheDir:path.join(userData,'update-downloads'),
         packaged:app.isPackaged,credentials,notify,changed:refreshMenu,log});
       refreshMenu();
       await createWindow();
       if (closeAuthorized || allowQuit) return;
+      // The external installer retains the old .app until the new backend and UI
+      // actually start, rather than treating a successful process launch as proof.
+      try { await acknowledgeUpdateReady({userData,version:app.getVersion(),execPath:process.execPath}); }
+      catch { log('Не удалось подтвердить готовность обновления; предыдущая версия сохранена.'); }
       updates.check(false);
       scheduleUpdates();
     } catch (error) {

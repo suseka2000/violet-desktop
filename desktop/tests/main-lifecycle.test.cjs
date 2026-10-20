@@ -17,7 +17,8 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
 async function settle() { for (let i = 0; i < 8; i++) await tick(); }
 function event() { return {defaultPrevented:false,preventDefault() { this.defaultPrevented = true; }}; }
 
-function harness({startup = null, stop = null, activeJobs = 0, response = 1, discard = 0} = {}) {
+function harness({startup = null, stop = null, activeJobs = 0, response = 1, discard = 0,
+  prepareError = null, launchError = null} = {}) {
   const windows = [], notices = [], stops = [], timers = new Set(), order = [];
   const app = new EventEmitter();
   let backend, updates, quitCount = 0, installCount = 0, healthCount = 0, startCount = 0;
@@ -78,6 +79,15 @@ function harness({startup = null, stop = null, activeJobs = 0, response = 1, dis
     constructor() { updates = this; this.state = 'downloaded'; this.version = '0.5.0'; this.enabled = true; this.checks = []; }
     check(manual) { this.checks.push(manual); }
     label() { return 'mock update'; }
+    async prepareInstall() {
+      if (prepareError) throw prepareError;
+      return {prepared:true};
+    }
+    async launchInstall(plan) {
+      assert.equal(plan.prepared,true);
+      if (launchError) throw launchError;
+      installCount++; order.push('install');
+    }
   }
   const electron = {
     app,BrowserWindow:Window,
@@ -99,12 +109,7 @@ function harness({startup = null, stop = null, activeJobs = 0, response = 1, dis
   const context = vm.createContext({
     require(name) {
       if (name === 'electron') return electron;
-      if (name === 'electron-updater') return {autoUpdater:{
-        quitAndInstall(silent,forceRun) {
-          assert.equal(silent,false); assert.equal(forceRun,true);
-          installCount++; order.push('install');
-        }
-      }};
+      if (name === './update-install.cjs') return {async acknowledgeUpdateReady() {}};
       if (name === './backend-process.cjs') return {BackendProcess:Backend};
       if (name === './credentials.cjs') return {Credentials:class {}};
       if (name === './updater.cjs') return {Updates};
@@ -160,7 +165,7 @@ test('confirmed discard reaches updater only after actual window close and grace
   shutdown.resolve();
   await settle();
   assert.equal(h.counts().installCount,1);
-  assert.deepEqual(h.order,['window-closed','stop-begin','stop-complete','install']);
+  assert.deepEqual(h.order,['window-closed','stop-begin','stop-complete','install','quit']);
 });
 
 test('two quit gestures during shutdown share one stop and cannot switch an accepted update to plain quit', async () => {
@@ -177,7 +182,7 @@ test('two quit gestures during shutdown share one stop and cannot switch an acce
   shutdown.resolve();
   await settle();
   assert.equal(h.counts().installCount,1);
-  assert.equal(h.counts().quitCount,0);
+  assert.equal(h.counts().quitCount,1);
 });
 
 test('plain close can cancel backend startup without asking the nonexistent health endpoint', async () => {
@@ -249,4 +254,31 @@ test('concurrent quit while update confirmation is open cannot bypass confirmati
   await update;
   assert.equal(h.stops.length,0);
   assert.equal(h.counts().quitCount,0);
+});
+
+test('invalid update artifact reopens editor without stopping backend or installing', async () => {
+  const h = harness({prepareError:new Error('hash mismatch')});
+  await settle();
+  await h.close(true);
+  await settle();
+  assert.equal(h.stops.length,0);
+  assert.equal(h.windows.length,2);
+  assert.equal(h.counts().startCount,1);
+  assert.equal(h.counts().installCount,0);
+  assert.equal(h.counts().quitCount,0);
+  assert.equal(h.state().allowQuit,false);
+});
+
+test('installer launch failure restarts stopped backend and restores periodic checks', async () => {
+  const h = harness({launchError:new Error('helper could not start')});
+  await settle();
+  await h.close(true);
+  await settle();
+  assert.equal(h.stops.length,1);
+  assert.equal(h.windows.length,2);
+  assert.equal(h.counts().startCount,2);
+  assert.equal(h.counts().installCount,0);
+  assert.equal(h.counts().quitCount,0);
+  assert.equal(h.state().allowQuit,false);
+  assert.equal(h.timers.size,1);
 });

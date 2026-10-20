@@ -3,7 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: "Require production signing, notarization and updater feed"
+        description: "Build private Ed25519-update app (sign artifacts offline after download)"
+        type: boolean
+        default: false
+      certified:
+        description: "Optional paid OS certificates/notarization (not needed for private Ed25519 updates)"
         type: boolean
         default: false
 permissions:
@@ -33,8 +37,9 @@ jobs:
     environment: ${{ inputs.release && 'desktop-release' || 'desktop-preview' }}
     env:
       VIOLET_RELEASE: ${{ inputs.release && '1' || '0' }}
-      VIOLET_GITHUB_OWNER: ${{ vars.VIOLET_GITHUB_OWNER }}
-      VIOLET_GITHUB_REPOSITORY: ${{ vars.VIOLET_GITHUB_REPOSITORY }}
+      VIOLET_OS_SIGNING: ${{ inputs.certified && '1' || '0' }}
+      VIOLET_GITHUB_OWNER: ${{ vars.VIOLET_GITHUB_OWNER || github.repository_owner }}
+      VIOLET_GITHUB_REPOSITORY: ${{ vars.VIOLET_GITHUB_REPOSITORY || github.event.repository.name }}
       VIOLET_WINDOWS_PUBLISHER_NAME: ${{ vars.VIOLET_WINDOWS_PUBLISHER_NAME }}
     steps:
       - uses: actions/checkout@v4
@@ -65,8 +70,11 @@ jobs:
       - name: Select preview updater policy
         if: ${{ !inputs.release }}
         run: python desktop/scripts/prepare_release.py
-      - name: Gate signed production release
-        if: ${{ inputs.release }}
+      - name: Validate free private updater policy
+        if: ${{ inputs.release && !inputs.certified }}
+        run: python desktop/scripts/prepare_release.py --release
+      - name: Validate optional OS-certified release
+        if: ${{ inputs.release && inputs.certified }}
         env:
           CSC_LINK: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_LINK || secrets.WIN_CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_KEY_PASSWORD || secrets.WIN_CSC_KEY_PASSWORD }}
@@ -75,11 +83,15 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: python desktop/scripts/prepare_release.py --release
       - name: Package native preview
-        if: ${{ !inputs.release }}
+        if: ${{ !inputs.release && !inputs.certified }}
         working-directory: desktop
         run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
-      - name: Sign and package native release
-        if: ${{ inputs.release }}
+      - name: Package free private release (no private signing key in CI)
+        if: ${{ inputs.release && !inputs.certified }}
+        working-directory: desktop
+        run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
+      - name: OS-sign and package certified release
+        if: ${{ inputs.release && inputs.certified }}
         working-directory: desktop
         env:
           CSC_LINK: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_LINK || secrets.WIN_CSC_LINK }}
@@ -91,9 +103,9 @@ jobs:
       - name: Keep native build artifacts for explicit review
         uses: actions/upload-artifact@v4
         with:
-          name: Violet-${{ matrix.platform }}-${{ matrix.arch }}-${{ inputs.release && 'signed' || 'preview' }}
+          name: Violet-${{ matrix.platform }}-${{ matrix.arch }}-${{ inputs.release && 'private' || 'preview' }}
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 1
           path: |
             desktop/dist/*.dmg
             desktop/dist/*.zip

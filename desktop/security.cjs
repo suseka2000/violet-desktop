@@ -1,5 +1,6 @@
 'use strict';
 const { URL } = require('node:url');
+const { createPublicKey } = require('node:crypto');
 
 function localOrigin(port) {
   if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('Неверный порт приложения');
@@ -26,14 +27,17 @@ function validateReleaseConfig(value) {
     if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,38})$/.test(value.owner || '') ||
         !/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,99}$/.test(value.repo || '') ||
         value.repo === '..' || value.channel !== 'stable') throw new Error('Некорректный закрытый канал GitHub');
-    return Object.freeze({enabled: true, provider: 'github-private', owner: value.owner, repo: value.repo, channel: 'stable'});
+    if (value.updateProtocol !== 'violet-ed25519-v1' || typeof value.publicKeyPem !== 'string' ||
+        value.publicKeyPem.length > 4096 || !value.publicKeyPem.startsWith('-----BEGIN PUBLIC KEY-----'))
+      throw new Error('Для обновлений нужен открытый ключ выпуска Violet');
+    let key;
+    try { key = createPublicKey(value.publicKeyPem); } catch { throw new Error('Некорректный открытый ключ выпуска'); }
+    if (key.asymmetricKeyType !== 'ed25519') throw new Error('Ключ выпуска должен иметь тип Ed25519');
+    return Object.freeze({enabled: true, provider: 'github-private', owner: value.owner, repo: value.repo,
+      channel: 'stable', updateProtocol:'violet-ed25519-v1',
+      publicKeyPem:key.export({type:'spki',format:'pem'})});
   }
-  if (!isSafeExternal(value.feedUrl)) throw new Error('Для обновлений необходим HTTPS-адрес без пароля');
-  const url = new URL(value.feedUrl);
-  if (url.search || url.hash || url.hostname === 'localhost' || /^127\./.test(url.hostname) ||
-      ['[::1]', '0.0.0.0'].includes(url.hostname)) throw new Error('Некорректный адрес обновлений');
-  if (value.channel !== 'stable') throw new Error('Неизвестный канал обновлений');
-  return Object.freeze({enabled: true, feedUrl: url.href.replace(/\/?$/, '/'), channel: 'stable'});
+  throw new Error('Поддерживаются только закрытые подписанные выпуски Violet');
 }
 
 function authenticatedHeaders(url, origin, token, headers = {}) {

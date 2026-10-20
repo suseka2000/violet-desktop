@@ -1,34 +1,52 @@
 'use strict';
 const assert = require('node:assert/strict');
-const {EventEmitter} = require('node:events');
+const {generateKeyPairSync} = require('node:crypto');
 const test = require('node:test');
 const {Updates} = require('../updater.cjs');
 const {authenticatedHeaders, trustedIPC, validateReleaseConfig} = require('../security.cjs');
 
-function fakeUpdates({packaged = true, config} = {}) {
-  const updater = new EventEmitter();
+const publicKeyPem = generateKeyPairSync('ed25519').publicKey.export({type:'spki',format:'pem'});
+const releaseConfig = {enabled:true,provider:'github-private',owner:'Violet-Example',repo:'desktop',
+  channel:'stable',updateProtocol:'violet-ed25519-v1',publicKeyPem};
+function fakeUpdates({packaged = true, config, result = null, downloadError = null} = {}) {
   const calls = [], notices = [], logs = [];
-  updater.setFeedURL = options => { updater.feed = options; calls.push(['feed', options]); };
-  updater.checkForUpdates = async () => { calls.push(['check']); updater.emit('checking-for-update'); };
-  updater.downloadUpdate = async () => { calls.push(['download']); return []; };
+  let clientOptions;
   const updates = new Updates({
-    updater, packaged, verifyAccess:async () => {},
-    config: config || {enabled:true,provider:'github-private',owner:'Violet-Example',repo:'desktop',channel:'stable'},
+    packaged,currentVersion:'0.4.0',cacheDir:'/isolated-test-cache',
+    config: config || releaseConfig,
+    clientFactory:options => {
+      clientOptions = options;
+      return {
+        async check() { calls.push(['check']); return result; },
+        async download(info) {
+          assert.equal(info,result);
+          calls.push(['download']);
+          if (downloadError) throw downloadError;
+          return '/isolated-test-cache/update.zip';
+        }
+      };
+    },
+    installer:{
+      async prepareUpdate(options) { calls.push(['prepare',options]); return {plan:true}; },
+      async launchUpdate(plan) { calls.push(['launch',plan]); }
+    },
     credentials: {read: () => 'github_pat_personal_fake_test_token'},
     notify: message => notices.push(message), log: message => logs.push(message)
   });
-  return {updater, updates, calls, notices, logs};
+  return {updates, calls, notices, logs,options:() => clientOptions};
 }
 
-test('signed normal-installer update policy disables web-installer payloads and implicit installation', () => {
-  const {updater} = fakeUpdates();
-  assert.equal(updater.disableWebInstaller, true,
-    'electron-updater 6.x otherwise accepts secondary web-installer packages');
-  assert.equal(updater.autoDownload, false);
-  assert.equal(updater.autoInstallOnAppQuit, false);
-  assert.equal(updater.allowDowngrade, false);
-  assert.equal(updater.allowPrerelease, false);
-  assert.equal(updater.logger, null);
+test('verified update downloads but cannot silently install on ordinary app quit', async () => {
+  const {updates,calls} = fakeUpdates({result:{version:'0.4.1'}});
+  await updates.check();
+  assert.equal(updates.state,'downloaded');
+  assert.deepEqual(calls,[['check'],['download']]);
+  const plan = await updates.prepareInstall({userData:'/isolated-user'});
+  assert.equal(calls[2][1].info.version,'0.4.1');
+  assert.equal(calls[2][1].file,'/isolated-test-cache/update.zip');
+  assert.equal(calls[2][1].token,undefined);
+  await updates.launchInstall(plan);
+  assert.equal(calls[3][0],'launch');
 });
 
 test('only the per-user private repository token is used, never ambient publishing credentials', async () => {
@@ -36,12 +54,12 @@ test('only the per-user private repository token is used, never ambient publishi
   process.env.GH_TOKEN = 'publishing_secret_test_only';
   process.env.GITHUB_TOKEN = 'another_publishing_secret_test_only';
   try {
-    const {updates, updater} = fakeUpdates();
+    const {updates, options} = fakeUpdates();
     await updates.check(true);
-    assert.equal(updater.feed.token, 'github_pat_personal_fake_test_token');
-    assert.equal(updater.feed.private, true);
-    assert.equal(process.env.GH_TOKEN, undefined);
-    assert.equal(process.env.GITHUB_TOKEN, undefined);
+    assert.equal(options().token, 'github_pat_personal_fake_test_token');
+    assert.equal(options().config.provider, 'github-private');
+    assert.equal(options().config.publicKeyPem,publicKeyPem);
+    assert.equal(process.env.GH_TOKEN, 'publishing_secret_test_only');
   } finally {
     for (const [key, value] of Object.entries(original)) {
       if (value === undefined) delete process.env[key];
@@ -51,9 +69,9 @@ test('only the per-user private repository token is used, never ambient publishi
 });
 
 test('private provider error details cannot disclose access secrets in logs or notifications', async () => {
-  const {updates, updater, logs, notices} = fakeUpdates();
+  const {updates, logs, notices} = fakeUpdates({result:{version:'0.4.1'},
+    downloadError:new Error('authorization: token github_pat_personal_fake_test_token')});
   await updates.check(true);
-  updater.emit('error', new Error('authorization: token github_pat_personal_fake_test_token'));
   assert.equal(updates.state, 'error');
   assert.equal(logs.length, 1);
   assert.equal(notices.length, 1);
@@ -101,4 +119,26 @@ test('release config cannot introduce an HTTP feed or embed credentials in its U
   for (const feedUrl of ['http://updates.example.com/', 'https://u:p@updates.example.com/', 'https://updates.example.com/?token=secret']) {
     assert.throws(() => validateReleaseConfig({enabled:true,feedUrl,channel:'stable'}));
   }
+});
+
+test('private updates require the pinned Ed25519 public key and cannot switch to an unsigned feed', () => {
+  assert.equal(validateReleaseConfig(releaseConfig).publicKeyPem,publicKeyPem);
+  for (const patch of [{publicKeyPem:''},{updateProtocol:'electron-updater'},{provider:'generic'},
+    {publicKeyPem:generateKeyPairSync('rsa',{modulusLength:2048}).publicKey.export({type:'spki',format:'pem'})}]) {
+    assert.throws(() => validateReleaseConfig({...releaseConfig,...patch}));
+  }
+});
+
+test('failed download cannot create an install plan', async () => {
+  const {updates,calls} = fakeUpdates({result:{version:'0.4.1'},downloadError:new Error('broken transport')});
+  await updates.check();
+  await assert.rejects(updates.prepareInstall({}),/дождитесь/);
+  assert.equal(calls.some(call => call[0] === 'prepare'),false);
+});
+
+test('concurrent checks share the active operation and completed update is not fetched twice', async () => {
+  const {updates,calls} = fakeUpdates({result:{version:'0.4.1'}});
+  await Promise.all([updates.check(),updates.check()]);
+  await updates.check();
+  assert.deepEqual(calls,[['check'],['download']]);
 });
