@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 347,
-  "total_bytes": 74757749,
+  "total_bytes": 74758079,
   "supplier_files": 88,
   "files": [
     {
@@ -1263,8 +1263,8 @@
     },
     {
       "path": "desktop/tests/update-install.test.cjs",
-      "bytes": 16652,
-      "sha256": "c2708e05dc27d50e456902970847ea87e1d5d6426a1544b1733f8ad4f32f2a7a",
+      "bytes": 16982,
+      "sha256": "c7e78efc7a9fc1528ec0a586d5435706cb115494ea361ffccb96082c8bc2059a",
       "kind": "source"
     },
     {

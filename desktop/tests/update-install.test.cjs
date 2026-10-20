@@ -54,8 +54,8 @@ test('integrity uses signed bytes, not the downloaded filename; changed bytes re
 });
 
 test('bundle lookup preserves installation paths containing spaces',()=>{
-  assert.equal(bundleFromExecutable('/Applications/My Tools/Violet.app/Contents/MacOS/Violet'),
-    '/Applications/My Tools/Violet.app');
+  const bundle=path.resolve('Applications','My Tools','Violet.app');
+  assert.equal(bundleFromExecutable(path.join(bundle,'Contents','MacOS','Violet')),bundle);
   assert.throws(()=>bundleFromExecutable('/usr/bin/node'));
 });
 
@@ -271,6 +271,12 @@ function Start-Process {
   const source=`$violetPlanJson=[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('${encoded}'))\r\n`+
     fakeInstaller+await fs.readFile(path.join(__dirname,'../update-helpers/windows-install.ps1'),'utf8');
   const powershell=path.join(process.env.SystemRoot,'System32/WindowsPowerShell/v1.0/powershell.exe');
-  await run(powershell,['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(source,'utf16le').toString('base64')],{timeout:15000});
+  try {
+    await run(powershell,['-NoProfile','-NonInteractive','-EncodedCommand',Buffer.from(source,'utf16le').toString('base64')],{timeout:15000});
+  } catch (error) {
+    const status=await fs.readFile(path.join(transaction,'status'),'utf8').catch(()=>'(no status written)');
+    // Surface the helper's actual failure, not the enormous encoded command.
+    assert.fail(`Windows helper exit ${error.code}: ${status}\n${error.stderr||''}`);
+  }
   assert.equal((await fs.readFile(path.join(transaction,'status'),'utf8')).trim(),'ready');
 });
