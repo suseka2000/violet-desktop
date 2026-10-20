@@ -1,0 +1,29 @@
+.batch-mount-dialog { width: min(1500px, 96vw); max-width: 96vw; max-height: 94vh; padding: 0; border: 1px solid #d3d9e5; border-radius: 15px; box-shadow: 0 20px 90px #25304740; overflow: hidden; }
+.batch-mount-dialog::backdrop { background: #25304768; backdrop-filter: blur(2px); }
+.batch-mount-workspace { position: relative; color: #263345; background: #f6f7fb; min-width: 0; }
+.bm-grid { display: grid; grid-template-columns: 300px minmax(0, 1fr); height: min(880px, calc(92vh - 100px)); min-height: 320px; overflow: hidden; }
+.bm-preset-note { background: #f0ecfb; border-radius: 7px; padding: 9px; font-size: 11px; line-height: 1.5; color: #78698c; }
+.bm-replace { display: flex; align-items: flex-start; gap: 8px; padding: 12px; background: #fff4e3; border-radius: 8px; font-size: 12px; line-height: 1.5; color: #896739; }
+.bm-replace input { margin: 3px 0 0; accent-color: #7753d8; }
+.bm-total { font-size: 15px; }
+.bm-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 15px; }
+.bm-stat { background: #fff; border: 1px solid #e0e5ef; border-radius: 8px; padding: 13px 10px; text-align: center; }
+.bm-stat strong, .bm-stat span { display: block; }
+.bm-stat strong { font-size: 21px; color: #5f4ebc; }
+.bm-stat span { margin-top: 4px; font-size: 11px; color: #7a8497; }
+.bm-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.bm-cards[aria-busy="true"] { opacity: .45; pointer-events: none; }
+.bm-wall-card { display: flex; flex-direction: column; align-items: flex-start; padding: 14px; border-radius: 10px; border: 1px solid #dee4ee; background: white; }
+.bm-wall-title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px; width: 100%; margin-bottom: 8px; }
+.bm-wall-title strong { font-size: 14px; }
+.bm-mini-preview { display: block; width: 100%; height: 190px; border: 1px solid #e7eaf0; border-radius: 7px; background: #fafbfd; pointer-events: none; }
+.bm-mini-preview .wm-panel { cursor: default; }
+.bm-wall-count { font-size: 11px; color: #718094; margin: 10px 0 4px; }
+.bm-wall-rule { font-size: 12px; line-height: 1.5; color: #544875; margin: 5px 0; }
+.bm-assumption-badge { padding: 4px 8px; background: #edf6fa; border: 1px solid #d0e4ed; color: #50809a; border-radius: 6px; font-size: 10px; margin: 7px 0 12px; }
+.bm-inspect { margin-top: auto; padding-top: 8px; width: 100%; }
+.bm-inspect > .mini-button { display: block; margin-left: auto; }
+.bm-inspect > .wm-help { margin-bottom: 0; }
+.bm-warnings { margin-top: 18px; }
+@media (max-width: 950px) { .bm-grid { grid-template-columns: 265px minmax(0, 1fr); } .bm-summary { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 650px) { .bm-grid { display: block; height: auto; max-height: calc(92vh - 100px); overflow: auto; } .bm-preset-note, .bm-replace, .bm-grid .wm-fields > .wm-help { grid-column: 1 / -1; } .bm-cards { grid-template-columns: 1fr; } }

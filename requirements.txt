@@ -1,0 +1,7 @@
+pydantic==2.13.5
+ezdxf==1.4.4
+reportlab==4.4.10
+pypdf==6.9.2
+Pillow==12.1.1
+pypdfium2==5.13.0
+shapely==2.1.2

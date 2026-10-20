@@ -1,0 +1,14 @@
+.mount-sections-dialog{width:min(1100px,96vw);height:min(820px,92dvh);padding:0;border:1px solid #d5ddeb;border-radius:16px;overflow:hidden;color:#273243}
+.mount-sections-dialog::backdrop{background:#16243b66}
+#mountSectionsHost,.mount-sections-workspace{height:100%}
+.mount-sections-workspace{display:flex;flex-direction:column;background:#f7f9fd;min-height:0}
+.ms-content{flex:1;min-height:0;overflow:auto;padding:18px 24px}
+.ms-status{font-weight:650;color:#5745c5;overflow-wrap:anywhere}
+.ms-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.ms-card{background:white;border:1px solid #dce2ed;border-radius:12px;padding:16px;min-width:0;overflow-wrap:anywhere}
+.ms-card h3{font-size:15px;margin:0 0 10px}.ms-card p{font-size:13px}
+.ms-preview{height:210px;width:100%;background:#fafbfe;border:1px solid #e5e9f0;border-radius:8px}
+.ms-skipped{grid-column:1/-1;padding:12px;border:1px solid #dce2ed;border-radius:10px}
+.ms-footer{display:flex;justify-content:flex-end;gap:12px;padding:14px 24px;border-top:1px solid #dce2ed;background:white}
+.mount-sections-workspace>.wm-confirm{padding:14px 24px}
+.mount-sections-workspace [hidden]{display:none!important}

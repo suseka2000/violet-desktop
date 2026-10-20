@@ -1,0 +1,67 @@
+/* Own the modal bounds: its percentage-height workspace must not depend on
+   another feature's stylesheet or on the intrinsic height of the 2D drawing. */
+#wholeWallDialog{width:min(1580px,calc(100vw - 32px));max-width:none;height:calc(100dvh - 32px);max-height:none;box-sizing:border-box;padding:0;border:1px solid #d5ddeb;border-radius:16px;overflow:hidden;color:#273243}
+#wholeWallDialog::backdrop{background:#16243b66}
+#wholeWallHost{height:100%;min-height:0;overflow:hidden}
+.whole-wall-workspace{height:100%;min-height:0;min-width:0;box-sizing:border-box;padding:1rem;display:flex;flex-direction:column;gap:.75rem;overflow:hidden;background:#f7f9fd}
+.whole-wall-workspace [hidden]{display:none!important}
+.ww-component-origin{display:block;color:#637080;margin-top:2px}
+.whole-wall-workspace>.wm-header{flex:0 0 auto;padding:0 0 .75rem;background:transparent;align-items:flex-start}
+.whole-wall-workspace>.wm-header>div{min-width:0}.whole-wall-workspace>.wm-header>button{flex-shrink:0}
+.whole-wall-workspace>.ma-footer{flex:0 0 auto;flex-wrap:wrap;padding:.75rem 0 0;border-top:1px solid #dce4ee;background:#f7f9fd}
+.whole-wall-workspace>.ma-discard{flex:0 0 auto;max-height:30dvh;overflow:auto;box-sizing:border-box;padding:.75rem}
+.ww-grid{display:grid;grid-template-columns:minmax(270px,330px) minmax(0,1fr);gap:1.25rem;flex:1 1 0;min-height:0;overflow:hidden}
+.ww-settings{display:flex;flex-direction:column;gap:1rem;min-height:0;overflow:auto;padding-right:.6rem;overscroll-behavior:contain}
+.ww-parameters{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.ww-parameters .wm-field{min-width:0}.ww-parameters input,.ww-parameters select,.ww-settings>label select{width:100%;box-sizing:border-box}
+.ww-check{display:grid;grid-template-columns:auto 1fr;column-gap:.55rem}.ww-check input{grid-column:1;grid-row:1;width:auto}.ww-check span{grid-column:2}.ww-check small{grid-column:1/-1}
+.ww-actions{display:flex;flex-direction:column;gap:.55rem}.ww-actions button{text-align:center}
+.ww-drawing{min-width:0;min-height:0;display:flex;flex-direction:column;gap:.7rem;overflow:auto;overscroll-behavior:contain}.ww-legend{margin:0;font-size:.8rem;color:#526273}
+.ww-system-card{flex:0 0 auto;padding:.7rem .8rem;background:#f0edfb;border:1px solid #dfd8f3;border-radius:9px;overflow-wrap:anywhere}.ww-system-card>strong{font-size:.78rem;color:#65558a}.ww-system-card>p{margin:.3rem 0;font-size:.88rem;color:#39364c}.ww-system-card>small{display:block;font-size:.73rem;line-height:1.4}.ww-system-card>.ww-snapshot-system{font-size:.78rem;color:#8c622e}
+.ww-view-controls{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem}.ww-view-controls button[aria-pressed=true]{background:#ede9ff;border-color:#8672ed;color:#5541b5}.ww-view-check{display:flex;align-items:center;gap:.35rem;font-size:.82rem}.ww-view-check input{width:auto}.ww-canvas svg[data-view="3d"]{touch-action:none;cursor:grab}.ww-canvas svg[data-view="3d"]:active{cursor:grabbing}
+.ww-canvas{background:#fff;border:1px solid #dce4ee;border-radius:12px;min-height:240px;display:grid;place-items:center;overflow:hidden;flex:1 0 240px}
+.ww-canvas svg{display:block;width:100%;height:100%;max-height:57dvh;min-height:240px}.ww-empty{color:#6e7c8b;text-align:center;max-width:380px;padding:2rem}
+.ww-3d-tools{display:flex;flex-wrap:wrap;gap:6px}.ww-3d-tools .mini-button{min-height:30px}.ww-solid-viewport{position:relative;min-width:0;width:100%;height:100%;min-height:240px;overflow:hidden;background:linear-gradient(#fff,#f2f5fa)}.ww-solid-canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}.ww-solid-canvas:active{cursor:grabbing}.ww-solid-canvas:focus-visible{outline:3px solid #9985e9;outline-offset:-4px}.ww-solid-empty{position:absolute;inset:35% 10% auto;color:#66748b;text-align:center;line-height:1.5;pointer-events:none}.ww-solid-detail{margin:0;font-size:12px;line-height:1.4;color:#64718a}.ww-solid-detail:empty{display:none}
+.ww-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}.ww-fact{background:#f4f5fa;border-radius:8px;padding:.7rem;display:flex;flex-direction:column;gap:.25rem}.ww-fact strong{font-size:1.2rem;color:#34345d}.ww-fact span{font-size:.78rem;color:#687486}
+.ww-status{margin:0;min-height:1.4em;max-height:5.5em;flex:0 0 auto;overflow:auto;overflow-wrap:anywhere;color:#3e4c64}.ww-notes{max-height:190px;overflow:auto;flex:0 0 auto}.ww-notes p{margin:.4rem 0}.ww-notes details,.ww-advanced{border-top:1px solid #e4e9f1;padding-top:.6rem}.ww-advanced summary,.ww-notes summary{cursor:pointer;font-weight:600;color:#4e596a}.ww-verified{color:#147350;font-size:.85rem}.ww-issue{color:#8c451d;font-size:.85rem}
+.ww-inspection{flex:0 0 auto;border:1px solid #dce4ee;border-radius:8px;padding:7px 10px;background:#fff;overflow:auto}
+.ww-inspection>summary{cursor:pointer;color:#4b5268;font-size:12px;font-weight:600;line-height:1.5}
+.ww-inspection[data-warning=true]>summary{color:#8c451d}
+.ww-inspection[open]{max-height:32dvh}
+.ww-system-details{padding:8px 0;font-size:12px;line-height:1.45}.ww-system-details p{margin:.35rem 0}.ww-system-details>small{display:block;margin:.35rem 0}.ww-system-details summary{cursor:pointer}
+/* The 3D model gets the main workspace; long system and inspection data remain
+   available in a disclosure. The original 2D layout is unchanged. */
+.whole-wall-workspace[data-view="3d"]{padding:10px 12px;gap:6px}
+.whole-wall-workspace[data-view="3d"]>.wm-header{padding-bottom:6px;align-items:center}
+.whole-wall-workspace[data-view="3d"]>.wm-header h2{font-size:20px;margin:0}
+.whole-wall-workspace[data-view="3d"]>.wm-header p{display:none}
+.whole-wall-workspace[data-view="3d"]>.wm-header button,.whole-wall-workspace[data-view="3d"]>.ma-footer button{min-height:32px;padding:6px 12px;font-size:12px}
+.whole-wall-workspace[data-view="3d"]>.ma-footer{padding-top:6px;gap:8px}
+.whole-wall-workspace[data-view="3d"] .ww-status{font-size:12px;line-height:1.4;max-height:2.8em}
+.whole-wall-workspace[data-view="3d"] .ww-grid{grid-template-columns:minmax(250px,285px) minmax(0,1fr);gap:12px}
+.whole-wall-workspace[data-view="3d"] .ww-drawing{gap:6px}
+.whole-wall-workspace[data-view="3d"] .ww-system-card{padding:5px 9px;border-radius:7px}
+.whole-wall-workspace[data-view="3d"] .ww-system-card>p{margin:1px 0;font-size:12px;line-height:1.4}
+.whole-wall-workspace[data-view="3d"] .ww-resolved-system{font-weight:600}
+.whole-wall-workspace[data-view="3d"] .ww-view-controls{gap:5px 10px;flex:0 0 auto}
+.whole-wall-workspace[data-view="3d"] .ww-view-check{gap:4px;font-size:12px;line-height:1.4;white-space:nowrap}
+.whole-wall-workspace[data-view="3d"] .ww-view-check input{margin:0;width:15px;height:15px}
+.whole-wall-workspace[data-view="3d"] .ww-3d-tools{gap:5px;flex:0 0 auto}
+.whole-wall-workspace[data-view="3d"] .mini-button{padding:4px 8px;min-height:28px;font-size:12px}
+.whole-wall-workspace[data-view="3d"] .ww-legend{font-size:11px;line-height:1.4;flex:0 0 auto}
+.whole-wall-workspace[data-view="3d"] .ww-canvas{flex:1 0 300px;min-height:300px;grid-template-rows:minmax(0,1fr)}
+.whole-wall-workspace[data-view="3d"] .ww-solid-viewport{min-height:0}
+.whole-wall-workspace[data-view="3d"] .ww-solid-detail{font-size:11px;line-height:1.4;flex:0 0 auto}
+.whole-wall-workspace[data-view="3d"] .ww-inspection .ww-notes{max-height:none;overflow:visible}
+.whole-wall-workspace[data-view="3d"] .ww-fact{padding:6px}.whole-wall-workspace[data-view="3d"] .ww-fact strong{font-size:18px}
+@media(max-width:850px){
+ .ww-grid{display:flex;flex-direction:column;overflow:auto;overscroll-behavior:contain;gap:1.25rem}
+ .ww-drawing{order:0;flex:0 0 auto;overflow:visible}.ww-settings{order:1;flex:0 0 auto;overflow:visible;padding-right:0;border-top:1px solid #dce4ee;padding-top:1rem}
+ .ww-parameters{grid-template-columns:repeat(3,minmax(0,1fr))}.ww-actions{flex-direction:row;flex-wrap:wrap}
+ .ww-canvas{height:clamp(210px,32dvh,340px);min-height:210px;flex:0 0 auto}.ww-canvas svg{height:100%;min-height:0;max-height:none}
+ .ww-notes{max-height:none;overflow:visible}.whole-wall-workspace>.wm-header{gap:.7rem}.whole-wall-workspace>.wm-header h2{font-size:1.2rem}.whole-wall-workspace>.wm-header p{font-size:.8rem}
+ .whole-wall-workspace>.ma-footer{gap:.5rem}.whole-wall-workspace>.ma-footer button{padding:.55rem .7rem;font-size:.82rem}
+ .whole-wall-workspace[data-view="3d"] .ww-drawing{overflow:visible}
+ .whole-wall-workspace[data-view="3d"] .ww-canvas{height:clamp(300px,48dvh,420px);flex:0 0 auto}
+}
+@media(max-width:500px){.whole-wall-workspace{padding:.7rem}.ww-parameters{grid-template-columns:1fr 1fr}.ww-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}

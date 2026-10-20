@@ -1,0 +1,43 @@
+.placement-label { fill:#493aa6; stroke:#fff; paint-order:stroke; font-weight:650; text-anchor:middle; pointer-events:none; }
+.placement-dimension { fill:none; stroke:#6654d9; stroke-width:1.3; vector-effect:non-scaling-stroke; pointer-events:none; }
+.guide-reference { fill:none; stroke:#d08a18; stroke-width:3; stroke-dasharray:8 5; vector-effect:non-scaling-stroke; opacity:.8; }
+.guide-modes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-bottom:12px; }
+.guide-modes .button { padding:10px 6px; min-width:0; font-size:12px; }
+.guide-modes .button.is-active { color:#5541cf; border-color:#9584f3; background:#efebff; box-shadow:inset 0 -2px 0 #9584f3; }
+.guide-reference-name { margin:0; border-left:3px solid #d08a18; background:#fff9ec; padding:8px; overflow-wrap:anywhere; }
+.selection-box { fill:#6554d922;stroke:#6554d9;stroke-width:1.4;vector-effect:non-scaling-stroke; }
+.selection-box.is-crossing { fill:#26916b22;stroke:#26916b;stroke-dasharray:6 4; }
+.floor-plan.tool-box { cursor:crosshair; }
+.multiple-selection ul { max-height:38vh;overflow:auto;padding-left:20px;font-size:13px;line-height:1.6; }
+
+/* Compact desktop chrome reserves the viewport for drawing. Tools retain
+   their text labels, keyboard hints and native horizontal scroll on laptops. */
+@media(min-width:761px){
+  #projectWorkspace .assembly-job-strip{padding:0 9px;gap:8px}
+  #projectWorkspace .assembly-job-strip .mount-preparation-status{margin:4px 0;padding:5px 9px;font-size:12px;line-height:1.35}
+  #projectWorkspace .assembly-job-details{margin:0 10px 4px;font-size:12px}
+  .app-topbar{min-height:34px;padding:2px 9px;gap:10px}
+  .workspace-header{min-height:44px;padding:5px 10px;gap:10px}
+  .project-heading .eyebrow{margin:0;font-size:9px}.title-row{margin-top:1px}.title-row h1{font-size:17px}
+  .header-actions .button{min-height:30px;padding:5px 9px;font-size:11px}
+  .workspace-navigation{min-height:32px;padding:0 9px;gap:8px}.workspace-navigation .tabs{gap:16px}.workspace-navigation .tab{padding:7px 1px;font-size:12px}
+  #modelPanel{padding:4px;gap:4px}
+  .tool-palette{flex-wrap:nowrap;gap:4px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding-bottom:2px}
+  .drawing-tool,.tool-palette .editor-command{min-height:32px;padding:5px 8px;gap:5px;font-size:11px;border-radius:5px;white-space:nowrap;flex:0 0 auto}
+  .drawing-tool svg,.tool-palette .editor-command svg{width:17px;height:17px}.drawing-tool kbd{width:17px;height:17px;font-size:10px}
+  .editor-grid{grid-template-columns:minmax(0,1fr) 268px;gap:4px}.structure-open .editor-grid{grid-template-columns:200px minmax(0,1fr) 268px}
+  .structure-open.inspector-hidden .editor-grid{grid-template-columns:200px minmax(0,1fr)}.inspector-hidden .editor-grid,.editor-focus .editor-grid{grid-template-columns:minmax(0,1fr)}
+  .editor-grid>.panel{border-radius:5px}.editor-grid .panel-header{min-height:40px;padding:6px 9px}
+  .plan-header{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;padding:5px 7px!important}
+  .plan-heading{width:100%;flex-wrap:nowrap;gap:5px;overflow-x:auto;scrollbar-width:thin;overscroll-behavior-x:contain}
+  .plan-heading>*{flex:0 0 auto}.plan-heading h2{max-width:115px;font-size:11px}
+  .plan-heading .button,.plan-heading .add-floor-button{min-height:29px;padding:4px 7px;font-size:11px;white-space:nowrap}
+  .plan-heading select{min-width:105px;max-width:185px;height:29px;font-size:11px}.plan-settings{gap:10px;min-height:25px}
+  .tool-help{min-height:24px;padding:4px 8px;font-size:11px;line-height:1.35}.plan-statusbar{min-height:29px;padding:3px 7px;gap:5px 9px}
+  .inspector-content{padding:9px}.inspector-form{gap:8px}.inspector-validation{padding:8px 9px;max-height:25%}
+  .inspector-content .wall-mount-entry{padding:10px;margin-bottom:12px}.inspector-content .wall-mount-entry .button{padding:7px 9px;font-size:12px;min-height:34px}
+}
+@media(min-width:1200px){.plan-header{grid-template-columns:minmax(0,1fr) auto;align-items:center}.plan-settings{flex-wrap:nowrap}.plan-heading h2{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.plan-heading select{max-width:150px}}
+@media(min-width:1600px){.editor-grid{grid-template-columns:minmax(0,1fr) 282px}.structure-open .editor-grid{grid-template-columns:210px minmax(0,1fr) 282px}.structure-open.inspector-hidden .editor-grid{grid-template-columns:210px minmax(0,1fr)}.inspector-hidden .editor-grid,.editor-focus .editor-grid{grid-template-columns:minmax(0,1fr)}}
+@media(min-width:761px) and (max-width:1000px){.structure-open .editor-grid{grid-template-columns:minmax(0,1fr) 268px}.structure-open.inspector-hidden .editor-grid,.editor-focus .editor-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:760px){#modelPanel{padding:4px;gap:5px}.plan-heading .button{min-height:34px;padding:5px 8px;font-size:12px}.plan-heading{gap:5px}.plan-tools .drawing-tool{min-height:40px}.plan-header{gap:5px}.plan-settings .inline-check{min-height:28px}.plan-statusbar{padding:3px 6px}}

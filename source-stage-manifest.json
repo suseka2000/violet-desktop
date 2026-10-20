@@ -1,0 +1,1794 @@
+{
+  "schema_version": "violet-staged-sources/1",
+  "private_distribution_only": true,
+  "git_initialized": false,
+  "uploaded": false,
+  "file_count": 297,
+  "total_bytes": 74363863,
+  "supplier_files": 88,
+  "files": [
+    {
+      "path": ".github/workflows/desktop-build.yml",
+      "bytes": 4592,
+      "sha256": "5cb6d0d3203bfd7e2fc567fefc18e9175da7a4d8012c35461ba0d6cf1607d920",
+      "kind": "source"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 7413,
+      "sha256": "79fe51f240a222a25c58b176cb92f549424862387df87ef73c671e083ca58fcc",
+      "kind": "source"
+    },
+    {
+      "path": "backend/__init__.py",
+      "bytes": 50,
+      "sha256": "e0fa617d167e026680cbc368e1ab4c475e43b308522d675e5cb65017afcc23c7",
+      "kind": "source"
+    },
+    {
+      "path": "backend/__main__.py",
+      "bytes": 11829,
+      "sha256": "64dd59e803962220b1d88f053c9436f600f2f5445f9a80f0b6b6c1f7fc6c83a3",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/__init__.py",
+      "bytes": 76,
+      "sha256": "c8ecd93e7082d6f8858549fb1a389416e1ae1e2961b60792c5828ad38c3dd8a1",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/building_assembly.py",
+      "bytes": 2388,
+      "sha256": "6dae6fa36234806175dc4197508af2056b35bb8c33c0602d2cb80da1062b0424",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/cad_assets.py",
+      "bytes": 9438,
+      "sha256": "070b5bdefe251f5ae76d0c60f3897283742e0bd10bf702d7942250240893bf8c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/extended.py",
+      "bytes": 8233,
+      "sha256": "283c5ee1ca01b8893d2255a7905cf33a3396834417ab45c735b8cf050be8540e",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/model_library.py",
+      "bytes": 3120,
+      "sha256": "d25e69e189bec963190355253425f056ea32b397880a47695316866c988299f2",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/mount_assemblies.py",
+      "bytes": 21588,
+      "sha256": "8d8a2bf7555e4a0118fa08bee96303c953f5bb01f64313f5a38ddbd42e4bb548",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/mount_sections.py",
+      "bytes": 15006,
+      "sha256": "faf483d76f890ae84c73ee98a39de08ae18cf98a9a760ca33e7bad3f385424f5",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/room_assembly.py",
+      "bytes": 2522,
+      "sha256": "bc7b5409a73db1a6cda32cac672433ab3a058adc99a6e16d8fb1aa1c0fd09082",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/server.py",
+      "bytes": 30578,
+      "sha256": "d89dee6f5540c3d54e65d7c473f86d6023b4ea69c8657eacbeeb7b9dbe0f0606",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/special_assemblies.py",
+      "bytes": 13548,
+      "sha256": "a86ae1acbe03eeb2756223038dba90c1949ffcbb589873a0479e5d0533255f8c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/vendor.py",
+      "bytes": 2747,
+      "sha256": "aebe545d2edf924f603d580d40a6d0b540dde24e3fcbb99c950f94829d7ad3dd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/wall_mount.py",
+      "bytes": 1279,
+      "sha256": "aa0bb3f6e27ab1998fd9c15c8c4a268f9d0ade1b1699e692467b1b616bcc7c2f",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/whole_wall.py",
+      "bytes": 6902,
+      "sha256": "a38c65d74216fbe191b395c83edc44b32ddad2009d2bce027c46f8018f5ceb8b",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_fasteners.py",
+      "bytes": 27290,
+      "sha256": "d1c6b569f55aea1304cf424cdbb982e2d9ded5b82d8189cdd67ffd284a26ca87",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_geometry.py",
+      "bytes": 46153,
+      "sha256": "c06ee939977eed230c413a6607a1a1daca936389cfe2cbfed5aac63789700f3c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_jobs.py",
+      "bytes": 35656,
+      "sha256": "df87e328223c5359add1bccbce76527fb1200eab6d5ada3b5cd60b19668281b6",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_recipes.py",
+      "bytes": 41549,
+      "sha256": "a7308c431096cbb83eefe59ab16a50a6e3eb19c8518ee03c2c21418bc58f4dc2",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_recipes_concealed.py",
+      "bytes": 27386,
+      "sha256": "3da019e1876261fbaa1a5290ce990d7e5ecad9fbc3031053543ca907d88c22f4",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_recipes_corners.py",
+      "bytes": 16959,
+      "sha256": "48b50903872d930edf39cad70f080902f42c2a4aa6ea892ec647355effe9c0aa",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_recipes_groups.py",
+      "bytes": 9592,
+      "sha256": "bdf27610c0a523075459868284708336bca0a1baeb01e4be7028888b1dc5fced",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_recipes_opening_returns.py",
+      "bytes": 6489,
+      "sha256": "b4e1e7f5ae401e22fdac2633062d4cbffbb220e2644e3dd72ab76dfa39596709",
+      "kind": "source"
+    },
+    {
+      "path": "backend/assembly_worker.py",
+      "bytes": 9934,
+      "sha256": "18aabb08905d28749fbbac020aed9663853d9835a5715d73060ece9d1e27bd34",
+      "kind": "source"
+    },
+    {
+      "path": "backend/building_assembly.py",
+      "bytes": 10370,
+      "sha256": "f5a55e5171ce3a2bd0d87b26a6df8b840de5a6714feb9c70719ccf949ec9ae2b",
+      "kind": "source"
+    },
+    {
+      "path": "backend/building_assembly_jobs.py",
+      "bytes": 37321,
+      "sha256": "e84f8c4e13b0678743c1068f1d59b970e85a8bb1ab656696f3e804c05b0038b5",
+      "kind": "source"
+    },
+    {
+      "path": "backend/building_assembly_worker.py",
+      "bytes": 21315,
+      "sha256": "9f4780ba65a59fe2e4e0218019cc35a71e8de3bb94214fd6e543e43fb061b7cf",
+      "kind": "source"
+    },
+    {
+      "path": "backend/cad_sections.py",
+      "bytes": 10528,
+      "sha256": "2ef3bd12bf2b3dc022ea2255f8a4e6477df05b5973e155589d1c5c264f82900c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/demo.py",
+      "bytes": 1666,
+      "sha256": "b02442a93bc93fd44f12526b9ea2b7109dacd91d6fa8ba7f9a73841025d3e321",
+      "kind": "source"
+    },
+    {
+      "path": "backend/desktop_entry.py",
+      "bytes": 11266,
+      "sha256": "f952f8be5c0f51cc1ce08ad6968b9ab566634ecd799f071f0e03386d71bde68c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/desktop_runtime.py",
+      "bytes": 7032,
+      "sha256": "ccce9e46a8cc2751a84499c5e5a14b9d49e447d4458e9e06e4353b4cb9a07022",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/__init__.py",
+      "bytes": 57801,
+      "sha256": "46c7af8ab1e9363e1dbec98c178941259616241891632433bc23da45f742f3bd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/album.py",
+      "bytes": 28018,
+      "sha256": "60ca54168107df17dba07df9b16d5be6876504bd1c77f2340620587ac9a6c20f",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/album_graphics.py",
+      "bytes": 18927,
+      "sha256": "53a9160713ec634a7b08ed9170b823e49ba2ca4883b93b6101074d1605c32bc9",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/album_tables.py",
+      "bytes": 8191,
+      "sha256": "3bd8543c751e65431bc4fc6cdf92b114c0ce046d3f29cb1cbc7307c2fc01d0f4",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/assemblies.py",
+      "bytes": 7667,
+      "sha256": "4b919b298fe3473f7d1f2673a3a275d81c93ac011f010b277fd9dfd9fda4b07f",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/cad_sections.py",
+      "bytes": 8689,
+      "sha256": "24fc7860636243c51e3930d0ef7a274c105d9ed5b3d1c7b75b37953c6512145a",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/catalog.py",
+      "bytes": 1874,
+      "sha256": "d124bec7ce5d9b728fc047825baa122072e1597ba2d3ab986f62af0ce5204feb",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/component_legend.py",
+      "bytes": 8722,
+      "sha256": "f5f2ad3fc5ea104f00d0a15ae9f409f565f534f25b5e3e2efba096d677e81ecd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/dxf_album.py",
+      "bytes": 18123,
+      "sha256": "b9a67a9c6b2c7bf2e3310762efebf52e09e0dc9372c7ae011ea19e54aea7bd11",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/fonts/NotoSans-Bold.ttf",
+      "bytes": 575740,
+      "sha256": "c976e4b1b99edc88775377fcc21692ca4bfa46b6d6ca6522bfda505b28ff9d6a",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/fonts/NotoSans-Regular.ttf",
+      "bytes": 569208,
+      "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/fonts/OFL.txt",
+      "bytes": 4377,
+      "sha256": "0dab92d0544f7b233403f14b84a663bdbfa746982eda629e7f4f9ffe1b036feb",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/label_layout.py",
+      "bytes": 5469,
+      "sha256": "41cfbdf5187085feb5ea7b23d621ebc790af844005ef4e9cce66082dbdfedd9c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/levels.py",
+      "bytes": 3094,
+      "sha256": "e08f367a1ca6c08b8f533850849df3e8119f11a92f035b3750977d3c9d442aee",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/mount_details.py",
+      "bytes": 17061,
+      "sha256": "a5571e2cf5f699f61783672a789043140002863d76d984da9c242a6af9a33b73",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/mount_plans.py",
+      "bytes": 9002,
+      "sha256": "e91126aacceea99bc6231d37d645910ae5cfb54233289bcbfcb41cdebb8d99b8",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/mount_setting_out.py",
+      "bytes": 7711,
+      "sha256": "98bddf4fb3290e4af4b73a4735df0e6f613f86e56ca1ea82909f084cdbe89ca0",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/node_construction.py",
+      "bytes": 23041,
+      "sha256": "223f96ac73677e05275ebe2cbcf6aa4b617b316da8d87792f3f9bc3c31bae6aa",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/openings.py",
+      "bytes": 8317,
+      "sha256": "64ad852b8ad23ac571406e8b75ef8bfa58c2aa7818e6070ce41a31c392bcb5be",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/plan_dimensions.py",
+      "bytes": 13067,
+      "sha256": "3273517a3842137369fb992dbb58bcd066c795095afc5db0aa5afbc5e09fdb9d",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/plan_labels.py",
+      "bytes": 11011,
+      "sha256": "e1de1b0e038a9745948ba260291029403ce28ccf4cea47b0012c761ce6d020d9",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/plan_walls.py",
+      "bytes": 4656,
+      "sha256": "6ba079b25fdc6be5a7ede4c36291d1ebc6659b78ec5ddeca230e3192ae25d5f1",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/scene.py",
+      "bytes": 10745,
+      "sha256": "f052f0453e7765d3b44e0e477ca08372f4b8afd41f33f0ba17ff9f1140540eb6",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/section_dimensions.py",
+      "bytes": 6217,
+      "sha256": "bc22fac65ac9305ad595d261d5efb9529d787bac4c4538073b2eaa8d8b6212b0",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/special_sections.py",
+      "bytes": 19041,
+      "sha256": "c65bcfff98b7f31b87f6ddcc4b8469cecdc9b917e832b8f1609a7024012dd4b2",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/wall_mount.py",
+      "bytes": 22352,
+      "sha256": "00d6ffecd4d9bba878bf550cebd2fecc46fa5f5d2846072e5e28a4f408f57baa",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/whole_wall.py",
+      "bytes": 16514,
+      "sha256": "6e8b5b67de2cc77deaf90bede24350914aa7de6dad7f9dfaa9d9ed7ee8f58ad0",
+      "kind": "source"
+    },
+    {
+      "path": "backend/domain/__init__.py",
+      "bytes": 47,
+      "sha256": "96ae1bfe519e922d3b0ef2b4b847a87544ed258c5bc9431bdbfde68fc344fb04",
+      "kind": "source"
+    },
+    {
+      "path": "backend/domain/builders.py",
+      "bytes": 5348,
+      "sha256": "ee769f751f7eab3bf097ade22e0b096e6f46119faa3580ad8a8420bf7727a797",
+      "kind": "source"
+    },
+    {
+      "path": "backend/domain/models.py",
+      "bytes": 7598,
+      "sha256": "7a5185d3d1f799d0310b9b1f3de60a9274c1be44c76aa059f2d457559871fa1b",
+      "kind": "source"
+    },
+    {
+      "path": "backend/dxf_workspace.py",
+      "bytes": 18060,
+      "sha256": "8a389005e6a9ac7e58ffd44c55aff17caf596dc596b1040125b93e57e0c5f955",
+      "kind": "source"
+    },
+    {
+      "path": "backend/dxf_workspace_worker.py",
+      "bytes": 7440,
+      "sha256": "f38fb0105f32381e4ca58d927e87ecab7e294a71b4e8aa66a1105ae51fff5afb",
+      "kind": "source"
+    },
+    {
+      "path": "backend/engineering/__init__.py",
+      "bytes": 97455,
+      "sha256": "29bc7dffb1a0c6dcbc74ad00a074b41b74f6d4dc60715a29c2be25700330eedd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/engineering/openings.py",
+      "bytes": 6239,
+      "sha256": "5018cc3103fe0280e946e03291d2970d29dce43e979a49e65290862046adb327",
+      "kind": "source"
+    },
+    {
+      "path": "backend/exterior_mount.py",
+      "bytes": 5520,
+      "sha256": "50c819f4973a56ac746891cb3dce949a14cdceb8583995f6c804e6a51c0aee11",
+      "kind": "source"
+    },
+    {
+      "path": "backend/fastening_records.py",
+      "bytes": 9003,
+      "sha256": "7ee9517ed09ec427393fa899b819f19c5bbcca45f44ac5c673603705c4428ee6",
+      "kind": "source"
+    },
+    {
+      "path": "backend/fitted_wall_reuse.py",
+      "bytes": 8614,
+      "sha256": "62796f74006f9eb0eedd5b7e6112c298a67db6a76fa9ba6eb86eb31b9170e666",
+      "kind": "source"
+    },
+    {
+      "path": "backend/geometry/__init__.py",
+      "bytes": 150,
+      "sha256": "0046f460420896372972497353f47c91c519b0ee4119bfccd08407fd1eac5e02",
+      "kind": "source"
+    },
+    {
+      "path": "backend/geometry/validation.py",
+      "bytes": 59839,
+      "sha256": "2252c568dac16ed4bd080bdf055ab88fb697c9a2e8bf11f5ed22b276dadb47dc",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/__init__.py",
+      "bytes": 1314,
+      "sha256": "3d31b5302c14478d2ad1b14ae534cf091e57cdfe12c110765cb3f034ea1f3d93",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/_common.py",
+      "bytes": 4217,
+      "sha256": "23089c058bb591f1e22aee99248af9b9c4b1c50923112dfbbf6afe16eeb283e5",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/cad.py",
+      "bytes": 8144,
+      "sha256": "f28280eaf786faa245c54ee6748765869306545ea5ab4788a3f1aad0e3315fa7",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/cad_preview.py",
+      "bytes": 7486,
+      "sha256": "8f8b8211996b48f15e42405b08981c5b1359dada8df201c271188834a3b8e1f2",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/dxf.py",
+      "bytes": 46866,
+      "sha256": "001be8f04d29a10b301e51e4bd404e9beace4bc05336b30f6d5e10d6266a004e",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/errors.py",
+      "bytes": 2020,
+      "sha256": "0ef1dad66a72989e5946f20af22c4e2ef4593d7ee1b223012ba0b8087f594440",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/inspection.py",
+      "bytes": 13529,
+      "sha256": "c3e04be2457d6b98b5da25ecf9d447684579cddf85f22d81b7cc66fc6e0b57b7",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/records.py",
+      "bytes": 1711,
+      "sha256": "2e6888aac236a034f681addb303763f7c8c6bdfbfd0c9e15722bef2554ca3818",
+      "kind": "source"
+    },
+    {
+      "path": "backend/importing/source_store.py",
+      "bytes": 12710,
+      "sha256": "39b8174d3161d2c2401848207fa4b118a70bfee126ba2f2d7df86c4ea9f1b539",
+      "kind": "source"
+    },
+    {
+      "path": "backend/library_io.py",
+      "bytes": 8628,
+      "sha256": "3b27e712a3457473209c6d2b99842d0647669ab4d43c0f140a75664ca749a802",
+      "kind": "source"
+    },
+    {
+      "path": "backend/model_library.py",
+      "bytes": 16626,
+      "sha256": "b04ba15e5d42a41f49328dffe3f6d38a2823544d810857ff21dcdf906088b2cf",
+      "kind": "source"
+    },
+    {
+      "path": "backend/mount_assemblies.py",
+      "bytes": 22760,
+      "sha256": "6ce09cb99cf69f386bb75b9d5c620d8cc0874ddf05ce917b852214d4c78f7de1",
+      "kind": "source"
+    },
+    {
+      "path": "backend/mount_context_symbols.py",
+      "bytes": 5063,
+      "sha256": "c242989e8f14871c77e9011069c31c2b655a5a4d83546ddc4ac10fe1fbacb971",
+      "kind": "source"
+    },
+    {
+      "path": "backend/mount_defaults.py",
+      "bytes": 18504,
+      "sha256": "61e6cc5ae8e651b88010ed1c6fbc87b319d16f508bfef6c281870749cf34dfca",
+      "kind": "source"
+    },
+    {
+      "path": "backend/mount_node_groups.py",
+      "bytes": 24525,
+      "sha256": "5afe5518036f4ac11b378f373221ff39d3d1263efd5c5afba78e7d1daa1cc6dd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/native_definition_cache.py",
+      "bytes": 3733,
+      "sha256": "00b77e0cdf5474b06956bf380c170f1647e6e4d365bb9e658d80b3abb60753a8",
+      "kind": "source"
+    },
+    {
+      "path": "backend/panel_layout.py",
+      "bytes": 10089,
+      "sha256": "8c91d6529e622d3f730aba6ad3e9b0c66e1e56b52c0c64591f058d23c38c2099",
+      "kind": "source"
+    },
+    {
+      "path": "backend/project_trash.py",
+      "bytes": 3883,
+      "sha256": "08c9c792dcefa9343f9c59de79f894e86198ccf951d7ecbfa72ee073dda7ed18",
+      "kind": "source"
+    },
+    {
+      "path": "backend/reference_drawing.py",
+      "bytes": 15046,
+      "sha256": "d29ffb563eae13e4bf9bf74e539f7388a4e93dcec32cb8147330479d20ce99e7",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_assembly.py",
+      "bytes": 12222,
+      "sha256": "62a3babf63b791e405f32a834e7e172b5152f49a757d1c568e64afc0a3f83f42",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_assembly_jobs.py",
+      "bytes": 25022,
+      "sha256": "7098d7357b2f06f9b4b37b7f6e14007b898866221969257cbdb35a10839fcf4c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_assembly_joints_geometry.py",
+      "bytes": 49957,
+      "sha256": "41b52e901d190c845bc1be9509e099a3cdfa36e1bee382316d742cddb8bccd67",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_assembly_worker.py",
+      "bytes": 43115,
+      "sha256": "ef2f60451749ef34a9d5fd8f66f3f9df5fbff434eac853f97a26a23f36bfd632",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_corner_envelopes.py",
+      "bytes": 4323,
+      "sha256": "d8aec8ea399f88c242c0dad3a58fa90f95f313b5e7f04ddf43441c88f1f33dbd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_corner_parts.py",
+      "bytes": 32886,
+      "sha256": "812f4536536f422594bd56094c30c553d6d1570f04cf911f99a913a5cec2ea79",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_fitted_joint_heights.py",
+      "bytes": 4862,
+      "sha256": "c0146396084da5284262e9434d8cc55d321d0d967a71fc5f0f721b9e3ee8fee8",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_fitted_walls.py",
+      "bytes": 14410,
+      "sha256": "4cb4438f40e7de69172bd26d9ad8f4c5acee2bd6370689851ec109e1c9cb4bfd",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_joints.py",
+      "bytes": 26453,
+      "sha256": "2a46c2c9bf9fc4e1990ff779e0998eedfec82c6e387929d4a109a9cbd311872c",
+      "kind": "source"
+    },
+    {
+      "path": "backend/room_transition_profiles.py",
+      "bytes": 6353,
+      "sha256": "ca71cc16672a4ab79c8d69d34b498c38b750901fdcba20b242150b5897eac907",
+      "kind": "source"
+    },
+    {
+      "path": "backend/server_node_records.py",
+      "bytes": 2508,
+      "sha256": "b3108498d11262c6ea166c56b987153a13f90aedbe2cf83b9fa8f664f39471cb",
+      "kind": "source"
+    },
+    {
+      "path": "backend/server_wall_records.py",
+      "bytes": 3885,
+      "sha256": "390306d489a1e44e51ad5d0c38d2570dd4a433d84375d798dfe344b74b161414",
+      "kind": "source"
+    },
+    {
+      "path": "backend/service.py",
+      "bytes": 8586,
+      "sha256": "8d20823d7a3c91120972eb493d7f3e54950036c799a1eced56ef6b2b6b4e4078",
+      "kind": "source"
+    },
+    {
+      "path": "backend/source_preview.py",
+      "bytes": 3939,
+      "sha256": "91d3336b8925ba27cae1e256da1766664024c81b6a3353bf50fea0400c57c190",
+      "kind": "source"
+    },
+    {
+      "path": "backend/source_worker.py",
+      "bytes": 3873,
+      "sha256": "0d47a079b4e766ce01170083d8c6bc6fbe6ec20e103d98a01e5f0253468288b4",
+      "kind": "source"
+    },
+    {
+      "path": "backend/special_assemblies.py",
+      "bytes": 24520,
+      "sha256": "cb75fabd7fe16cbef029b71537c8cb75e87c456a62164d5c3f8d5244071aa49f",
+      "kind": "source"
+    },
+    {
+      "path": "backend/special_recipes.py",
+      "bytes": 18913,
+      "sha256": "bcc1604764bfa63d3d5db949e8a7240e4489692946a17491f104554edf595a0e",
+      "kind": "source"
+    },
+    {
+      "path": "backend/step_geometry.py",
+      "bytes": 23007,
+      "sha256": "4d917d60212950137758a08d990684e3ae0e3e07b217b897a791bf2e8694cb81",
+      "kind": "source"
+    },
+    {
+      "path": "backend/step_worker.py",
+      "bytes": 8565,
+      "sha256": "4e7c13a32bc0b2a9e7f1fa4161a2ab1bb2a9988828b62cdc32a1d5c7c15c63f1",
+      "kind": "source"
+    },
+    {
+      "path": "backend/storage/__init__.py",
+      "bytes": 674,
+      "sha256": "ddc68eb20c333efead032ac385574c802015b8e680a6ee44444480a8522e0bcb",
+      "kind": "source"
+    },
+    {
+      "path": "backend/storage/json_codec.py",
+      "bytes": 3945,
+      "sha256": "acaf7d4097e8c1f7b1317b043a704d0b0c37562c9e2cd9db14651579499dcb3f",
+      "kind": "source"
+    },
+    {
+      "path": "backend/storage/repository.py",
+      "bytes": 29359,
+      "sha256": "54904b547270f0ff4d7680116d20df715364c18af29de8c29433ec3275ed46ac",
+      "kind": "source"
+    },
+    {
+      "path": "backend/storage/workspace_archive.py",
+      "bytes": 40031,
+      "sha256": "e1245e2f4b777de1e8b9f641cad130a754fdd94205c1a71fe03539d0b6313208",
+      "kind": "source"
+    },
+    {
+      "path": "backend/stream_room_assembly_jobs.py",
+      "bytes": 2275,
+      "sha256": "51eaaeba4bf52b8ce22c9ee8068d74cd309e1c4873c8715856eb863821a972b3",
+      "kind": "source"
+    },
+    {
+      "path": "backend/vendor_design.py",
+      "bytes": 14661,
+      "sha256": "44819a7af061102ca23f70aab2e1722f981723db3c2b05a5a1fc52a66d28c1c6",
+      "kind": "source"
+    },
+    {
+      "path": "backend/vendor_library.py",
+      "bytes": 37689,
+      "sha256": "02bd68d411364fe3bfa82e6de4f22e55f8b8efd71a5fa2aefb21884dcc1f2301",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_assembly_concealed.py",
+      "bytes": 28565,
+      "sha256": "16bb1553710ef20b04616f3551daed346e238dc2d8a3b992cc92936473d839f4",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_assembly_geometry.py",
+      "bytes": 48489,
+      "sha256": "602de3663240eb9ff104b6aec323256fc14296ca7837108a78e184aef913ab33",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_assembly_worker.py",
+      "bytes": 8369,
+      "sha256": "6cb011ae708d230e2c36a63976b5fd7926232ddbb6e11cfc531e3c8bacf8e3f9",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_framing.py",
+      "bytes": 70864,
+      "sha256": "56505486fceef76017be4d48764c9df647ec1cb39c33e45485702db5969fb6d0",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_geometry_cache.py",
+      "bytes": 6092,
+      "sha256": "d04b959463c74b2b09d9af11096575e0b0065e22259cba2b20bb7e34b3ea94d7",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_mount.py",
+      "bytes": 66725,
+      "sha256": "8942ed6c3c728490e22aaf8dad75e640fefe759febb9b949bf00cad21e2bc841",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_opening_bounds.py",
+      "bytes": 1479,
+      "sha256": "a77d04b96d095d14c410aeaf97aa149a1f6b086576a720b5d8013f084512fabe",
+      "kind": "source"
+    },
+    {
+      "path": "backend/wall_systems.py",
+      "bytes": 20214,
+      "sha256": "bda3bf7dd0ac7b02990c5409c2d57944115ea81b5721d6f82762f8b65c60e06d",
+      "kind": "source"
+    },
+    {
+      "path": "backend/whole_wall_assemblies.py",
+      "bytes": 29017,
+      "sha256": "047517795a757c12f580013f663bd235dadf9325498ce0562c3abc862e79c868",
+      "kind": "source"
+    },
+    {
+      "path": "backend/whole_wall_material_records.py",
+      "bytes": 9345,
+      "sha256": "ff34ff9b6dd17c2b374e7c00d766e80e481062ad9132121b050d08996084a067",
+      "kind": "source"
+    },
+    {
+      "path": "backend/workspace.py",
+      "bytes": 17413,
+      "sha256": "b8ea35b677369aa8da286914c7fbcc2f71696400dc48b567b895c51b67fa0c8d",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/access-preload.cjs",
+      "bytes": 264,
+      "sha256": "34da2fad48005ced489782294ecb5db9aceeb91659f115f0bb8f2d188457baea",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/access.css",
+      "bytes": 572,
+      "sha256": "f6bf97a1022ac9257fd95e74422c550f10e450791aeecfc1483a6f15093dba37",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/access.html",
+      "bytes": 1303,
+      "sha256": "02cde34239d3bf27fa244b0e5b3b92ffba14134e5d296cbeaf4bef2852cdb10d",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/access.js",
+      "bytes": 453,
+      "sha256": "500b05759cb25139df4ea89a54d89565b181d2880886860199b6a02d2d0c2e2e",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/backend-process.cjs",
+      "bytes": 7288,
+      "sha256": "6ff24b04583143e27a0d48b043414f85f252d8f592a55ebccf277b141816de09",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/approved-step-library.json",
+      "bytes": 16314,
+      "sha256": "37a2d61348ae0b7d70fe1378343bbc559bba5e7b3a6a901425c38d9194e83af4",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/bundle_policy.py",
+      "bytes": 4376,
+      "sha256": "8476439c0311fda37ba12d3fc4d3c0c930c9ae3297eda98f17665f9667b25437",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/entitlements.mac.plist",
+      "bytes": 243,
+      "sha256": "85d97186afc33c073b2c524f88c5f8031601c844b3e10d9c71c82f845fcc3a6f",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/OCCT-7.9.3-LGPL-2.1.txt",
+      "bytes": 26434,
+      "sha256": "e237fa56668030e928551ddd60f05df5fe957f75eab874bbd017e085ed722e7c",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/OCCT-7.9.3-exception.txt",
+      "bytes": 663,
+      "sha256": "04580a884ea6cea294402649ff7b5cbb167d47462d1340a4ed33e550db10a81b",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/OCP-7.9.3.0-Apache-2.0.txt",
+      "bytes": 11346,
+      "sha256": "a13caea71627202ad33cc4cafafdd18e667e16716488f8d9c568127121fb89fd",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/native-license-review.json",
+      "bytes": 1292,
+      "sha256": "56c31abadcc748dcc8c2eaa7a75eaf93366f7b617506f3e363dede68d468bcc2",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/source-files.json",
+      "bytes": 7881,
+      "sha256": "c1a94d3a5f918a00a809099bd26a35d83ffbca0fabdb302a92e41c2995251479",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/violet-backend.spec",
+      "bytes": 1796,
+      "sha256": "5a30ff04f6b0cde21d804f0ead382b7f766c4206572ce3f9556617eb7cf18139",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/credentials.cjs",
+      "bytes": 1335,
+      "sha256": "6988aaf2efcd8fe3b3757d9c2a341de8dad49284c17a25e3a6960f4bc7f6553a",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/electron-builder.cjs",
+      "bytes": 3279,
+      "sha256": "36a156ff4e9fba5f45ee6b5398ca6ca2eacca3ea549754747529768b2c4245c8",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/loading.css",
+      "bytes": 382,
+      "sha256": "871b22342c12b50045d0a433769191c4db8e16e9cb120ec23c1052857626a7df",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/loading.html",
+      "bytes": 460,
+      "sha256": "bd01346f465803f496cf6b331bf965cedc654c307c72daaeedd111d57a5f51f9",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/main.cjs",
+      "bytes": 13364,
+      "sha256": "faf9e563b3081d83a2048a77b77c73fef06ea55b5131f6ecdf147f7e6d6400da",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/package.json",
+      "bytes": 813,
+      "sha256": "08f5f39c9eaa124a7d756e8f52d7412e71297c0df6bbda3d5a3d1fd59f374e8f",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/pnpm-lock.yaml",
+      "bytes": 71748,
+      "sha256": "55a80526e5ddeb7a1001e4b9a96c0bdd2ffd07545269f20138f4afbf60fe67ff",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/pnpm-workspace.yaml",
+      "bytes": 103,
+      "sha256": "cff58a3522fc8d1376c8b8a7e75e2e6e34877320473cbe5e10e3d95d55bdc85d",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/preload.cjs",
+      "bytes": 338,
+      "sha256": "bb7fa8ade87fe2fda05038b1011cfdbf17ea98996f6997ce5d65e6d8a7d7f9b7",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/build_backend.py",
+      "bytes": 3172,
+      "sha256": "c3f7caa13a8861a7dfa913148cc2e18aca60cb684311f983b9812da6c184d558",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/collect_notices.py",
+      "bytes": 5139,
+      "sha256": "cb5b1eef14a76ea0652e222f595c50649e2f7eeb81428f58f2f6a68e928a7b5e",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/combine-release.cjs",
+      "bytes": 5101,
+      "sha256": "adcd4c33264c475fe8da33e0d68b74c3d1deb2b1be606257afd0fa54ba6a7692",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/package.cjs",
+      "bytes": 1478,
+      "sha256": "1015019cc87cbbedbc3af972c6d29e98173e6add627444adb04241fa3f886e53",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/prepare_release.py",
+      "bytes": 3556,
+      "sha256": "c41e96bf0884d81915581ea262ca6c5d96256a6d5e2d408b8254aecdac7065db",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/scripts/stage_sources.py",
+      "bytes": 11896,
+      "sha256": "49330de606dba83745679af98fe67b7e438944af95952fb1047268f0b3a7d30a",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/security.cjs",
+      "bytes": 2532,
+      "sha256": "26be0a3277c00741ea8b1af3e1f854e59ece14e56c6a68a1438e2055908e46ac",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/backend-process.test.cjs",
+      "bytes": 2850,
+      "sha256": "4f8df684aefe4c02d6d432d0a8572f1f0b5cc59cf82a588ffb81011a9556e9aa",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/combine-release.test.cjs",
+      "bytes": 1973,
+      "sha256": "94294672a421b73f9a75f0217d4769387615f9b6d153630d14eb3ddc840c3425",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/credentials.test.cjs",
+      "bytes": 1407,
+      "sha256": "44969d997ea4f9628d2078abb86d7b9f7649d1c629ef105637ac597edfe0d694",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/main-lifecycle.test.cjs",
+      "bytes": 10053,
+      "sha256": "96ba9884aece8f59fa69d8ad470694973b1d67b03c09d972793f9af5a1cac868",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/private-access.test.cjs",
+      "bytes": 1342,
+      "sha256": "75b56d91186891c5f177932fdb186a26166c618bf6cd3ca6a56f8f1d2471431c",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/security-review.test.cjs",
+      "bytes": 5272,
+      "sha256": "2f9d45749d320e3ce1b6032a32e71c0c39f092bedfc8d09bf302a7d049ca631b",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/updater.cjs",
+      "bytes": 6325,
+      "sha256": "1951e5a19549e4a66f908b0124e08b0cd32034ed49e7d3df6e5ccc388d783b6a",
+      "kind": "source"
+    },
+    {
+      "path": "docs/desktop-release.md",
+      "bytes": 15877,
+      "sha256": "381586951a071d675703869d7ff5d9310e8867630225d031f21b26225fd3223b",
+      "kind": "source"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1.stp",
+      "bytes": 78886,
+      "sha256": "52450d5463bb789799321a5c8ed42a3b8ee0e9f1ba5ff12cbe4f31c729b9ef9e",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1_1.stp",
+      "bytes": 78888,
+      "sha256": "653ba27418bd01889bed41121cb4f766e8a64a94dc3859760c59ec5c1ec792d3",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-KNAUF (прямой подвес).stp",
+      "bytes": 1827510,
+      "sha256": "a39a2a38f5d209390ccfaebb8bdaefc69989421114094814671ee73f53dcb634",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-KNAUF (прямой подвес)_1.stp",
+      "bytes": 1827512,
+      "sha256": "ed058224ac9cfd2f86e4c0d72c8c7cc26904752bf8fc9d90c6b916446bc1985c",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _11(Угол_внутри).stp",
+      "bytes": 331778,
+      "sha256": "2016bc94d3e75845115c07ea8b529748d1ebe11f3065fb1f518af3e31e1970c7",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _11(Угол_внутри)_1.stp",
+      "bytes": 331780,
+      "sha256": "6aa6618f9493966ece4b6714bc5455f70a212ab429fb0063edad50f2b9c8c9aa",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _12(Угол_наружний).stp",
+      "bytes": 334906,
+      "sha256": "963e4c847bef9009e11a44c263d49ad6741409cb35cf907cb6def96e1bef8e20",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _12(Угол_наружний)_1.stp",
+      "bytes": 334908,
+      "sha256": "49b196b91c6368fcc30b9c0ef5b863c9aa665bf32e98da4d010c6fab1662c0c3",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01-Крест-импорт_2.stp",
+      "bytes": 2158307,
+      "sha256": "342a8b8929be6514c892b255a6bf904604e7e88d67d16b2ccf4356369521ab7d",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01-Крест-импорт_3.stp",
+      "bytes": 2158307,
+      "sha256": "e013e986d02e7ad24e4290eb1efca7eeea9994f19452b93a30365415064e8947",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_010-Виолет V-L-start_1.stp",
+      "bytes": 324223,
+      "sha256": "0537f42d83894e942131d0b60ab4d37958e6a8a8c1d4e6abce7b5e55c96aa196",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_010-Виолет V-L-start_2.stp",
+      "bytes": 324223,
+      "sha256": "d90e27911e28a3067882c727e40cf1f7c978d50c72113df53695bf4b1581aab6",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_011-Уголок 10х10_2.stp",
+      "bytes": 71556,
+      "sha256": "46720afa6e911f5e415a12dd5cdf1f0b94d3df11eb6f5848f111a0adec471e3b",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_011-Уголок 10х10_3.stp",
+      "bytes": 71556,
+      "sha256": "60b2d2171100fe100d6125d6d9282fdbce1dd4651382e7873b467e867054eecb",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_012-Уголок 20х20_1.stp",
+      "bytes": 71506,
+      "sha256": "c5359a487a9d53819d96990ce8e2920007610068c631bd187f4e63610fe75537",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_012-Уголок 20х20_2.stp",
+      "bytes": 71506,
+      "sha256": "395142abdfdd207b4e10aabbd921888e5f6b3c74473050b499eb98d3a333bae7",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_013-Крышка-Омега-V-Cap-1.stp",
+      "bytes": 203712,
+      "sha256": "be634d53317a42e6957e49945ac6c2c6a5d5a27b128bf263ad8832dabe052bc2",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_0134-V-T3.stp",
+      "bytes": 244755,
+      "sha256": "2d198185a1c4dbdfd81c90ca786fdeabc159823d29af0a4df9ee90ec65e97773",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_0134-V-T3_1.stp",
+      "bytes": 244757,
+      "sha256": "39f7149fda966c29b138000c765d2d2a53441e6eb66f1bede04ebe316803fd48",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_014-Омега-V-base.stp",
+      "bytes": 301694,
+      "sha256": "ef8ba54d453d7a7d0b5bd19d67a9155b51ee272287d541a07a95371515ee07f6",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_014-Омега-V-base_1.stp",
+      "bytes": 301696,
+      "sha256": "f71bf8c867bd60635bc8b7165382ec381e52365fb7fd87ff1ff3d9c9321aba54",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_015-Заглушка-Омега-V-Cap2.stp",
+      "bytes": 142620,
+      "sha256": "f5a6606425d1588e1caef39c11e0d8fe8fcbbf06081bde7747dfad46e4d085e5",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_015-Заглушка-Омега-V-Cap2_1.stp",
+      "bytes": 142622,
+      "sha256": "53afeadca71669012232a3b5f984f8223ebfe10f4571b9ba79a97f8136d88135",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_016-Профиль VL-8.stp",
+      "bytes": 119193,
+      "sha256": "2fb47c595b4a3e15ed4b8abb82903de0fa9e8ed288df39799a96394d4cf489bd",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_016-Профиль VL-8_1.stp",
+      "bytes": 119195,
+      "sha256": "6d369f1fa0dede0eb5571da954c62a43bec64a6611415d80b96790b01b704a46",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_017-Профиль V-L10.m3d.stp",
+      "bytes": 135572,
+      "sha256": "5dbec2fd44941c83161e04a0f26a947cbe98fb5b1f5571fca8a6fc52cda38975",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_017-Профиль V-L10_1.stp",
+      "bytes": 135574,
+      "sha256": "d680220a60635efd3828583320b14bb5629bf18e0714045fba28f374b4108c74",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_017-Профиль V-L10_2.stp",
+      "bytes": 135574,
+      "sha256": "a4cfc44cef0fc89a0a1d9024b084d897fc12f63389a3aa9fd57a27cec5a018d2",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_018-Профиль VL-13.stp",
+      "bytes": 135036,
+      "sha256": "b5e0b8cbcf87504c0491b734eee64f6fee740974f9d840b2e63bdfd1185c36ed",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_018-Профиль VL-13_1.stp",
+      "bytes": 135038,
+      "sha256": "b313159df04088f7b440a92072bee98c7b7a4b3b5978c13700e11044223350aa",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_019-Профиль VL-13-Smart.stp",
+      "bytes": 120494,
+      "sha256": "db6e0f690b60a93d9021f14f633387e4023bd0cac50fd3e7530ba1e21cd06ef4",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_019-Профиль VL-13-Smart_1.stp",
+      "bytes": 120496,
+      "sha256": "1536a459f82ad2a944b04e441676ac7ecc6b7497b641ac2ea06b8277658df242",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01СБ-Краб и саморезы.a3d.stp",
+      "bytes": 3864931,
+      "sha256": "c8346a937ba36c102421bdbf7ab0c707ff86c2b473a84bf5e0643325c0fcb31a",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01СБ-Краб и саморезы_3.stp",
+      "bytes": 3864931,
+      "sha256": "bce250f57f0f4323ffdaa0b7857c6b1df4e858ed5245675c47faf4fb7ed0ea1a",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01СБ-Краб и саморезы_4.stp",
+      "bytes": 3864931,
+      "sha256": "1f465fad7727858c5c6769d6dd41b929f80a4b31a8816729eb25e250950f0355",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Прокладка(Фанера).stp",
+      "bytes": 53622,
+      "sha256": "5c9c502809730c555fccf803a0dedd8ee680a723cb984737953ddd6a8c6b3bf3",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Прокладка(Фанера)_1.stp",
+      "bytes": 53624,
+      "sha256": "865da52e71612245546f1f4f0391c56f62ca7684c0f2c6f2de91c0a0c1d1839e",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Прокладка(Фанера)_2.stp",
+      "bytes": 53624,
+      "sha256": "4e97a416f7a620eb2c0467194afd9b6f65f268f506895b307189b36bb7dfac0b",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Уголок 15х15.stp",
+      "bytes": 61700,
+      "sha256": "587518d0482f817b25c75f80249f8c07e26ac4cfb70bf73fdbe3eea51ea196ab",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Уголок 15х15_1.stp",
+      "bytes": 61702,
+      "sha256": "564fac34f303b233a7b373a28d70b4249d504914644a77273eba047109540fb5",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_020-Профиль_V-Facet_1.stp",
+      "bytes": 246939,
+      "sha256": "b5eb8c6ac6d7e2a7aad4a40620b142f96adc82368278ab9265ebc845320af0f4",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_020-Профиль_V-Facet_2.stp",
+      "bytes": 246939,
+      "sha256": "877dce561d6c32f8eb4ad588e49d9d8dedbafe2a3d8d2a5b13b52ff273d97c05",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_021-V-Cub.stp",
+      "bytes": 258501,
+      "sha256": "0b0355ebc4c016e2758483e2036a2544d107b7382d7e0a7b371e9507d48ff070",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_021-V-Cub_1.stp",
+      "bytes": 258503,
+      "sha256": "c815ed2fd24fdf78d699c98db7062b600fc88855f9855266c19b4cf1b60efd89",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_022-V-Start-4.stp",
+      "bytes": 145911,
+      "sha256": "d872b002e38496dadc4eda42469573f7e02090918299b1811effc098aba7d302",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_022-V-Start-4_1.stp",
+      "bytes": 145913,
+      "sha256": "2907c4b1bd46d4461e8147f381c837ac2ee05bb18bab12195cdab0595de31629",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_023-V-sky.stp",
+      "bytes": 82157,
+      "sha256": "f3b20317ff7ba3ddb417da9b862940d02ae7c2a4bc2881da25ebf994608963a9",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_023-V-sky_1.stp",
+      "bytes": 82159,
+      "sha256": "cf37cdafb23e33140108106386090eba788c2e2d07c12904ce3efeb57f9a52e0",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_024-VH-2.stp",
+      "bytes": 228221,
+      "sha256": "f033ba4887ca6c17c6ca97cb4db33319bc80efb6f260064b5526cc98a52d0cf4",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_024-VH-2_1.stp",
+      "bytes": 228223,
+      "sha256": "cab605866b8d401fdca1570c2f4e4b927675128d774867d045c41b861ae68c64",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_025-Профиль_VH-1.stp",
+      "bytes": 139415,
+      "sha256": "4f18aa2311676201ded9cc07a3cbe411d9d9cc82dd57359a51c21fb0d0ec1fd2",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_025-Профиль_VH-1_1.stp",
+      "bytes": 139417,
+      "sha256": "86c59492dcb0c9baf6560a136f096b700e6487f926a295560c4f87f6a4925e30",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_026-V-Start-2.stp",
+      "bytes": 138391,
+      "sha256": "b44438ecfff81ff6d246297ba4bdf625e286b6ebd2cc25e4712597c0d19c5a33",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_026-V-Start-2_1.stp",
+      "bytes": 138393,
+      "sha256": "27ae57c7a33d5e780d04cd82fa0050cada4d9f4d61fe6ba1ba16be9567326160",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_027-V-F-Clip.stp",
+      "bytes": 238466,
+      "sha256": "03855921e9b5e51a22ddf7f0fe0aad397fd996e5f5b1a5603bbf8da04e53b162",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_027-V-F-Clip_1.stp",
+      "bytes": 238468,
+      "sha256": "e2f4f8bdffb91a4c00a47732b621eddd4465eedc499490dd09f96300736ce5dd",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_028-V-Drop.stp",
+      "bytes": 109463,
+      "sha256": "8d5005d5b8127895cf83b5ff6a90f38ba81dcf8b3a7fd948337bcaed6b4d0dfd",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_028-V-Drop_1.stp",
+      "bytes": 109465,
+      "sha256": "e18262e26178386dc482dcd075dcad0124b611014789c0ba0615e4b629f6b313",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_029-Клаймер.stp",
+      "bytes": 458649,
+      "sha256": "bff66937bfa70fe20c40ef7e605bef24547d0837e07057eb25f37437153df864",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_029-Клаймер_1.stp",
+      "bytes": 458651,
+      "sha256": "7855f4e08631e06c6476881eddf75d2439a76e609474362264825da92d44de7b",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_03-Уголок 10х10.stp",
+      "bytes": 71549,
+      "sha256": "280c41ac1d1953b4b35686d66d9f369acf6b5a9fb1a9395864f15d1336ff99fd",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_03-Уголок 10х10_1.stp",
+      "bytes": 71551,
+      "sha256": "208267df4cb666456b2812d890513a0227f37fed5389e5033cedeed7a728157a",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_030-Уголок 25х25.stp",
+      "bytes": 71504,
+      "sha256": "53f39b7688b839d09c689a9145359534d2bc451ab6379986f87419c177b824c5",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_030-Уголок 25х25_1.stp",
+      "bytes": 71506,
+      "sha256": "a3e0e69b399db5b2cab738ad4d5e89743ef6f88c078057b15b41d387e2225c59",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_031-Плинтус V-start5.stp",
+      "bytes": 121633,
+      "sha256": "0532402e482e411f8bc5d5969c3abf530dcafb48ea24586ee2ab92e759d8a234",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_031-Плинтус V-start5_1.stp",
+      "bytes": 121635,
+      "sha256": "94dded0d6e695d761e76fc3e447d1be3fe2e9c7c987c7fc33b89f22fdd6a3782",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_032-V-Т2.stp",
+      "bytes": 107600,
+      "sha256": "23cbdd046cf9585499576836071961e4cd9035263e5877b4f5676027abdf5106",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_032-V-Т2_1.stp",
+      "bytes": 107602,
+      "sha256": "d2a7e5a981e0c5d531689fea52bc9987a47eb8e22128b7dc4acb90a35b4e1fc8",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_038-Т-профиль-гвоздь_V-T-1.stp",
+      "bytes": 177021,
+      "sha256": "752fd5fcb8a498729714677d66e783355d01d4ee5709dffd60c51a45dae05978",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_038-Т-профиль-гвоздь_V-T-1_1.stp",
+      "bytes": 177023,
+      "sha256": "692658a491b37dfc4c9bfda7c6134c0a5ddb5b79617de9065d041dea798d6669",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_04-Саморез.stp",
+      "bytes": 1447945,
+      "sha256": "8d824e4668bc79edacc819dad66e1d75c722adfef552119d4bab117934888daa",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_04-Саморез_1.stp",
+      "bytes": 1447947,
+      "sha256": "21b4f6a9624793cc33a8a0e44b3f8d7cb01140f98071612a17e699772dc9a12a",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_040-Т-профиль_V-base light.stp",
+      "bytes": 340080,
+      "sha256": "147877329aac19f1a17b1f141f2d98cb418f40e5f9f866f7d9a2967ff7246a6f",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_040-Т-профиль_V-base light_1.stp",
+      "bytes": 340082,
+      "sha256": "4757032bf849193d785cd279d471b43336f9193005106f943ddf7252806f4dca",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_05-Профиль-V-WS( 60х27).stp",
+      "bytes": 330912,
+      "sha256": "149dc84e1fb1be2d36ca115f1921d3dc3e14b894649580dd1efe62624ab8e5c1",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_06-Профиль_V-WT(ПН_27х28).stp",
+      "bytes": 120101,
+      "sha256": "3340c9ee6da2f527c920f5e371071fa27e5ece7efa36f5c049f59035bda818cb",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_07-Профиль VH-4.stp",
+      "bytes": 170144,
+      "sha256": "8ba9249f816b46533d8c00b064568678797486f0e9e81a253530d6116a1631ad",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_07-Профиль VH-4_1.stp",
+      "bytes": 180933,
+      "sha256": "bc202c70bdff702d75010771aecaee1bf8b526ef515df3cb6b5214d399a0d1ed",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_09-Профиль VH-3.stp",
+      "bytes": 249979,
+      "sha256": "3b8572c34db5deb6624f486e3955d179d723d07f3e9c69d52b83754328919848",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_13-V-Start-3.stp",
+      "bytes": 82254,
+      "sha256": "1540bc5254b6cbda146fad72f6a9d54ef5a33117cb777d0b1562eaaa0bf7b767",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/3437E9AC-2F0B-4731-8EAA-A36EEE9A5707.jpeg",
+      "bytes": 1460106,
+      "sha256": "0caddd2f555ab49206ed6f20257135d42eadeace577bc3bbc05228981232cdfc",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/53C3324B-B5BD-4556-BA37-D9916B3ED9A3.jpeg",
+      "bytes": 1504191,
+      "sha256": "90a30e9953e5186951a241c1e33a5e2688b21240ef3157a1963c7b08d467f155",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/closed.pdf",
+      "bytes": 14280813,
+      "sha256": "e5440cd6ded1738c797e8313be6ba127ba1fb305ceccab92bc8ef0d8433e6339",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/opened.pdf",
+      "bytes": 8270433,
+      "sha256": "84e27ca0cf2b61b0fc7bf70e50cb46e5094d7e8950c5a31a3279c09c75ca32d0",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/public-violet/violet-concealed-installation-public.pdf",
+      "bytes": 1453879,
+      "sha256": "a59a0f73319c283afc8c7b3285bba8690edf0574a45c67cb243886949c40819a",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/public-violet/violet-open-installation-public.pdf",
+      "bytes": 2380936,
+      "sha256": "856a0e8d78534e1d3ee04ca86dec78ea399d0b1c7517291b0bc1f7602630445e",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/Мартынова-кляймеры(020626).pdf",
+      "bytes": 4199112,
+      "sha256": "9528d47cc8e23fa23f62d88ffa5a0c4e807ebe18892f79ea87800e3202f494ac",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/Профили 220826.pdf",
+      "bytes": 771300,
+      "sha256": "1925d3a8a669b1a171618cbd9a513cf7f7a2ae8f4769465a6cd5988935c177b9",
+      "kind": "approved_supplier"
+    },
+    {
+      "path": "frontend/app.js",
+      "bytes": 295690,
+      "sha256": "bc4f50fff660619bff43ee14f8ebf09d209ed490820948cc8dd620e387d4d568",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/batch-mount.css",
+      "bytes": 2970,
+      "sha256": "fdc70ae96b54306c4391eb7058704a30d2670ce435effdb85dd4d17e5189966f",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/batch-mount.js",
+      "bytes": 47090,
+      "sha256": "519a6907381bf79f6c0b77404738a5502d07b82ecbab1c6e1690884ca7f4c646",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/building-assembly.css",
+      "bytes": 2603,
+      "sha256": "aefa59a9bed7c9a4538f292b65f67518a39a6b6b98afe152665de463cd725fae",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/building-assembly.js",
+      "bytes": 25524,
+      "sha256": "14c60d169d64d61016da56c972f9e983b6c25c40ef7eab48a1d86aebc36f3c60",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/cad-mapping.js",
+      "bytes": 18120,
+      "sha256": "b33b22f8f52cb1c75491a65c36466e658d621d6efc7a11c03fb2ba2ba475b0d6",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/cad-workspace.js",
+      "bytes": 30906,
+      "sha256": "55af0c86f8b0776428125b308ec8968620aa29262f72b2d6a8061993d69bcf09",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/draft-recovery.js",
+      "bytes": 7196,
+      "sha256": "0b06a0d21f7fa5d7217c534104d98bae2bcc730ba8e542c215f05ee4a3d9fa91",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/drafting.js",
+      "bytes": 24105,
+      "sha256": "56337ea7d984e891ba3c62c187f9cec2da8aae3acd7793cd7f47c0dd986f7f70",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/editor-cad.css",
+      "bytes": 5012,
+      "sha256": "dd8c3ba1a4f79b8e72dd75fe2250454d3432d387045389d3bff27df6e3cc3407",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/engineering-jobs.js",
+      "bytes": 7390,
+      "sha256": "6ab5f156b938d01cedc40ebeabfd4b9d260e9f2420963931f2886766890d0958",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/index.html",
+      "bytes": 48073,
+      "sha256": "77056f9048d06b4736b9a854a139af5ea40351efb92b61943733b72aa0f43267",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/model-editor.js",
+      "bytes": 104941,
+      "sha256": "eb014c0ad24135e2555f44c8290320d86170da88e4fde86130ce77c6662ef21f",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/mount-assemblies.css",
+      "bytes": 4301,
+      "sha256": "564cb40ac6464961fa9310171764eae8b820ed0ee73a33f2073c5697833c0813",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/mount-assemblies.js",
+      "bytes": 44886,
+      "sha256": "a8b8353a021038c1704b38d7ceb30abdd831a2272ef76841998168a76ba967ed",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/mount-sections.css",
+      "bytes": 1206,
+      "sha256": "1c9652329370898fdd21fb3273b4b3cf9949fae18880fc14a33428191f678b56",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/mount-sections.js",
+      "bytes": 13558,
+      "sha256": "888c22b72ff6878ad74f8ac74cfa9bd80dcfaa01ac020cc8659269c343771b75",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/project-history.js",
+      "bytes": 4386,
+      "sha256": "9389f0fb648a054aaeea70051ddb41809abe3de706834412c19b43677fea36fb",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/room-assembly.css",
+      "bytes": 3805,
+      "sha256": "da9b82c2e8163016643eedb0f2ab07540fd8e5f4cb0ca4f9b433504009c7833c",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/room-assembly.js",
+      "bytes": 47248,
+      "sha256": "0be22dfc7aefd5a1b93e64d30f41c79a0d43a1006e3a898af1dd4064f7432209",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/snapping.js",
+      "bytes": 12299,
+      "sha256": "cc544cb60cfb91ddf7107611a7bcfb293bfe55194e81601427c6f744f638d6a9",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/special-assemblies.css",
+      "bytes": 1731,
+      "sha256": "5f5ae0ffd0dc8123f7990d96e84a84b8ac5cb903c242d6ec2664fbe2bf52d6ae",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/special-assemblies.js",
+      "bytes": 23641,
+      "sha256": "2b1013608dadd683c6e85c9625b7a04515521194b8370e301f69124ffa528bd7",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/styles.css",
+      "bytes": 74733,
+      "sha256": "6f574757403b3318421738b288171c95d4bb8805cf40afcf0713532eb673fd8f",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/vendor-library.js",
+      "bytes": 29272,
+      "sha256": "2bb465b59ce6e8a8658b6a80c4c64d25ded2893bf902ae0ab9792e99f3a2caa3",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/wall-mount.css",
+      "bytes": 13156,
+      "sha256": "724bff2dcd5bf5a460ce8f634a81670403ca0b78b0739707bd5d8be3e8538e99",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/wall-mount.js",
+      "bytes": 65910,
+      "sha256": "696df56590961922744be9d33d66d38697b342cbf3ee9c959a0b0376d70c1005",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/whole-wall.css",
+      "bytes": 8642,
+      "sha256": "026262c9336f40be6ecccb6dfadfa12fb92e4aaf93a2e6964fd3507ba00a98aa",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/whole-wall.js",
+      "bytes": 52934,
+      "sha256": "e50351b135d4e695c2f3605b845ee36f62ba5811da64c495a31a8c8cfb18b8b0",
+      "kind": "source"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 669,
+      "sha256": "20244a8ecdca7556e07ddf1892efdbc3e61f38a1b8fb9f61c001b3e62467f502",
+      "kind": "source"
+    },
+    {
+      "path": "requirements-cad.txt",
+      "bytes": 117,
+      "sha256": "729abe2c8a9d76af3e68d392b7b229057531abea4ad1333306f0f2f1a2efd28d",
+      "kind": "source"
+    },
+    {
+      "path": "requirements-desktop-build.txt",
+      "bytes": 160,
+      "sha256": "b05d0eeff58c7d1bb393329e16d4f85ea2cf56ef313ff198a29bd43786181748",
+      "kind": "source"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 109,
+      "sha256": "ca65bc255de4580ba844ac96637cfddbca888a772221da2eda5a02e66d9759a2",
+      "kind": "source"
+    },
+    {
+      "path": "resources/vendor/manual-facts.json",
+      "bytes": 77823,
+      "sha256": "9d2313871a0e4c5ee7bff513179e99c412750a0af1e761a26f781149b6a9077a",
+      "kind": "source"
+    },
+    {
+      "path": "resources/vendor/mount-context-symbols.json",
+      "bytes": 531797,
+      "sha256": "c1260fa28e432c6730989bde9c7f856f31044535f439e865868becfdd7199884",
+      "kind": "source"
+    },
+    {
+      "path": "resources/vendor/profile-facts.json",
+      "bytes": 35703,
+      "sha256": "1c01c003fccbad8af005524ef58f7919bfd388354e4aa1998f5dedd4d2a5c398",
+      "kind": "source"
+    },
+    {
+      "path": "resources/vendor/public-installation-facts.json",
+      "bytes": 6427,
+      "sha256": "a77c849d4b6ad29ed422d760a4514578ef5307c09f2ef0b934d303a87dbad0e6",
+      "kind": "source"
+    },
+    {
+      "path": "tests/__init__.py",
+      "bytes": 51,
+      "sha256": "30fa4e2a1887143ca87dee3a059c3cc46752bfd460d7cac6962322d905459837",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_desktop_library_io.py",
+      "bytes": 10678,
+      "sha256": "10446603a2aa32199b92149a1f11d6f6eace13c842ee5387e4209f8faaf43c64",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_desktop_packaging.py",
+      "bytes": 4627,
+      "sha256": "b00ca50d68f60ccccaec8d33ef5fb1a079e75a6b46e3b63007aa58bf9d8da3c3",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_desktop_runtime.py",
+      "bytes": 20383,
+      "sha256": "4beb74fc92248e1bb32d232295dcfe005a906d201455b6acd16c66bbab808cb8",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_desktop_source_staging.py",
+      "bytes": 5139,
+      "sha256": "683c6d7f68169a74edb6e45941bf61f784a54f7e0d79e45f7e9f248c2fbb0fb3",
+      "kind": "source"
+    },
+    {
+      "path": "tests/verify_desktop_frozen.py",
+      "bytes": 11150,
+      "sha256": "9760df64d5ea95326f2d77af766d807af52560ea66ecb1da5bd544d953b49391",
+      "kind": "source"
+    }
+  ],
+  "note": "Contains source and explicitly approved supplier assets only. No personal projects, original drawings, build outputs or credentials. Secret-pattern scanning is supplemental, not proof of complete manual review."
+}

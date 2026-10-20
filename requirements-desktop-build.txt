@@ -1,0 +1,4 @@
+# Native builds only: build Windows on Windows, each macOS architecture natively.
+-r requirements-cad.txt
+PyInstaller==6.22.3
+pyinstaller-hooks-contrib==2026.8

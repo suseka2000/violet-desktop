@@ -1,0 +1,722 @@
+{
+  "schema_version": "manual-facts/1.0",
+  "documents": [
+    {
+      "id": "profiles-220826",
+      "filename": "Профили 220826.pdf",
+      "sha256": "1925d3a8a669b1a171618cbd9a513cf7f7a2ae8f4769465a6cd5988935c177b9",
+      "title": "Базовые и дополнительные профили Violet",
+      "page_count": 11
+    },
+    {
+      "id": "martynova-clips",
+      "filename": "Мартынова-кляймеры(020626).pdf",
+      "sha256": "9528d47cc8e23fa23f62d88ffa5a0c4e807ebe18892f79ea87800e3202f494ac",
+      "title": "Монтаж панелей с кляймерами V-Spike",
+      "page_count": 5
+    },
+    {
+      "id": "clips-image-assembled",
+      "filename": "3437E9AC-2F0B-4731-8EAA-A36EEE9A5707.jpeg",
+      "sha256": "0caddd2f555ab49206ed6f20257135d42eadeace577bc3bbc05228981232cdfc",
+      "title": "Иллюстрация подконструкции и крепления",
+      "page_count": 1
+    },
+    {
+      "id": "clips-image-sliding",
+      "filename": "53C3324B-B5BD-4556-BA37-D9916B3ED9A3.jpeg",
+      "sha256": "90a30e9953e5186951a241c1e33a5e2688b21240ef3157a1963c7b08d467f155",
+      "title": "Иллюстрация горизонтального сдвига панели",
+      "page_count": 1
+    }
+  ],
+  "rules": [
+    {
+      "id": "profile-1",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Start-1",
+      "requirement": "Высота сечения 75 мм; отметка полки от низа 58 мм; вылет полки 14 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 1
+      },
+      "component_codes": [
+        "V-Start-1"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-2",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Start-2",
+      "requirement": "Высота сечения 85,7 мм; размер до полки 68,7 мм; показан радиус 14,7 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 1
+      },
+      "component_codes": [
+        "V-Start-2"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-3",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Start-3",
+      "requirement": "Высота сечения 100 мм, стенка 1,2 мм, верхняя полка 12 мм; отдельно показаны угловые элементы.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 2
+      },
+      "component_codes": [
+        "V-Start-3"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-4",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Start-4",
+      "requirement": "Высота 82,5 мм, нижний участок 54 мм; в верхнем пазу указаны 12,7 и 6,3 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 2
+      },
+      "component_codes": [
+        "V-Start-4"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-5",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Start-5",
+      "requirement": "Показаны размер 100 мм до верхней полки, верхний выступ 10 мм, полки 13,5 и 15 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 3
+      },
+      "component_codes": [
+        "V-Start-5"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-6",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Base",
+      "requirement": "Сечение основания V-Base шириной 28 мм, крышки V-Cap1 шириной 32 мм и V-Cap2 шириной 10,6 мм; это разные детали.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 4
+      },
+      "component_codes": [
+        "V-Base"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-7",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Base light",
+      "requirement": "Ширина сечения 16 мм, верхняя часть 10,6 мм, высота 10,3 мм; пометка «Под заказ».",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 4
+      },
+      "component_codes": [
+        "V-Base light"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-8",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-T1",
+      "requirement": "Полка 6 мм, высота 6,1 мм, шип 1,9 мм; пометка «Под заказ».",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 4
+      },
+      "component_codes": [
+        "V-T1"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-9",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-T2",
+      "requirement": "Полка 10 мм, высота 6,7 мм, толщина стержня 0,8 мм; пометка «Под заказ».",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 4
+      },
+      "component_codes": [
+        "V-T2"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-10",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-T3",
+      "requirement": "На сечении показаны 6 мм по ширине и высоте, 4,4 мм в верхней части; пометка «Под заказ».",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 5
+      },
+      "component_codes": [
+        "V-T3"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-11",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Sky",
+      "requirement": "Высота 47,8 мм, верхний участок 41 мм, вылеты 20,2 и 19 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 5
+      },
+      "component_codes": [
+        "V-Sky"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-12",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "VH-1",
+      "requirement": "Размеры 35*, 20,7*, 17*, 13,2*, 15,4* мм отмечены звёздочкой; сноска «Под заказ».",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 6
+      },
+      "component_codes": [
+        "VH-1"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-13",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "VH-2",
+      "requirement": "Внешняя ширина 53,7 мм, общая высота 10,4 мм; центральная часть 18 мм и паз 10 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 6
+      },
+      "component_codes": [
+        "VH-2"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-14",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "VH-3",
+      "requirement": "Внешняя ширина 66 мм, высота 10,4 мм; центральная часть 31 мм и паз 10 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 6
+      },
+      "component_codes": [
+        "VH-3"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-15",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "VH-4",
+      "requirement": "Ширина 34 мм, общая высота 12,5 мм, нижняя часть 15 мм; другие размеры см. сечение.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 6
+      },
+      "component_codes": [
+        "VH-4"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-16",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-F-Clip",
+      "requirement": "Габариты сечения 37 × 25,4 мм; полки/зазоры 10,5 и 13,5 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 7
+      },
+      "component_codes": [
+        "V-F-Clip"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-17",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Drop",
+      "requirement": "Показаны 25 мм по полке, радиус 3 мм и угол 45°; пометка «Под заказ».",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 7
+      },
+      "component_codes": [
+        "V-Drop"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-18",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Spike",
+      "requirement": "Кляймер: лицевая пластина 34 × 44,5 мм; вылет 7 мм; отверстие на 10 мм от нижней кромки. Размеры не являются шагом крепления.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 7
+      },
+      "component_codes": [
+        "V-Spike"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-19",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Cub",
+      "requirement": "Сложное угловое сечение. Размеры и радиусы читать по оригиналу; для точного построения нужен DXF сечения или STEP.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 8
+      },
+      "component_codes": [
+        "V-Cub"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-20",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Facet",
+      "requirement": "Сложное угловое сечение. На схеме показаны 42,8, 29,3, 25,8, 24 и 17 мм; без упрощения геометрии.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 8
+      },
+      "component_codes": [
+        "V-Facet"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-21",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-L-Start",
+      "requirement": "Высота 28 мм, нижняя ширина 10 мм, глубина паза 12 мм, внутренний поперечный размер 6 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 9
+      },
+      "component_codes": [
+        "V-L-Start"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-22",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-L13",
+      "requirement": "Высота 55 мм, ширина 15,5 мм, внутренний размер 13,2 мм, малая полка 25,7 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 9
+      },
+      "component_codes": [
+        "V-L13"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-23",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-L13-Smart",
+      "requirement": "Высота 23 мм, ширина 15,5 мм, внутренний размер 13,2 мм, малая полка 9,7 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 9
+      },
+      "component_codes": [
+        "V-L13-Smart"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-24",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-L8",
+      "requirement": "Высота 25 мм, внешняя ширина 10,2 мм, внутренняя 7,9 мм, малая полка 10,6 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 10
+      },
+      "component_codes": [
+        "V-L8"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-25",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-L10",
+      "requirement": "Высота 55 мм, внешняя ширина 12,1 мм, внутренняя 9,8 мм, малая полка 25,7 мм.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 10
+      },
+      "component_codes": [
+        "V-L10"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-26",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Corn-10",
+      "requirement": "Уголок 10 × 10 мм, стенка 0,7 мм; открытый и скрытый монтаж.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 11
+      },
+      "component_codes": [
+        "V-Corn-10"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-27",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Corn-15",
+      "requirement": "Уголок 15 × 15 мм, стенка 1 мм; открытый и скрытый монтаж.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 11
+      },
+      "component_codes": [
+        "V-Corn-15"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-28",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Corn-20",
+      "requirement": "Уголок 20 × 20 мм, стенка 1 мм; открытый и скрытый монтаж.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 11
+      },
+      "component_codes": [
+        "V-Corn-20"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "profile-29",
+      "system": "general",
+      "topic": "profile_section",
+      "kind": "checklist",
+      "title": "V-Corn-25",
+      "requirement": "Уголок 25 × 25 мм, стенка 1 мм; открытый и скрытый монтаж.",
+      "source": {
+        "document_id": "profiles-220826",
+        "page": 11
+      },
+      "component_codes": [
+        "V-Corn-25"
+      ],
+      "scope": "Только геометрия указанного профиля в каталоге 220826; не монтажный зазор, не допуск и не правило для всех узлов. Соответствие одноимённой 3D-модели пока не подтверждено.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "martynova-assembly",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "Кляймеры на черновых горизонталях",
+      "requirement": "Последовательность на страницах 1–5: подготовка основания и нижний V-L13-2; монтаж от внешнего угла в стороны; кляймеры V-Spike, верхние доборы, затем плинтус V-Start-3.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 1
+      },
+      "kind": "detail",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip",
+      "contexts": [
+        "floor_junction",
+        "external_corner",
+        "internal_corner",
+        "ceiling_junction"
+      ],
+      "component_codes": [
+        "V-L13-2",
+        "V-Spike",
+        "V-Corn-15",
+        "V-T1",
+        "V-Start-3"
+      ]
+    },
+    {
+      "id": "martynova-substrate",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Основание и черновые горизонтали",
+      "requirement": "На рисунке существующая стена из двух слоёв гипсокартона. Черновые горизонтали имеют показанную ширину 270 мм и шаг 600 мм; материал и толщина черновых полос здесь не специфицированы.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 1
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-lower-profile",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Нижний профиль V-L13-2",
+      "requirement": "На сечении нижний профиль привязан размером 25* мм; сноска: не более 50 мм. Это не высота панели и не общий зазор у пола.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 1
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-clips-pitch",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Шаг кляймеров",
+      "requirement": "Установить кляймеры V-Spike с шагом 500 мм в панель №1. Это не шаг саморезов каркаса.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 2
+      },
+      "kind": "numeric",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "parameter": "clip_pitch_mm",
+      "value": 500,
+      "unit": "mm",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-stagger",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Разбежка кляймеров соседних панелей",
+      "requirement": "В панели №2 кляймеры размещаются со смещением по вертикали на ширину кляймера; схема уточняется на странице 3. Использовать монтажные ручки (киянки) согласно инструкции.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 2
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-adhesive",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Крепление панелей и внешнего угла",
+      "requirement": "В инструкции задан негорючий клей-пена для панелей и герметик для уголка V-Corn-15 на внешнем углу. Конкретные марки, расход, совместимость и пожарное подтверждение не приведены.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 2
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-screw",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Фиксация кляймера",
+      "requirement": "Кляймер в панели №1 зафиксировать саморезом. На увеличении показан размер 6 мм между кромками разнесённых кляймеров; не заменяет шаг 500 мм.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 3
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-inner-corner",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Подрезка внутреннего угла",
+      "requirement": "Панели №2 и №4 подрезать у внутреннего угла с зазором до стены 5–7 мм. Профиль V-L13-2 установить по сечению 2–2.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 4
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-top",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Верхние доборы и потолок",
+      "requirement": "Панели №3, №4, №5 соединяются кляймерами и профилем V-T1; верхний торец доборов фиксируется саморезами выше плоскости потолка. На сечении 1–1 показаны шов 2 мм и слой 3 мм.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 4
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "martynova-base",
+      "system": "concealed_mount",
+      "topic": "clip_installation",
+      "title": "Плинтус и угловые элементы",
+      "requirement": "Плинтус V-Start-3 и его угловые элементы установить на негорючий клей-пену.",
+      "source": {
+        "document_id": "martynova-clips",
+        "page": 5
+      },
+      "kind": "checklist",
+      "scope": "Только показанная в инструкции Мартынова сборка на черновых горизонталях поверх двухслойного гипсокартона; не универсальная норма Violet.",
+      "review_status": "transcribed",
+      "assembly_id": "M-clip"
+    },
+    {
+      "id": "clips-image-assembled",
+      "system": "concealed_mount",
+      "topic": "illustration",
+      "kind": "checklist",
+      "title": "Иллюстрация подконструкции и крепления",
+      "requirement": "На иллюстрации видны несущий каркас, листовое основание, верхний/нижний профили и кляймер. Размеров и артикулов нет.",
+      "source": {
+        "document_id": "clips-image-assembled",
+        "page": 1
+      },
+      "scope": "Иллюстрация принципа, не размерный монтажный чертёж. Не измерять по пикселям.",
+      "review_status": "transcribed"
+    },
+    {
+      "id": "clips-image-sliding",
+      "system": "concealed_mount",
+      "topic": "illustration",
+      "kind": "checklist",
+      "title": "Иллюстрация горизонтального сдвига панели",
+      "requirement": "На иллюстрации показан горизонтальный сдвиг панели и взаимное зацепление кляймеров. Размеров и артикулов нет.",
+      "source": {
+        "document_id": "clips-image-sliding",
+        "page": 1
+      },
+      "scope": "Иллюстрация принципа, не размерный монтажный чертёж. Не измерять по пикселям.",
+      "review_status": "transcribed"
+    }
+  ]
+}

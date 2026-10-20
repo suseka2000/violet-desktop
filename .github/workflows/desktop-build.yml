@@ -1,0 +1,103 @@
+name: Native desktop artifacts (no publishing)
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Require production signing, notarization and updater feed"
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  desktop:
+    if: ${{ github.event.repository.private == true }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            platform: mac
+            arch: arm64
+            backend: violet-backend
+          - runner: macos-15-intel
+            platform: mac
+            arch: x64
+            backend: violet-backend
+          - runner: windows-2022
+            platform: win
+            arch: x64
+            backend: violet-backend.exe
+    runs-on: ${{ matrix.runner }}
+    # Configure this environment's reviewers before allowing production secrets.
+    environment: ${{ inputs.release && 'desktop-release' || 'desktop-preview' }}
+    env:
+      VIOLET_RELEASE: ${{ inputs.release && '1' || '0' }}
+      VIOLET_GITHUB_OWNER: ${{ vars.VIOLET_GITHUB_OWNER }}
+      VIOLET_GITHUB_REPOSITORY: ${{ vars.VIOLET_GITHUB_REPOSITORY }}
+      VIOLET_WINDOWS_PUBLISHER_NAME: ${{ vars.VIOLET_WINDOWS_PUBLISHER_NAME }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: ${{ matrix.arch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.16.0"
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - name: Install native Python wheel dependencies
+        run: python -m pip install -r requirements-desktop-build.txt
+      - name: Install locked Electron dependencies
+        working-directory: desktop
+        run: pnpm install --frozen-lockfile
+      - name: Verify bundle allowlist and runtime tests
+        run: python -m unittest tests.test_desktop_packaging tests.test_desktop_library_io tests.test_desktop_runtime tests.test_desktop_source_staging
+      - name: Verify desktop shell
+        working-directory: desktop
+        run: pnpm test
+      - name: Build native backend (approved assets, no personal projects)
+        run: python desktop/scripts/build_backend.py
+      - name: Verify frozen STEP/PDF workers and safe data upgrade
+        run: python -m tests.verify_desktop_frozen desktop/stage/backend/${{ matrix.backend }} desktop/stage/frozen-smoke.json
+      - name: Select preview updater policy
+        if: ${{ !inputs.release }}
+        run: python desktop/scripts/prepare_release.py
+      - name: Gate signed production release
+        if: ${{ inputs.release }}
+        env:
+          CSC_LINK: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_LINK || secrets.WIN_CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_KEY_PASSWORD || secrets.WIN_CSC_KEY_PASSWORD }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: python desktop/scripts/prepare_release.py --release
+      - name: Package native preview
+        if: ${{ !inputs.release }}
+        working-directory: desktop
+        run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
+      - name: Sign and package native release
+        if: ${{ inputs.release }}
+        working-directory: desktop
+        env:
+          CSC_LINK: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_LINK || secrets.WIN_CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ matrix.platform == 'mac' && secrets.MAC_CSC_KEY_PASSWORD || secrets.WIN_CSC_KEY_PASSWORD }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: pnpm exec electron-builder --config electron-builder.cjs --${{ matrix.platform }} --${{ matrix.arch }} --publish never
+      - name: Keep native build artifacts for explicit review
+        uses: actions/upload-artifact@v4
+        with:
+          name: Violet-${{ matrix.platform }}-${{ matrix.arch }}-${{ inputs.release && 'signed' || 'preview' }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            desktop/dist/*.dmg
+            desktop/dist/*.zip
+            desktop/dist/*.exe
+            desktop/dist/*.blockmap
+            desktop/dist/*.yml
+            desktop/stage/notices/inventory.json
+            desktop/stage/frozen-smoke.json

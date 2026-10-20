@@ -1,0 +1,3 @@
+# Optional local 3D geometry engine; the 2D editor works without it.
+-r requirements.txt
+cadquery-ocp-novtk==7.9.3.0

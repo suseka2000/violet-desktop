@@ -1,0 +1,359 @@
+{
+  "schema_version": "violet-private-library/1",
+  "redistribution_confirmed": true,
+  "confirmation": "User explicitly authorized STEP models and supplier manuals for invited recipients on 2026-10-20; no personal projects, DWG, Armory reference PDF, or original SolidWorks files.",
+  "files": [
+    {
+      "path": "for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1.stp",
+      "sha256": "52450d5463bb789799321a5c8ed42a3b8ee0e9f1ba5ff12cbe4f31c729b9ef9e"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1_1.stp",
+      "sha256": "653ba27418bd01889bed41121cb4f766e8a64a94dc3859760c59ec5c1ec792d3"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-KNAUF (прямой подвес).stp",
+      "sha256": "a39a2a38f5d209390ccfaebb8bdaefc69989421114094814671ee73f53dcb634"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-KNAUF (прямой подвес)_1.stp",
+      "sha256": "ed058224ac9cfd2f86e4c0d72c8c7cc26904752bf8fc9d90c6b916446bc1985c"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _11(Угол_внутри).stp",
+      "sha256": "2016bc94d3e75845115c07ea8b529748d1ebe11f3065fb1f518af3e31e1970c7"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _11(Угол_внутри)_1.stp",
+      "sha256": "6aa6618f9493966ece4b6714bc5455f70a212ab429fb0063edad50f2b9c8c9aa"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _12(Угол_наружний).stp",
+      "sha256": "963e4c847bef9009e11a44c263d49ad6741409cb35cf907cb6def96e1bef8e20"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V-Start-3 _12(Угол_наружний)_1.stp",
+      "sha256": "49b196b91c6368fcc30b9c0ef5b863c9aa665bf32e98da4d010c6fab1662c0c3"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01-Крест-импорт_2.stp",
+      "sha256": "342a8b8929be6514c892b255a6bf904604e7e88d67d16b2ccf4356369521ab7d"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01-Крест-импорт_3.stp",
+      "sha256": "e013e986d02e7ad24e4290eb1efca7eeea9994f19452b93a30365415064e8947"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_010-Виолет V-L-start_1.stp",
+      "sha256": "0537f42d83894e942131d0b60ab4d37958e6a8a8c1d4e6abce7b5e55c96aa196"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_010-Виолет V-L-start_2.stp",
+      "sha256": "d90e27911e28a3067882c727e40cf1f7c978d50c72113df53695bf4b1581aab6"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_011-Уголок 10х10_2.stp",
+      "sha256": "46720afa6e911f5e415a12dd5cdf1f0b94d3df11eb6f5848f111a0adec471e3b"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_011-Уголок 10х10_3.stp",
+      "sha256": "60b2d2171100fe100d6125d6d9282fdbce1dd4651382e7873b467e867054eecb"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_012-Уголок 20х20_1.stp",
+      "sha256": "c5359a487a9d53819d96990ce8e2920007610068c631bd187f4e63610fe75537"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_012-Уголок 20х20_2.stp",
+      "sha256": "395142abdfdd207b4e10aabbd921888e5f6b3c74473050b499eb98d3a333bae7"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_013-Крышка-Омега-V-Cap-1.stp",
+      "sha256": "be634d53317a42e6957e49945ac6c2c6a5d5a27b128bf263ad8832dabe052bc2"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_0134-V-T3.stp",
+      "sha256": "2d198185a1c4dbdfd81c90ca786fdeabc159823d29af0a4df9ee90ec65e97773"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_0134-V-T3_1.stp",
+      "sha256": "39f7149fda966c29b138000c765d2d2a53441e6eb66f1bede04ebe316803fd48"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_014-Омега-V-base.stp",
+      "sha256": "ef8ba54d453d7a7d0b5bd19d67a9155b51ee272287d541a07a95371515ee07f6"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_014-Омега-V-base_1.stp",
+      "sha256": "f71bf8c867bd60635bc8b7165382ec381e52365fb7fd87ff1ff3d9c9321aba54"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_015-Заглушка-Омега-V-Cap2.stp",
+      "sha256": "f5a6606425d1588e1caef39c11e0d8fe8fcbbf06081bde7747dfad46e4d085e5"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_015-Заглушка-Омега-V-Cap2_1.stp",
+      "sha256": "53afeadca71669012232a3b5f984f8223ebfe10f4571b9ba79a97f8136d88135"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_016-Профиль VL-8.stp",
+      "sha256": "2fb47c595b4a3e15ed4b8abb82903de0fa9e8ed288df39799a96394d4cf489bd"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_016-Профиль VL-8_1.stp",
+      "sha256": "6d369f1fa0dede0eb5571da954c62a43bec64a6611415d80b96790b01b704a46"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_017-Профиль V-L10.m3d.stp",
+      "sha256": "5dbec2fd44941c83161e04a0f26a947cbe98fb5b1f5571fca8a6fc52cda38975"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_017-Профиль V-L10_1.stp",
+      "sha256": "d680220a60635efd3828583320b14bb5629bf18e0714045fba28f374b4108c74"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_017-Профиль V-L10_2.stp",
+      "sha256": "a4cfc44cef0fc89a0a1d9024b084d897fc12f63389a3aa9fd57a27cec5a018d2"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_018-Профиль VL-13.stp",
+      "sha256": "b5e0b8cbcf87504c0491b734eee64f6fee740974f9d840b2e63bdfd1185c36ed"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_018-Профиль VL-13_1.stp",
+      "sha256": "b313159df04088f7b440a92072bee98c7b7a4b3b5978c13700e11044223350aa"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_019-Профиль VL-13-Smart.stp",
+      "sha256": "db6e0f690b60a93d9021f14f633387e4023bd0cac50fd3e7530ba1e21cd06ef4"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_019-Профиль VL-13-Smart_1.stp",
+      "sha256": "1536a459f82ad2a944b04e441676ac7ecc6b7497b641ac2ea06b8277658df242"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01СБ-Краб и саморезы.a3d.stp",
+      "sha256": "c8346a937ba36c102421bdbf7ab0c707ff86c2b473a84bf5e0643325c0fcb31a"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01СБ-Краб и саморезы_3.stp",
+      "sha256": "bce250f57f0f4323ffdaa0b7857c6b1df4e858ed5245675c47faf4fb7ed0ea1a"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_01СБ-Краб и саморезы_4.stp",
+      "sha256": "1f465fad7727858c5c6769d6dd41b929f80a4b31a8816729eb25e250950f0355"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Прокладка(Фанера).stp",
+      "sha256": "5c9c502809730c555fccf803a0dedd8ee680a723cb984737953ddd6a8c6b3bf3"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Прокладка(Фанера)_1.stp",
+      "sha256": "865da52e71612245546f1f4f0391c56f62ca7684c0f2c6f2de91c0a0c1d1839e"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Прокладка(Фанера)_2.stp",
+      "sha256": "4e97a416f7a620eb2c0467194afd9b6f65f268f506895b307189b36bb7dfac0b"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Уголок 15х15.stp",
+      "sha256": "587518d0482f817b25c75f80249f8c07e26ac4cfb70bf73fdbe3eea51ea196ab"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_02-Уголок 15х15_1.stp",
+      "sha256": "564fac34f303b233a7b373a28d70b4249d504914644a77273eba047109540fb5"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_020-Профиль_V-Facet_1.stp",
+      "sha256": "b5eb8c6ac6d7e2a7aad4a40620b142f96adc82368278ab9265ebc845320af0f4"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_020-Профиль_V-Facet_2.stp",
+      "sha256": "877dce561d6c32f8eb4ad588e49d9d8dedbafe2a3d8d2a5b13b52ff273d97c05"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_021-V-Cub.stp",
+      "sha256": "0b0355ebc4c016e2758483e2036a2544d107b7382d7e0a7b371e9507d48ff070"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_021-V-Cub_1.stp",
+      "sha256": "c815ed2fd24fdf78d699c98db7062b600fc88855f9855266c19b4cf1b60efd89"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_022-V-Start-4.stp",
+      "sha256": "d872b002e38496dadc4eda42469573f7e02090918299b1811effc098aba7d302"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_022-V-Start-4_1.stp",
+      "sha256": "2907c4b1bd46d4461e8147f381c837ac2ee05bb18bab12195cdab0595de31629"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_023-V-sky.stp",
+      "sha256": "f3b20317ff7ba3ddb417da9b862940d02ae7c2a4bc2881da25ebf994608963a9"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_023-V-sky_1.stp",
+      "sha256": "cf37cdafb23e33140108106386090eba788c2e2d07c12904ce3efeb57f9a52e0"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_024-VH-2.stp",
+      "sha256": "f033ba4887ca6c17c6ca97cb4db33319bc80efb6f260064b5526cc98a52d0cf4"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_024-VH-2_1.stp",
+      "sha256": "cab605866b8d401fdca1570c2f4e4b927675128d774867d045c41b861ae68c64"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_025-Профиль_VH-1.stp",
+      "sha256": "4f18aa2311676201ded9cc07a3cbe411d9d9cc82dd57359a51c21fb0d0ec1fd2"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_025-Профиль_VH-1_1.stp",
+      "sha256": "86c59492dcb0c9baf6560a136f096b700e6487f926a295560c4f87f6a4925e30"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_026-V-Start-2.stp",
+      "sha256": "b44438ecfff81ff6d246297ba4bdf625e286b6ebd2cc25e4712597c0d19c5a33"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_026-V-Start-2_1.stp",
+      "sha256": "27ae57c7a33d5e780d04cd82fa0050cada4d9f4d61fe6ba1ba16be9567326160"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_027-V-F-Clip.stp",
+      "sha256": "03855921e9b5e51a22ddf7f0fe0aad397fd996e5f5b1a5603bbf8da04e53b162"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_027-V-F-Clip_1.stp",
+      "sha256": "e2f4f8bdffb91a4c00a47732b621eddd4465eedc499490dd09f96300736ce5dd"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_028-V-Drop.stp",
+      "sha256": "8d5005d5b8127895cf83b5ff6a90f38ba81dcf8b3a7fd948337bcaed6b4d0dfd"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_028-V-Drop_1.stp",
+      "sha256": "e18262e26178386dc482dcd075dcad0124b611014789c0ba0615e4b629f6b313"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_029-Клаймер.stp",
+      "sha256": "bff66937bfa70fe20c40ef7e605bef24547d0837e07057eb25f37437153df864"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_029-Клаймер_1.stp",
+      "sha256": "7855f4e08631e06c6476881eddf75d2439a76e609474362264825da92d44de7b"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_03-Уголок 10х10.stp",
+      "sha256": "280c41ac1d1953b4b35686d66d9f369acf6b5a9fb1a9395864f15d1336ff99fd"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_03-Уголок 10х10_1.stp",
+      "sha256": "208267df4cb666456b2812d890513a0227f37fed5389e5033cedeed7a728157a"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_030-Уголок 25х25.stp",
+      "sha256": "53f39b7688b839d09c689a9145359534d2bc451ab6379986f87419c177b824c5"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_030-Уголок 25х25_1.stp",
+      "sha256": "a3e0e69b399db5b2cab738ad4d5e89743ef6f88c078057b15b41d387e2225c59"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_031-Плинтус V-start5.stp",
+      "sha256": "0532402e482e411f8bc5d5969c3abf530dcafb48ea24586ee2ab92e759d8a234"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_031-Плинтус V-start5_1.stp",
+      "sha256": "94dded0d6e695d761e76fc3e447d1be3fe2e9c7c987c7fc33b89f22fdd6a3782"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_032-V-Т2.stp",
+      "sha256": "23cbdd046cf9585499576836071961e4cd9035263e5877b4f5676027abdf5106"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_032-V-Т2_1.stp",
+      "sha256": "d2a7e5a981e0c5d531689fea52bc9987a47eb8e22128b7dc4acb90a35b4e1fc8"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_038-Т-профиль-гвоздь_V-T-1.stp",
+      "sha256": "752fd5fcb8a498729714677d66e783355d01d4ee5709dffd60c51a45dae05978"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_038-Т-профиль-гвоздь_V-T-1_1.stp",
+      "sha256": "692658a491b37dfc4c9bfda7c6134c0a5ddb5b79617de9065d041dea798d6669"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_04-Саморез.stp",
+      "sha256": "8d824e4668bc79edacc819dad66e1d75c722adfef552119d4bab117934888daa"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_04-Саморез_1.stp",
+      "sha256": "21b4f6a9624793cc33a8a0e44b3f8d7cb01140f98071612a17e699772dc9a12a"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_040-Т-профиль_V-base light.stp",
+      "sha256": "147877329aac19f1a17b1f141f2d98cb418f40e5f9f866f7d9a2967ff7246a6f"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_040-Т-профиль_V-base light_1.stp",
+      "sha256": "4757032bf849193d785cd279d471b43336f9193005106f943ddf7252806f4dca"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_05-Профиль-V-WS( 60х27).stp",
+      "sha256": "149dc84e1fb1be2d36ca115f1921d3dc3e14b894649580dd1efe62624ab8e5c1"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_06-Профиль_V-WT(ПН_27х28).stp",
+      "sha256": "3340c9ee6da2f527c920f5e371071fa27e5ece7efa36f5c049f59035bda818cb"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_07-Профиль VH-4.stp",
+      "sha256": "8ba9249f816b46533d8c00b064568678797486f0e9e81a253530d6116a1631ad"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_07-Профиль VH-4_1.stp",
+      "sha256": "bc202c70bdff702d75010771aecaee1bf8b526ef515df3cb6b5214d399a0d1ed"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_09-Профиль VH-3.stp",
+      "sha256": "3b8572c34db5deb6624f486e3955d179d723d07f3e9c69d52b83754328919848"
+    },
+    {
+      "path": "for_interior-rd-generator/all_models/V_13-V-Start-3.stp",
+      "sha256": "1540bc5254b6cbda146fad72f6a9d54ef5a33117cb777d0b1562eaaa0bf7b767"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/3437E9AC-2F0B-4731-8EAA-A36EEE9A5707.jpeg",
+      "sha256": "0caddd2f555ab49206ed6f20257135d42eadeace577bc3bbc05228981232cdfc"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/53C3324B-B5BD-4556-BA37-D9916B3ED9A3.jpeg",
+      "sha256": "90a30e9953e5186951a241c1e33a5e2688b21240ef3157a1963c7b08d467f155"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/closed.pdf",
+      "sha256": "e5440cd6ded1738c797e8313be6ba127ba1fb305ceccab92bc8ef0d8433e6339"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/opened.pdf",
+      "sha256": "84e27ca0cf2b61b0fc7bf70e50cb46e5094d7e8950c5a31a3279c09c75ca32d0"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/public-violet/violet-concealed-installation-public.pdf",
+      "sha256": "a59a0f73319c283afc8c7b3285bba8690edf0574a45c67cb243886949c40819a"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/public-violet/violet-open-installation-public.pdf",
+      "sha256": "856a0e8d78534e1d3ee04ca86dec78ea399d0b1c7517291b0bc1f7602630445e"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/Мартынова-кляймеры(020626).pdf",
+      "sha256": "9528d47cc8e23fa23f62d88ffa5a0c4e807ebe18892f79ea87800e3202f494ac"
+    },
+    {
+      "path": "for_interior-rd-generator/manuals/Профили 220826.pdf",
+      "sha256": "1925d3a8a669b1a171618cbd9a513cf7f7a2ae8f4769465a6cd5988935c177b9"
+    }
+  ]
+}

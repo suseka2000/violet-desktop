@@ -1,0 +1,29 @@
+{
+  "schema_version": "violet-native-license-review/1",
+  "redistribution_reviewed": false,
+  "reviewed_targets": [],
+  "reviewed_sources": [
+    {
+      "component": "OCP",
+      "version": "7.9.3.0",
+      "license": "Apache-2.0",
+      "source": "https://raw.githubusercontent.com/CadQuery/OCP/7.9.3.0/LICENSE",
+      "file": "OCP-7.9.3.0-Apache-2.0.txt"
+    },
+    {
+      "component": "OCCT",
+      "version": "7.9.3",
+      "license": "LGPL-2.1 with OCCT exception",
+      "sources": [
+        "https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/V7_9_3/LICENSE_LGPL_21.txt",
+        "https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/V7_9_3/OCCT_LGPL_EXCEPTION.txt"
+      ],
+      "files": ["OCCT-7.9.3-LGPL-2.1.txt", "OCCT-7.9.3-exception.txt"]
+    }
+  ],
+  "outstanding": [
+    "Review and include license texts and any applicable source obligations for every native library actually bundled by the OCP wheel on each target OS/architecture.",
+    "macOS wheel contains FreeImage, FreeType, OpenEXR, libraw, codecs and compression libraries beyond OCP/OCCT; Windows wheel contents must be audited independently.",
+    "Keep an auditable source/rebuild route for LGPL-covered shared libraries; a URL and this manifest alone do not complete redistribution obligations."
+  ]
+}

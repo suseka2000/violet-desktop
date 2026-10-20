@@ -1,0 +1,10 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; form-action 'none'; base-uri 'none'">
+<title>Доступ к обновлениям</title><link rel="stylesheet" href="access.css"></head>
+<body><main><h1>Доступ к обновлениям</h1>
+<p>Нужны приглашение в закрытый репозиторий Violet и ваш персональный ключ GitHub с правом чтения выпусков.</p>
+<p>Используйте отдельный ключ с минимальными правами. Он хранится в зашифрованном виде на этом компьютере и используется только для скачивания обновлений. Проекты не отправляются.</p>
+<form id="accessForm"><label for="token">Персональный ключ GitHub</label>
+<input id="token" type="password" autocomplete="off" spellcheck="false" required maxlength="512">
+<p id="error" role="alert"></p><div><button type="button" id="cancel">Отмена</button><button type="submit">Сохранить доступ</button></div></form>
+</main><script src="access.js"></script></body></html>

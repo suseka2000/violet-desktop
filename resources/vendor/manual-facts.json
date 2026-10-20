@@ -1,0 +1,1957 @@
+{
+  "schema_version": "manual-facts/1.0",
+  "documents": [
+    {
+      "id": "violet-open-mount-2025",
+      "filename": "opened.pdf",
+      "sha256": "84e27ca0cf2b61b0fc7bf70e50cb46e5094d7e8950c5a31a3279c09c75ca32d0",
+      "title": "Альбом конфигураций профилей и отделочных панелей системы открытого монтажа Violet. 2025 г.",
+      "page_count": 18
+    },
+    {
+      "id": "violet-concealed-mount-2025",
+      "filename": "closed.pdf",
+      "sha256": "e5440cd6ded1738c797e8313be6ba127ba1fb305ceccab92bc8ef0d8433e6339",
+      "title": "Альбом конфигураций профилей и отделочных панелей системы скрытого монтажа Violet. 2025 г.",
+      "page_count": 25
+    }
+  ],
+  "rules": [
+    {
+      "id": "open-edge-v0",
+      "system": "open_mount",
+      "topic": "panel_edge",
+      "title": "Кромка V-0",
+      "requirement": "Для показанной панели открытого монтажа указана кромка V-0 и толщина 8–13 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 2
+      },
+      "kind": "detail",
+      "scope": "Только показанное сечение панели V-0; это не диапазон всех продуктов Violet.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-0"
+      ],
+      "contexts": [
+        "panel_edge"
+      ]
+    },
+    {
+      "id": "open-profile-base-cap",
+      "system": "open_mount",
+      "topic": "profile_geometry",
+      "title": "V-Base, V-Cap1, V-Cap2",
+      "requirement": "На сечениях по выноскам: V-Base имеет ширину 28 и внутренний размер 10,8; V-Cap1 — ширину 32; V-Cap2 — размеры 10,6 и 6,3 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 3
+      },
+      "kind": "detail",
+      "scope": "Каталожные размеры именно показанных сечений; не ширина монтажного шва.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-Base",
+        "V-Cap1",
+        "V-Cap2"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "open-profile-vh1",
+      "system": "open_mount",
+      "topic": "profile_geometry",
+      "title": "VH-1: размеры зависят от панели",
+      "requirement": "Профиль VH-1: на чертеже стоят 35*, 20,7*, 17*, 13,2*, 15,4*; сноска прямо связывает размеры со толщиной панели Violet.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 3
+      },
+      "kind": "checklist",
+      "scope": "Звездочные значения нельзя считать универсальной фиксированной геометрией для любой панели.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "VH-1"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "open-profile-start",
+      "system": "open_mount",
+      "topic": "profile_geometry",
+      "title": "Стартовые профили V-Start 0-1 и V-Start",
+      "requirement": "V-Start 0-1: высота 85,7; отметка полки 68,7; вылет 15,9; R14,7; локальные размеры 3 и 6. V-Start: высота 75; отметка полки 58; вылет 14 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 4
+      },
+      "kind": "detail",
+      "scope": "Размеры профилей на листе 4. Именование круглого плинтуса на сборочных листах отличается: встречаются O-2 и O; соответствие артикулов требует подтверждения.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-Start 0-1",
+        "V-Start"
+      ],
+      "contexts": [
+        "profile_catalog",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-profile-t1-t2",
+      "system": "open_mount",
+      "topic": "profile_geometry",
+      "title": "Профили V-T1 и V-T2",
+      "requirement": "V-T1: указаны 6; 6,1; 1,9; 1,2. V-T2: указаны 16; 10,6; 10,3; 4 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 5
+      },
+      "kind": "detail",
+      "scope": "Каталожные размеры сечения; монтажный шов берется из выбранной сборки, а не из общей ширины профиля.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-T1",
+        "V-T2"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "open-profile-tang-sky",
+      "system": "open_mount",
+      "topic": "profile_geometry",
+      "title": "V-T-Ang 90 и V-Sky",
+      "requirement": "V-T-Ang 90: указаны 25; 22,6; 6; 2,2; R3 и 45°. V-Sky: 47,8; 20,2; 8 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 6
+      },
+      "kind": "detail",
+      "scope": "Размеры показанных сечений; 45° относится к сечению углового профиля, не к углу стены.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-T-Ang 90",
+        "V-Sky"
+      ],
+      "contexts": [
+        "profile_catalog",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "open-profile-clip-angle",
+      "system": "open_mount",
+      "topic": "profile_geometry",
+      "title": "V-Clip и уголок",
+      "requirement": "V-Clip: 37; 25,4; 10,5; 13,5 мм. Для уголка обе полки подписаны 15–25*; звездочка — зависимость от толщины панели.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 7
+      },
+      "kind": "detail",
+      "scope": "Нельзя подменять зависимый размер уголка одним универсальным значением.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-Clip",
+        "Уголок"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "open-frame-01",
+      "system": "open_mount",
+      "topic": "frame",
+      "title": "0.1. Каркас вертикальных панелей",
+      "requirement": "В сборке обозначены стоечный профиль V-WS, направляющий V-WT, прямой подвес V-SH, одноуровневый краб V-C1, минвата V-HSIF и вибролента V-Tape.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 8
+      },
+      "kind": "detail",
+      "scope": "Состав показанного каркаса. Шаг стоек, подвесов, крепежа и характеристики несущей стены на странице не заданы.",
+      "review_status": "transcribed",
+      "assembly_id": "0.1",
+      "component_codes": [
+        "V-WS",
+        "V-WT",
+        "V-SH",
+        "V-C1",
+        "V-HSIF",
+        "V-Tape"
+      ],
+      "contexts": [
+        "frame"
+      ]
+    },
+    {
+      "id": "concealed-edges",
+      "system": "concealed_mount",
+      "topic": "panel_edge",
+      "title": "Кромки и пазы Va, Vb, Vc, Vd",
+      "requirement": "Показаны четыре разные конфигурации. Vb: глубина 11; раскрытие 2,3–3; размер от лицевой стороны 5,5. Vd: глубина 16; раскрытие 2,3–3; размер от лицевой стороны 5,2–5,5. Vc: глубина 16; раскрытие 3–3,2; размер от лицевой стороны 5,5; участок 5 мм с указанием «Отрезать по месту». Va показан без паза.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "detail",
+      "scope": "Размеры пазов только по соответствующему сечению. Общая толщина панели для скрытого монтажа на этой странице не задана.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Va",
+        "Vb",
+        "Vc",
+        "Vd"
+      ],
+      "contexts": [
+        "panel_edge"
+      ]
+    },
+    {
+      "id": "concealed-profile-start",
+      "system": "concealed_mount",
+      "topic": "profile_geometry",
+      "title": "Стартовые профили V-Start 0-1 и V-Start",
+      "requirement": "V-Start 0-1: высота 85,7; отметка полки 68,7; вылет 15,9; R14,7; локальные размеры 3 и 6. V-Start: высота 75; отметка полки 58; вылет 14 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 3
+      },
+      "kind": "detail",
+      "scope": "На сборочных листах встречается написание V-Start O-1 вместо 0-1; буквенно-цифровое соответствие требует подтверждения.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-Start 0-1",
+        "V-Start"
+      ],
+      "contexts": [
+        "profile_catalog",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-profile-sky",
+      "system": "concealed_mount",
+      "topic": "profile_geometry",
+      "title": "Потолочный профиль V-Sky",
+      "requirement": "Показаны размеры сечения 47,8; 20,2; 8 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 4
+      },
+      "kind": "detail",
+      "scope": "Геометрия профиля, не универсальный монтажный зазор.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-Sky"
+      ],
+      "contexts": [
+        "profile_catalog",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "concealed-profile-angstart",
+      "system": "concealed_mount",
+      "topic": "profile_geometry",
+      "title": "V-Ang-Start",
+      "requirement": "Размеры показанного сечения V-Ang-Start: 28 и 10,4 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 5
+      },
+      "kind": "detail",
+      "scope": "Каталожное сечение. Длина отрезка вдоль профиля здесь не задана.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-Ang-Start"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "concealed-profile-vh2-vh3",
+      "system": "concealed_mount",
+      "topic": "profile_geometry",
+      "title": "VH-2 и VH-3",
+      "requirement": "VH-2: общая ширина 53,7, высота 10,4, нижняя полка 18, локальные размеры 10 и 5,5. VH-3: общая ширина 66, высота 10,4, нижняя полка 31, локальный размер 10 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 5
+      },
+      "kind": "detail",
+      "scope": "Не смешивать профили: сборочные швы для VH-2 и VH-3 различаются.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "VH-2",
+        "VH-3"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "concealed-profile-angle",
+      "system": "concealed_mount",
+      "topic": "profile_geometry",
+      "title": "Уголок с зависимыми полками",
+      "requirement": "Обе полки уголка подписаны 15–25*; сноска: размер зависит от толщины панели Violet.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 5
+      },
+      "kind": "checklist",
+      "scope": "Только показанный уголок; размер подбирается под конкретную панель.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Уголок"
+      ],
+      "contexts": [
+        "profile_catalog"
+      ]
+    },
+    {
+      "id": "concealed-frame-01",
+      "system": "concealed_mount",
+      "topic": "frame",
+      "title": "0.1. Каркас вертикальных панелей",
+      "requirement": "В сборке обозначены V-WS, V-WT, V-SH, V-C1, V-HSIF и V-Tape; показаны виды к стене и от стены.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 6
+      },
+      "kind": "detail",
+      "scope": "Состав показанного каркаса. Шаги крепежа/каркаса, нагрузочные характеристики и материал внутренней отделочной панели не нормированы этим листом.",
+      "review_status": "transcribed",
+      "assembly_id": "0.1",
+      "component_codes": [
+        "V-WS",
+        "V-WT",
+        "V-SH",
+        "V-C1",
+        "V-HSIF",
+        "V-Tape"
+      ],
+      "contexts": [
+        "frame"
+      ]
+    },
+    {
+      "id": "open-1-1",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.1. Плоская стена: V-T1 и прямой плинтус",
+      "requirement": "V-T1 между панелями; прямой плинтус V-Start. Обозначены внутренняя отделочная панель и негорючий клей (пена). Б–Б: слой за отделочной панелью 3 мм и шов 2 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 9
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.1",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "V-T1",
+        "V-Start"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-2",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.2. Плоская стена: V-Base / V-Cap2",
+      "requirement": "Монтажный стык на V-Base с крышкой V-Cap2; плинтус в подписи V-Start O-2. Показан вариант декоративной отделки V-Base и V-Cap2.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 10
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.2",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "V-Base",
+        "V-Cap2",
+        "V-Start O-2"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-3",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.3. Плоская стена: V-T1, V-Ang и V-Start O-2",
+      "requirement": "V-T1 на стыке, V-Ang у нижнего края, плинтус V-Start O-2, негорючий клей (пена). А–А: за панелью 3 мм; Б–Б: шов 2 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 11
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.3",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "V-T1",
+        "V-Ang",
+        "V-Start O-2"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-4",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.4. Плоская стена: V-T1 и полукруглый плинтус",
+      "requirement": "Заглушка V-T1, V-Ang, полукруглый V-Start O, негорючий клей (пена). Б–Б: шов 2 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 12
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.4",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "V-T1",
+        "V-Ang",
+        "V-Start O"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-5",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.5. Плоская стена с подсветкой V-LED",
+      "requirement": "Стык на V-Base с V-LED; в составе V-Sky, проставка V-PW, V-Ang. Б–Б: шов 13 мм, расстояние от тыльной стороны панели до внутренней отделочной панели 6 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 13
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.5",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "V-Base",
+        "V-LED",
+        "V-Sky",
+        "V-PW",
+        "V-Ang"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction",
+        "lighting"
+      ]
+    },
+    {
+      "id": "open-1-6",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.6. Плоская стена: VH-1",
+      "requirement": "Стык VH-1 с возможной декоративной отделкой; полукруглый V-Start O. Подпись дополнительной иллюстрации содержит V-H1, основная подпись и профильный каталог — VH-1.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 14
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.6",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-1",
+        "V-Start O"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-7",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.7. Плоская стена: V-T2",
+      "requirement": "Заглушка V-T2, V-Ang, стартовый V-Start; негорючий клей (пена). Б–Б: шов 11 мм и слой за панелью 3 мм. Минвата видна на иллюстрации, но не обозначена отдельной выноской.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 15
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.7",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-T2",
+        "V-Ang",
+        "V-Start"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-8",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.8. Внутренний и наружный углы: V-Clip / V-Base",
+      "requirement": "Внутренний угол А–А и наружный угол Б–Б. Обозначены V-Ang, V-Base, V-Cap2, V-Clip и плинтус V-Start-0-2. Показан декоративный вариант профилей.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 16
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.8",
+      "component_codes": [
+        "V-Ang",
+        "V-Base",
+        "V-Cap2",
+        "V-Clip",
+        "V-Start-0-2"
+      ],
+      "contexts": [
+        "internal_corner",
+        "external_corner",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-9",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.9. Внутренний и наружный углы: V-T-Ang 90",
+      "requirement": "V-T1, V-T-Ang 90, прямой V-Start и негорючий клей (пена). На обоих угловых сечениях указано «Отрезать по месту». Локальные размеры сечений: наружный Б–Б — 5; внутренний А–А — 10 мм. Не трактовать как обычные межпанельные швы.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 17
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.9",
+      "component_codes": [
+        "V-T1",
+        "V-T-Ang 90",
+        "V-Start"
+      ],
+      "contexts": [
+        "internal_corner",
+        "external_corner",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "open-1-10",
+      "system": "open_mount",
+      "topic": "mounting_assembly",
+      "title": "1.10. Внутренний и наружный углы: V-T2 / V-Clip",
+      "requirement": "Внутренний угол А–А с V-Ang; наружный Б–Б с V-Clip. Стыки V-T2, полукруглый V-Start O.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 18
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "1.10",
+      "component_codes": [
+        "V-Ang",
+        "V-T2",
+        "V-Clip",
+        "V-Start O"
+      ],
+      "contexts": [
+        "internal_corner",
+        "external_corner",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-1",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.1. Плоская стена: VH-3 и прямой плинтус",
+      "requirement": "VH-3, V-Ang-Start, V-Sky и прямой V-Start. Б–Б: межпанельный шов 16–18 мм. А–А: отметка опорной полки плинтуса 58 мм от пола.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 7
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.1",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-3",
+        "V-Ang-Start",
+        "V-Start",
+        "V-Sky"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-2",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.2. Плоская стена: VH-3 и полукруглый плинтус",
+      "requirement": "VH-3, V-Ang-Start, V-Sky и V-Start O-1. Б–Б: межпанельный шов 16–18 мм. А–А: показанная отметка опорной полки плинтуса 69 мм от пола.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 8
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.2",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-3",
+        "V-Ang-Start",
+        "V-Start O-1",
+        "V-Sky"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-3",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.3. Плоская стена: VH-3, полукруглый плинтус и подсветка",
+      "requirement": "VH-3, V-Ang-Start, V-Sky, V-Start O-1 и подсветка V-LED. Б–Б: межпанельный шов 16–18 мм. А–А: отметка полки плинтуса 69 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 9
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.3",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-3",
+        "V-Ang-Start",
+        "V-Start O-1",
+        "V-Sky",
+        "V-LED"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction",
+        "lighting"
+      ]
+    },
+    {
+      "id": "concealed-2-4",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.4. Плоская стена: VH-2 и прямой плинтус",
+      "requirement": "VH-2, V-Ang-Start, V-Sky и прямой V-Start. Б–Б: шов 3–5 мм; размер за задней полкой профиля 2 мм. А–А: отметка полки плинтуса 58 мм от пола.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 10
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.4",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-2",
+        "V-Ang-Start",
+        "V-Start",
+        "V-Sky"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-5",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.5. Плоская стена: VH-2 и полукруглый плинтус",
+      "requirement": "VH-2, V-Ang-Start, V-Sky, V-Start O-1. Б–Б: шов 3–5 мм; размер за задней полкой профиля 2 мм. А–А: отметка полки плинтуса 69 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 11
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.5",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-2",
+        "V-Ang-Start",
+        "V-Start O-1",
+        "V-Sky"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-6",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.6. Плоская стена: VH-3 без выступающего плинтуса",
+      "requirement": "VH-3 на стыке, V-Ang-Start снизу, V-Sky сверху. Отделочные панели показаны у пола; отдельный высокий плинтус не обозначен. Б–Б: шов 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 12
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.6",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-3",
+        "V-Ang-Start",
+        "V-Sky"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-7",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.7. Плоская стена: VH-3 с подсветкой у пола",
+      "requirement": "VH-3, V-Ang-Start, V-Sky, подсветка V-LED. В нижнем сечении показана проставка без артикульной выноски. Б–Б: шов 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 13
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.7",
+      "component_codes": [
+        "V-WS",
+        "V-SH",
+        "V-WT",
+        "V-HSIF",
+        "VH-3",
+        "V-Ang-Start",
+        "V-Sky",
+        "V-LED"
+      ],
+      "contexts": [
+        "flat_wall",
+        "panel_joint",
+        "floor_junction",
+        "ceiling_junction",
+        "lighting"
+      ]
+    },
+    {
+      "id": "concealed-2-8-1",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.8.1. Съёмная панель: последовательность монтажа VH-2",
+      "requirement": "Схема из трех шагов: боковое заведение наклоненной панели, прижатие к основанию, обратное боковое смещение в рабочее положение. Обозначены паз Vb и паз Vc. В конечном положении показаны швы 4,5 мм с двух сторон. Компоненты угловой сборки раскрыты на следующем листе 15.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 14
+      },
+      "kind": "detail",
+      "scope": "Только съёмная панель варианта 2.8.1. Направления берутся по схеме, а не превращаются в универсальный обязательный порядок для зеркального узла.",
+      "review_status": "transcribed",
+      "assembly_id": "2.8.1",
+      "component_codes": [
+        "Vb",
+        "Vc"
+      ],
+      "contexts": [
+        "removable_panel",
+        "panel_joint"
+      ]
+    },
+    {
+      "id": "concealed-2-8-1-corners",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.8.1. Углы сборки со съёмной панелью VH-2",
+      "requirement": "Подпись исходника: 2.8.1. Показаны съёмная панель Violet, VH-2, V-Ang-Start, наружный V-Ang 45; А–А — внутренний угол, Б–Б — наружный. В Б–Б указан локальный тыльный зазор 4–5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 15
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.8.1",
+      "component_codes": [
+        "VH-2",
+        "V-Ang-Start",
+        "V-Ang 45"
+      ],
+      "contexts": [
+        "removable_panel",
+        "internal_corner",
+        "external_corner"
+      ]
+    },
+    {
+      "id": "concealed-2-8-2",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.8.2. Съёмная панель: последовательность монтажа VH-3",
+      "requirement": "Схема из трех шагов с боковым заведением, прижатием и обратным боковым смещением. В рабочем положении показаны межпанельные швы 16–18 мм с обеих сторон. Подпись паза на листе не содержит читаемого кода; не присваивать Vb/Vc автоматически. Комплект профилей раскрыт на листе 17.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 16
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.8.2",
+      "component_codes": [],
+      "contexts": [
+        "removable_panel",
+        "panel_joint"
+      ]
+    },
+    {
+      "id": "concealed-2-8-2-corners",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.8.2. Углы съёмной панели: VH-3 и V-Cub-1",
+      "requirement": "Подпись исходника: 2.8.2. Внутренний угол А–А использует VH-3 с подрезкой показанной полки; наружный Б–Б — V-Cub-1. В сборке обозначены VH-3, съёмная панель Violet и прямой V-Start.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 17
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.8.2",
+      "component_codes": [
+        "VH-3",
+        "V-Cub-1",
+        "V-Start"
+      ],
+      "contexts": [
+        "removable_panel",
+        "internal_corner",
+        "external_corner",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-9",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.9. Углы съёмной панели: VH-3 и уголок",
+      "requirement": "Внутренний угол А–А — VH-3 с подрезкой; наружный Б–Б — сочетание V-Ang-Start и уголка. Панель обозначена как съёмная.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 18
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.9",
+      "component_codes": [
+        "VH-3",
+        "V-Ang-Start",
+        "Уголок"
+      ],
+      "contexts": [
+        "removable_panel",
+        "internal_corner",
+        "external_corner"
+      ]
+    },
+    {
+      "id": "concealed-2-10",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.10. Радиусный каркас",
+      "requirement": "Каркас для панелей наружного и внутреннего радиуса. Направляющий профиль V-WT подрезается и гнется по месту.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 19
+      },
+      "kind": "detail",
+      "scope": "Минимальный радиус, шаг надрезов и расчёт крепежа на странице не приведены.",
+      "review_status": "transcribed",
+      "assembly_id": "2.10",
+      "component_codes": [
+        "V-WT"
+      ],
+      "contexts": [
+        "outer_radius",
+        "inner_radius",
+        "frame"
+      ]
+    },
+    {
+      "id": "concealed-2-11",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.11. Наружный радиус: VH-2",
+      "requirement": "Наружная радиусная сборка по рисунку: VH-2 и V-Ang-Start. На сечении отдельно подписаны негорючий клей и монтажная пена. Отрезки V-Ang-Start со звездочкой: 20–40 мм, режутся по месту.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 20
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.11",
+      "component_codes": [
+        "VH-2",
+        "V-Ang-Start"
+      ],
+      "contexts": [
+        "outer_radius",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-12",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.12. Наружный радиус: VH-3 и гибкий плинтус",
+      "requirement": "VH-3, V-Ang-Start и гибкий плинтус V-Flex. На сечении отдельно подписаны негорючий клей и монтажная пена. Отрезки V-Ang-Start со звездочкой: 20–40 мм, режутся по месту.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 21
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.12",
+      "component_codes": [
+        "VH-3",
+        "V-Ang-Start",
+        "V-Flex"
+      ],
+      "contexts": [
+        "outer_radius",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-13",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.13. Наружный радиус: VH-3, V-Flex и подсветка",
+      "requirement": "VH-3, V-Ang-Start, гибкий V-Flex, подсветка V-LED. Отдельно подписаны негорючий клей и монтажная пена. Отрезки V-Ang-Start со звездочкой: 20–40 мм, режутся по месту.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 22
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.13",
+      "component_codes": [
+        "VH-3",
+        "V-Ang-Start",
+        "V-Flex",
+        "V-LED"
+      ],
+      "contexts": [
+        "outer_radius",
+        "panel_joint",
+        "floor_junction",
+        "lighting"
+      ]
+    },
+    {
+      "id": "concealed-2-14",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.14. Внутренний радиус: VH-2",
+      "requirement": "VH-2 и V-Ang-Start для внутреннего радиуса. Подписаны негорючий клей и монтажная пена. Отрезки V-Ang-Start со звездочкой: 20–40 мм, режутся по месту. Заголовок этого листа говорит «закрытая», тогда как титульный лист и остальные листы — «скрытая» система.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 23
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.14",
+      "component_codes": [
+        "VH-2",
+        "V-Ang-Start"
+      ],
+      "contexts": [
+        "inner_radius",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-15",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.15. Внутренний радиус: VH-3",
+      "requirement": "VH-3 и V-Ang-Start для внутреннего радиуса. Подписаны негорючий клей и монтажная пена. Отрезки V-Ang-Start со звездочкой: 20–40 мм, режутся по месту.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 24
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.15",
+      "component_codes": [
+        "VH-3",
+        "V-Ang-Start"
+      ],
+      "contexts": [
+        "inner_radius",
+        "panel_joint",
+        "floor_junction"
+      ]
+    },
+    {
+      "id": "concealed-2-16",
+      "system": "concealed_mount",
+      "topic": "mounting_assembly",
+      "title": "2.16. Внутренний радиус: VH-3, V-Flex и подсветка",
+      "requirement": "VH-3, V-Ang-Start, гибкий V-Flex, подсветка V-LED для внутреннего радиуса. Подписаны негорючий клей и монтажная пена. Отрезки V-Ang-Start со звездочкой: 20–40 мм, режутся по месту.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 25
+      },
+      "kind": "detail",
+      "scope": "Только показанная конфигурация; не универсальная обязательная комплектация всех стен.",
+      "review_status": "transcribed",
+      "assembly_id": "2.16",
+      "component_codes": [
+        "VH-3",
+        "V-Ang-Start",
+        "V-Flex",
+        "V-LED"
+      ],
+      "contexts": [
+        "inner_radius",
+        "panel_joint",
+        "floor_junction",
+        "lighting"
+      ]
+    },
+    {
+      "id": "open-v0-thickness",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Толщина панели с кромкой V-0",
+      "requirement": "Толщина панели с кромкой V-0: 8–13 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "panel_thickness_mm",
+      "value_min": 8,
+      "value_max": 13,
+      "unit": "mm",
+      "scope": "Только панель V-0 с листа 2; не распространять на другие панели или скрытый монтаж.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "V-0"
+      ]
+    },
+    {
+      "id": "open-1-1-joint",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 2 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 9
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value": 2,
+      "unit": "mm",
+      "scope": "Только сборка 1.1, сечение Б–Б. Не переносить на иной стыковочный профиль.",
+      "review_status": "transcribed",
+      "assembly_id": "1.1"
+    },
+    {
+      "id": "open-1-1-rear-gap",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Расстояние за тыльной стороной панели",
+      "requirement": "Расстояние за тыльной стороной панели: 3 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 9
+      },
+      "kind": "numeric",
+      "parameter": "panel_rear_gap_mm",
+      "value": 3,
+      "unit": "mm",
+      "scope": "Только сборка 1.1, сечение Б–Б. Это локальный слой/отступ к внутренней отделочной панели, не общий вынос отделки от капитальной стены.",
+      "review_status": "transcribed",
+      "assembly_id": "1.1"
+    },
+    {
+      "id": "open-1-3-joint",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 2 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 11
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value": 2,
+      "unit": "mm",
+      "scope": "Только сборка 1.3, сечение Б–Б. Не переносить на иной стыковочный профиль.",
+      "review_status": "transcribed",
+      "assembly_id": "1.3"
+    },
+    {
+      "id": "open-1-3-rear-gap",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Расстояние за тыльной стороной панели",
+      "requirement": "Расстояние за тыльной стороной панели: 3 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 11
+      },
+      "kind": "numeric",
+      "parameter": "panel_rear_gap_mm",
+      "value": 3,
+      "unit": "mm",
+      "scope": "Только сборка 1.3, сечение А–А. Это локальный слой/отступ к внутренней отделочной панели, не общий вынос отделки от капитальной стены.",
+      "review_status": "transcribed",
+      "assembly_id": "1.3"
+    },
+    {
+      "id": "open-1-4-joint",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 2 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 12
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value": 2,
+      "unit": "mm",
+      "scope": "Только сборка 1.4, сечение Б–Б. Не переносить на иной стыковочный профиль.",
+      "review_status": "transcribed",
+      "assembly_id": "1.4"
+    },
+    {
+      "id": "open-1-5-joint",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 13 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 13
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value": 13,
+      "unit": "mm",
+      "scope": "Только сборка 1.5, сечение Б–Б. Не переносить на иной стыковочный профиль.",
+      "review_status": "transcribed",
+      "assembly_id": "1.5"
+    },
+    {
+      "id": "open-1-5-rear-gap",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Расстояние за тыльной стороной панели",
+      "requirement": "Расстояние за тыльной стороной панели: 6 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 13
+      },
+      "kind": "numeric",
+      "parameter": "panel_rear_gap_mm",
+      "value": 6,
+      "unit": "mm",
+      "scope": "Только сборка 1.5, сечение Б–Б. Это локальный слой/отступ к внутренней отделочной панели, не общий вынос отделки от капитальной стены.",
+      "review_status": "transcribed",
+      "assembly_id": "1.5"
+    },
+    {
+      "id": "open-1-7-joint",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 11 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 15
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value": 11,
+      "unit": "mm",
+      "scope": "Только сборка 1.7, сечение Б–Б. Не переносить на иной стыковочный профиль.",
+      "review_status": "transcribed",
+      "assembly_id": "1.7"
+    },
+    {
+      "id": "open-1-7-rear-gap",
+      "system": "open_mount",
+      "topic": "dimensional_constraint",
+      "title": "Расстояние за тыльной стороной панели",
+      "requirement": "Расстояние за тыльной стороной панели: 3 мм.",
+      "source": {
+        "document_id": "violet-open-mount-2025",
+        "page": 15
+      },
+      "kind": "numeric",
+      "parameter": "panel_rear_gap_mm",
+      "value": 3,
+      "unit": "mm",
+      "scope": "Только сборка 1.7, сечение Б–Б. Это локальный слой/отступ к внутренней отделочной панели, не общий вынос отделки от капитальной стены.",
+      "review_status": "transcribed",
+      "assembly_id": "1.7"
+    },
+    {
+      "id": "concealed-2-1-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 7
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 16,
+      "value_max": 18,
+      "unit": "mm",
+      "scope": "Только сборка 2.1, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.1"
+    },
+    {
+      "id": "concealed-2-1-base",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отметка опорной полки плинтуса от пола",
+      "requirement": "Отметка опорной полки плинтуса от пола: 58 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 7
+      },
+      "kind": "numeric",
+      "parameter": "plinth_support_height_mm",
+      "value": 58,
+      "unit": "mm",
+      "scope": "Только сборка 2.1, сечение А–А. Это показанный размер узла, а не универсальный минимальный зазор панели до пола.",
+      "review_status": "transcribed",
+      "assembly_id": "2.1"
+    },
+    {
+      "id": "concealed-2-2-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 8
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 16,
+      "value_max": 18,
+      "unit": "mm",
+      "scope": "Только сборка 2.2, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.2"
+    },
+    {
+      "id": "concealed-2-2-base",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отметка опорной полки плинтуса от пола",
+      "requirement": "Отметка опорной полки плинтуса от пола: 69 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 8
+      },
+      "kind": "numeric",
+      "parameter": "plinth_support_height_mm",
+      "value": 69,
+      "unit": "mm",
+      "scope": "Только сборка 2.2, сечение А–А. Это показанный размер узла, а не универсальный минимальный зазор панели до пола.",
+      "review_status": "transcribed",
+      "assembly_id": "2.2"
+    },
+    {
+      "id": "concealed-2-3-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 9
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 16,
+      "value_max": 18,
+      "unit": "mm",
+      "scope": "Только сборка 2.3, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.3"
+    },
+    {
+      "id": "concealed-2-3-base",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отметка опорной полки плинтуса от пола",
+      "requirement": "Отметка опорной полки плинтуса от пола: 69 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 9
+      },
+      "kind": "numeric",
+      "parameter": "plinth_support_height_mm",
+      "value": 69,
+      "unit": "mm",
+      "scope": "Только сборка 2.3, сечение А–А. Это показанный размер узла, а не универсальный минимальный зазор панели до пола.",
+      "review_status": "transcribed",
+      "assembly_id": "2.3"
+    },
+    {
+      "id": "concealed-2-4-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 3–5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 10
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 3,
+      "value_max": 5,
+      "unit": "mm",
+      "scope": "Только сборка 2.4, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.4"
+    },
+    {
+      "id": "concealed-2-4-base",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отметка опорной полки плинтуса от пола",
+      "requirement": "Отметка опорной полки плинтуса от пола: 58 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 10
+      },
+      "kind": "numeric",
+      "parameter": "plinth_support_height_mm",
+      "value": 58,
+      "unit": "mm",
+      "scope": "Только сборка 2.4, сечение А–А. Это показанный размер узла, а не универсальный минимальный зазор панели до пола.",
+      "review_status": "transcribed",
+      "assembly_id": "2.4"
+    },
+    {
+      "id": "concealed-2-4-profile-rear",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Размер за задней полкой профиля",
+      "requirement": "Размер за задней полкой профиля: 2 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 10
+      },
+      "kind": "numeric",
+      "parameter": "profile_rear_clearance_mm",
+      "value": 2,
+      "unit": "mm",
+      "scope": "Только сборка 2.4, сечение Б–Б; не путать с расстоянием от тыльной стороны отделочной панели.",
+      "review_status": "transcribed",
+      "assembly_id": "2.4"
+    },
+    {
+      "id": "concealed-2-5-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 3–5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 11
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 3,
+      "value_max": 5,
+      "unit": "mm",
+      "scope": "Только сборка 2.5, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.5"
+    },
+    {
+      "id": "concealed-2-5-base",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отметка опорной полки плинтуса от пола",
+      "requirement": "Отметка опорной полки плинтуса от пола: 69 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 11
+      },
+      "kind": "numeric",
+      "parameter": "plinth_support_height_mm",
+      "value": 69,
+      "unit": "mm",
+      "scope": "Только сборка 2.5, сечение А–А. Это показанный размер узла, а не универсальный минимальный зазор панели до пола.",
+      "review_status": "transcribed",
+      "assembly_id": "2.5"
+    },
+    {
+      "id": "concealed-2-5-profile-rear",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Размер за задней полкой профиля",
+      "requirement": "Размер за задней полкой профиля: 2 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 11
+      },
+      "kind": "numeric",
+      "parameter": "profile_rear_clearance_mm",
+      "value": 2,
+      "unit": "mm",
+      "scope": "Только сборка 2.5, сечение Б–Б; не путать с расстоянием от тыльной стороны отделочной панели.",
+      "review_status": "transcribed",
+      "assembly_id": "2.5"
+    },
+    {
+      "id": "concealed-2-6-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 12
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 16,
+      "value_max": 18,
+      "unit": "mm",
+      "scope": "Только сборка 2.6, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.6"
+    },
+    {
+      "id": "concealed-2-7-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Шов между торцами панелей",
+      "requirement": "Шов между торцами панелей: 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 13
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 16,
+      "value_max": 18,
+      "unit": "mm",
+      "scope": "Только сборка 2.7, сечение Б–Б; зависит от выбранного профиля и конструкции.",
+      "review_status": "transcribed",
+      "assembly_id": "2.7"
+    },
+    {
+      "id": "concealed-2-8-1-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Швы съёмной панели в конечном положении",
+      "requirement": "Швы съёмной панели в конечном положении: 4.5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 14
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value": 4.5,
+      "unit": "mm",
+      "scope": "Только вариант 2.8.1, схема Б–Б, третий этап, обе стороны панели.",
+      "review_status": "transcribed",
+      "assembly_id": "2.8.1"
+    },
+    {
+      "id": "concealed-2-8-2-joint",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Швы съёмной панели в конечном положении",
+      "requirement": "Швы съёмной панели в конечном положении: 16–18 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 16
+      },
+      "kind": "numeric",
+      "parameter": "panel_joint_width_mm",
+      "value_min": 16,
+      "value_max": 18,
+      "unit": "mm",
+      "scope": "Только вариант 2.8.2, схема Б–Б, третий этап, обе стороны панели.",
+      "review_status": "transcribed",
+      "assembly_id": "2.8.2"
+    },
+    {
+      "id": "concealed-2-11-start-piece",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отрезок V-Ang-Start со звездочкой",
+      "requirement": "Отрезок V-Ang-Start со звездочкой: 20–40 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 20
+      },
+      "kind": "numeric",
+      "parameter": "radius_ang_start_piece_length_mm",
+      "value_min": 20,
+      "value_max": 40,
+      "unit": "mm",
+      "scope": "Только помеченные (*) отдельные отрезки V-Ang-Start в радиусной сборке 2.11; режутся по месту. Это не шаг крепления, не монтажный зазор и не длина всего профиля.",
+      "review_status": "transcribed",
+      "assembly_id": "2.11",
+      "component_codes": [
+        "V-Ang-Start"
+      ]
+    },
+    {
+      "id": "concealed-2-12-start-piece",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отрезок V-Ang-Start со звездочкой",
+      "requirement": "Отрезок V-Ang-Start со звездочкой: 20–40 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 21
+      },
+      "kind": "numeric",
+      "parameter": "radius_ang_start_piece_length_mm",
+      "value_min": 20,
+      "value_max": 40,
+      "unit": "mm",
+      "scope": "Только помеченные (*) отдельные отрезки V-Ang-Start в радиусной сборке 2.12; режутся по месту. Это не шаг крепления, не монтажный зазор и не длина всего профиля.",
+      "review_status": "transcribed",
+      "assembly_id": "2.12",
+      "component_codes": [
+        "V-Ang-Start"
+      ]
+    },
+    {
+      "id": "concealed-2-13-start-piece",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отрезок V-Ang-Start со звездочкой",
+      "requirement": "Отрезок V-Ang-Start со звездочкой: 20–40 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 22
+      },
+      "kind": "numeric",
+      "parameter": "radius_ang_start_piece_length_mm",
+      "value_min": 20,
+      "value_max": 40,
+      "unit": "mm",
+      "scope": "Только помеченные (*) отдельные отрезки V-Ang-Start в радиусной сборке 2.13; режутся по месту. Это не шаг крепления, не монтажный зазор и не длина всего профиля.",
+      "review_status": "transcribed",
+      "assembly_id": "2.13",
+      "component_codes": [
+        "V-Ang-Start"
+      ]
+    },
+    {
+      "id": "concealed-2-14-start-piece",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отрезок V-Ang-Start со звездочкой",
+      "requirement": "Отрезок V-Ang-Start со звездочкой: 20–40 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 23
+      },
+      "kind": "numeric",
+      "parameter": "radius_ang_start_piece_length_mm",
+      "value_min": 20,
+      "value_max": 40,
+      "unit": "mm",
+      "scope": "Только помеченные (*) отдельные отрезки V-Ang-Start в радиусной сборке 2.14; режутся по месту. Это не шаг крепления, не монтажный зазор и не длина всего профиля.",
+      "review_status": "transcribed",
+      "assembly_id": "2.14",
+      "component_codes": [
+        "V-Ang-Start"
+      ]
+    },
+    {
+      "id": "concealed-2-15-start-piece",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отрезок V-Ang-Start со звездочкой",
+      "requirement": "Отрезок V-Ang-Start со звездочкой: 20–40 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 24
+      },
+      "kind": "numeric",
+      "parameter": "radius_ang_start_piece_length_mm",
+      "value_min": 20,
+      "value_max": 40,
+      "unit": "mm",
+      "scope": "Только помеченные (*) отдельные отрезки V-Ang-Start в радиусной сборке 2.15; режутся по месту. Это не шаг крепления, не монтажный зазор и не длина всего профиля.",
+      "review_status": "transcribed",
+      "assembly_id": "2.15",
+      "component_codes": [
+        "V-Ang-Start"
+      ]
+    },
+    {
+      "id": "concealed-2-16-start-piece",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Отрезок V-Ang-Start со звездочкой",
+      "requirement": "Отрезок V-Ang-Start со звездочкой: 20–40 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 25
+      },
+      "kind": "numeric",
+      "parameter": "radius_ang_start_piece_length_mm",
+      "value_min": 20,
+      "value_max": 40,
+      "unit": "mm",
+      "scope": "Только помеченные (*) отдельные отрезки V-Ang-Start в радиусной сборке 2.16; режутся по месту. Это не шаг крепления, не монтажный зазор и не длина всего профиля.",
+      "review_status": "transcribed",
+      "assembly_id": "2.16",
+      "component_codes": [
+        "V-Ang-Start"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vb-depth",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Глубина паза Vb",
+      "requirement": "Глубина паза Vb: 11 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_depth_mm",
+      "value": 11,
+      "unit": "mm",
+      "scope": "Только паз Vb на странице 2; не общий паз всех скрытых систем.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vb"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vb-width",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Раскрытие паза Vb",
+      "requirement": "Раскрытие паза Vb: 2.3–3 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_width_mm",
+      "value_min": 2.3,
+      "value_max": 3,
+      "unit": "mm",
+      "scope": "Только паз Vb на странице 2.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vb"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vb-face",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Размер от лицевой стороны до нижней поверхности паза Vb",
+      "requirement": "Размер от лицевой стороны до нижней поверхности паза Vb: 5.5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_face_offset_mm",
+      "value": 5.5,
+      "unit": "mm",
+      "scope": "Только сечение паза Vb на странице 2; ориентация лицевой отделки показана стрелкой.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vb"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vd-depth",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Глубина паза Vd",
+      "requirement": "Глубина паза Vd: 16 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_depth_mm",
+      "value": 16,
+      "unit": "mm",
+      "scope": "Только паз Vd на странице 2; не общий паз всех скрытых систем.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vd"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vd-width",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Раскрытие паза Vd",
+      "requirement": "Раскрытие паза Vd: 2.3–3 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_width_mm",
+      "value_min": 2.3,
+      "value_max": 3,
+      "unit": "mm",
+      "scope": "Только паз Vd на странице 2.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vd"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vd-face",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Размер от лицевой стороны до нижней поверхности паза Vd",
+      "requirement": "Размер от лицевой стороны до нижней поверхности паза Vd: 5.2–5.5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_face_offset_mm",
+      "value_min": 5.2,
+      "value_max": 5.5,
+      "unit": "mm",
+      "scope": "Только сечение паза Vd на странице 2; ориентация лицевой отделки показана стрелкой.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vd"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vc-depth",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Глубина паза Vc",
+      "requirement": "Глубина паза Vc: 16 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_depth_mm",
+      "value": 16,
+      "unit": "mm",
+      "scope": "Только паз Vc на странице 2; не общий паз всех скрытых систем.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vc"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vc-width",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Раскрытие паза Vc",
+      "requirement": "Раскрытие паза Vc: 3–3.2 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_width_mm",
+      "value_min": 3,
+      "value_max": 3.2,
+      "unit": "mm",
+      "scope": "Только паз Vc на странице 2.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vc"
+      ]
+    },
+    {
+      "id": "concealed-groove-Vc-face",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Размер от лицевой стороны до нижней поверхности паза Vc",
+      "requirement": "Размер от лицевой стороны до нижней поверхности паза Vc: 5.5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_face_offset_mm",
+      "value": 5.5,
+      "unit": "mm",
+      "scope": "Только сечение паза Vc на странице 2; ориентация лицевой отделки показана стрелкой.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vc"
+      ]
+    },
+    {
+      "id": "concealed-groove-vc-cut",
+      "system": "concealed_mount",
+      "topic": "dimensional_constraint",
+      "title": "Участок Vc с указанием «Отрезать по месту»",
+      "requirement": "Участок Vc с указанием «Отрезать по месту»: 5 мм.",
+      "source": {
+        "document_id": "violet-concealed-mount-2025",
+        "page": 2
+      },
+      "kind": "numeric",
+      "parameter": "groove_site_cut_width_mm",
+      "value": 5,
+      "unit": "mm",
+      "scope": "Только выделенный штриховкой участок верхней кромки Vc на странице 2.",
+      "review_status": "transcribed",
+      "component_codes": [
+        "Vc"
+      ]
+    }
+  ]
+}

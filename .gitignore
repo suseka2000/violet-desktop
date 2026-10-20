@@ -1,0 +1,352 @@
+# Generated exact allowlist. Re-run stage_sources.py after reviewing additions.
+# New files are ignored by default; never force-add customer data or secrets.
+/*
+!/.github/
+!/.gitignore
+!/THIRD_PARTY_NOTICES.md
+!/backend/
+!/desktop/
+!/docs/
+!/for_interior-rd-generator/
+!/frontend/
+!/pyproject.toml
+!/requirements-cad.txt
+!/requirements-desktop-build.txt
+!/requirements.txt
+!/resources/
+!/source-stage-manifest.json
+!/tests/
+/.github/*
+!/.github/workflows/
+/backend/*
+!/backend/__init__.py
+!/backend/__main__.py
+!/backend/api/
+!/backend/assembly_fasteners.py
+!/backend/assembly_geometry.py
+!/backend/assembly_jobs.py
+!/backend/assembly_recipes.py
+!/backend/assembly_recipes_concealed.py
+!/backend/assembly_recipes_corners.py
+!/backend/assembly_recipes_groups.py
+!/backend/assembly_recipes_opening_returns.py
+!/backend/assembly_worker.py
+!/backend/building_assembly.py
+!/backend/building_assembly_jobs.py
+!/backend/building_assembly_worker.py
+!/backend/cad_sections.py
+!/backend/demo.py
+!/backend/desktop_entry.py
+!/backend/desktop_runtime.py
+!/backend/documents/
+!/backend/domain/
+!/backend/dxf_workspace.py
+!/backend/dxf_workspace_worker.py
+!/backend/engineering/
+!/backend/exterior_mount.py
+!/backend/fastening_records.py
+!/backend/fitted_wall_reuse.py
+!/backend/geometry/
+!/backend/importing/
+!/backend/library_io.py
+!/backend/model_library.py
+!/backend/mount_assemblies.py
+!/backend/mount_context_symbols.py
+!/backend/mount_defaults.py
+!/backend/mount_node_groups.py
+!/backend/native_definition_cache.py
+!/backend/panel_layout.py
+!/backend/project_trash.py
+!/backend/reference_drawing.py
+!/backend/room_assembly.py
+!/backend/room_assembly_jobs.py
+!/backend/room_assembly_joints_geometry.py
+!/backend/room_assembly_worker.py
+!/backend/room_corner_envelopes.py
+!/backend/room_corner_parts.py
+!/backend/room_fitted_joint_heights.py
+!/backend/room_fitted_walls.py
+!/backend/room_joints.py
+!/backend/room_transition_profiles.py
+!/backend/server_node_records.py
+!/backend/server_wall_records.py
+!/backend/service.py
+!/backend/source_preview.py
+!/backend/source_worker.py
+!/backend/special_assemblies.py
+!/backend/special_recipes.py
+!/backend/step_geometry.py
+!/backend/step_worker.py
+!/backend/storage/
+!/backend/stream_room_assembly_jobs.py
+!/backend/vendor_design.py
+!/backend/vendor_library.py
+!/backend/wall_assembly_concealed.py
+!/backend/wall_assembly_geometry.py
+!/backend/wall_assembly_worker.py
+!/backend/wall_framing.py
+!/backend/wall_geometry_cache.py
+!/backend/wall_mount.py
+!/backend/wall_opening_bounds.py
+!/backend/wall_systems.py
+!/backend/whole_wall_assemblies.py
+!/backend/whole_wall_material_records.py
+!/backend/workspace.py
+/desktop/*
+!/desktop/access-preload.cjs
+!/desktop/access.css
+!/desktop/access.html
+!/desktop/access.js
+!/desktop/backend-process.cjs
+!/desktop/build/
+!/desktop/credentials.cjs
+!/desktop/electron-builder.cjs
+!/desktop/loading.css
+!/desktop/loading.html
+!/desktop/main.cjs
+!/desktop/package.json
+!/desktop/pnpm-lock.yaml
+!/desktop/pnpm-workspace.yaml
+!/desktop/preload.cjs
+!/desktop/scripts/
+!/desktop/security.cjs
+!/desktop/tests/
+!/desktop/updater.cjs
+/docs/*
+!/docs/desktop-release.md
+/for_interior-rd-generator/*
+!/for_interior-rd-generator/all_models/
+!/for_interior-rd-generator/manuals/
+/frontend/*
+!/frontend/app.js
+!/frontend/batch-mount.css
+!/frontend/batch-mount.js
+!/frontend/building-assembly.css
+!/frontend/building-assembly.js
+!/frontend/cad-mapping.js
+!/frontend/cad-workspace.js
+!/frontend/draft-recovery.js
+!/frontend/drafting.js
+!/frontend/editor-cad.css
+!/frontend/engineering-jobs.js
+!/frontend/index.html
+!/frontend/model-editor.js
+!/frontend/mount-assemblies.css
+!/frontend/mount-assemblies.js
+!/frontend/mount-sections.css
+!/frontend/mount-sections.js
+!/frontend/project-history.js
+!/frontend/room-assembly.css
+!/frontend/room-assembly.js
+!/frontend/snapping.js
+!/frontend/special-assemblies.css
+!/frontend/special-assemblies.js
+!/frontend/styles.css
+!/frontend/vendor-library.js
+!/frontend/wall-mount.css
+!/frontend/wall-mount.js
+!/frontend/whole-wall.css
+!/frontend/whole-wall.js
+/resources/*
+!/resources/vendor/
+/tests/*
+!/tests/__init__.py
+!/tests/test_desktop_library_io.py
+!/tests/test_desktop_packaging.py
+!/tests/test_desktop_runtime.py
+!/tests/test_desktop_source_staging.py
+!/tests/verify_desktop_frozen.py
+/.github/workflows/*
+!/.github/workflows/desktop-build.yml
+/backend/api/*
+!/backend/api/__init__.py
+!/backend/api/building_assembly.py
+!/backend/api/cad_assets.py
+!/backend/api/extended.py
+!/backend/api/model_library.py
+!/backend/api/mount_assemblies.py
+!/backend/api/mount_sections.py
+!/backend/api/room_assembly.py
+!/backend/api/server.py
+!/backend/api/special_assemblies.py
+!/backend/api/vendor.py
+!/backend/api/wall_mount.py
+!/backend/api/whole_wall.py
+/backend/documents/*
+!/backend/documents/__init__.py
+!/backend/documents/album.py
+!/backend/documents/album_graphics.py
+!/backend/documents/album_tables.py
+!/backend/documents/assemblies.py
+!/backend/documents/cad_sections.py
+!/backend/documents/catalog.py
+!/backend/documents/component_legend.py
+!/backend/documents/dxf_album.py
+!/backend/documents/fonts/
+!/backend/documents/label_layout.py
+!/backend/documents/levels.py
+!/backend/documents/mount_details.py
+!/backend/documents/mount_plans.py
+!/backend/documents/mount_setting_out.py
+!/backend/documents/node_construction.py
+!/backend/documents/openings.py
+!/backend/documents/plan_dimensions.py
+!/backend/documents/plan_labels.py
+!/backend/documents/plan_walls.py
+!/backend/documents/scene.py
+!/backend/documents/section_dimensions.py
+!/backend/documents/special_sections.py
+!/backend/documents/wall_mount.py
+!/backend/documents/whole_wall.py
+/backend/domain/*
+!/backend/domain/__init__.py
+!/backend/domain/builders.py
+!/backend/domain/models.py
+/backend/engineering/*
+!/backend/engineering/__init__.py
+!/backend/engineering/openings.py
+/backend/geometry/*
+!/backend/geometry/__init__.py
+!/backend/geometry/validation.py
+/backend/importing/*
+!/backend/importing/__init__.py
+!/backend/importing/_common.py
+!/backend/importing/cad.py
+!/backend/importing/cad_preview.py
+!/backend/importing/dxf.py
+!/backend/importing/errors.py
+!/backend/importing/inspection.py
+!/backend/importing/records.py
+!/backend/importing/source_store.py
+/backend/storage/*
+!/backend/storage/__init__.py
+!/backend/storage/json_codec.py
+!/backend/storage/repository.py
+!/backend/storage/workspace_archive.py
+/desktop/build/*
+!/desktop/build/approved-step-library.json
+!/desktop/build/bundle_policy.py
+!/desktop/build/entitlements.mac.plist
+!/desktop/build/licenses/
+!/desktop/build/native-license-review.json
+!/desktop/build/source-files.json
+!/desktop/build/violet-backend.spec
+/desktop/scripts/*
+!/desktop/scripts/build_backend.py
+!/desktop/scripts/collect_notices.py
+!/desktop/scripts/combine-release.cjs
+!/desktop/scripts/package.cjs
+!/desktop/scripts/prepare_release.py
+!/desktop/scripts/stage_sources.py
+/desktop/tests/*
+!/desktop/tests/backend-process.test.cjs
+!/desktop/tests/combine-release.test.cjs
+!/desktop/tests/credentials.test.cjs
+!/desktop/tests/main-lifecycle.test.cjs
+!/desktop/tests/private-access.test.cjs
+!/desktop/tests/security-review.test.cjs
+/for_interior-rd-generator/all_models/*
+!/for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1.stp
+!/for_interior-rd-generator/all_models/V+07-Плинтус_V-Start-1_1.stp
+!/for_interior-rd-generator/all_models/V-KNAUF\ (прямой\ подвес).stp
+!/for_interior-rd-generator/all_models/V-KNAUF\ (прямой\ подвес)_1.stp
+!/for_interior-rd-generator/all_models/V-Start-3\ _11(Угол_внутри).stp
+!/for_interior-rd-generator/all_models/V-Start-3\ _11(Угол_внутри)_1.stp
+!/for_interior-rd-generator/all_models/V-Start-3\ _12(Угол_наружний).stp
+!/for_interior-rd-generator/all_models/V-Start-3\ _12(Угол_наружний)_1.stp
+!/for_interior-rd-generator/all_models/V_01-Крест-импорт_2.stp
+!/for_interior-rd-generator/all_models/V_01-Крест-импорт_3.stp
+!/for_interior-rd-generator/all_models/V_010-Виолет\ V-L-start_1.stp
+!/for_interior-rd-generator/all_models/V_010-Виолет\ V-L-start_2.stp
+!/for_interior-rd-generator/all_models/V_011-Уголок\ 10х10_2.stp
+!/for_interior-rd-generator/all_models/V_011-Уголок\ 10х10_3.stp
+!/for_interior-rd-generator/all_models/V_012-Уголок\ 20х20_1.stp
+!/for_interior-rd-generator/all_models/V_012-Уголок\ 20х20_2.stp
+!/for_interior-rd-generator/all_models/V_013-Крышка-Омега-V-Cap-1.stp
+!/for_interior-rd-generator/all_models/V_0134-V-T3.stp
+!/for_interior-rd-generator/all_models/V_0134-V-T3_1.stp
+!/for_interior-rd-generator/all_models/V_014-Омега-V-base.stp
+!/for_interior-rd-generator/all_models/V_014-Омега-V-base_1.stp
+!/for_interior-rd-generator/all_models/V_015-Заглушка-Омега-V-Cap2.stp
+!/for_interior-rd-generator/all_models/V_015-Заглушка-Омега-V-Cap2_1.stp
+!/for_interior-rd-generator/all_models/V_016-Профиль\ VL-8.stp
+!/for_interior-rd-generator/all_models/V_016-Профиль\ VL-8_1.stp
+!/for_interior-rd-generator/all_models/V_017-Профиль\ V-L10.m3d.stp
+!/for_interior-rd-generator/all_models/V_017-Профиль\ V-L10_1.stp
+!/for_interior-rd-generator/all_models/V_017-Профиль\ V-L10_2.stp
+!/for_interior-rd-generator/all_models/V_018-Профиль\ VL-13.stp
+!/for_interior-rd-generator/all_models/V_018-Профиль\ VL-13_1.stp
+!/for_interior-rd-generator/all_models/V_019-Профиль\ VL-13-Smart.stp
+!/for_interior-rd-generator/all_models/V_019-Профиль\ VL-13-Smart_1.stp
+!/for_interior-rd-generator/all_models/V_01СБ-Краб\ и\ саморезы.a3d.stp
+!/for_interior-rd-generator/all_models/V_01СБ-Краб\ и\ саморезы_3.stp
+!/for_interior-rd-generator/all_models/V_01СБ-Краб\ и\ саморезы_4.stp
+!/for_interior-rd-generator/all_models/V_02-Прокладка(Фанера).stp
+!/for_interior-rd-generator/all_models/V_02-Прокладка(Фанера)_1.stp
+!/for_interior-rd-generator/all_models/V_02-Прокладка(Фанера)_2.stp
+!/for_interior-rd-generator/all_models/V_02-Уголок\ 15х15.stp
+!/for_interior-rd-generator/all_models/V_02-Уголок\ 15х15_1.stp
+!/for_interior-rd-generator/all_models/V_020-Профиль_V-Facet_1.stp
+!/for_interior-rd-generator/all_models/V_020-Профиль_V-Facet_2.stp
+!/for_interior-rd-generator/all_models/V_021-V-Cub.stp
+!/for_interior-rd-generator/all_models/V_021-V-Cub_1.stp
+!/for_interior-rd-generator/all_models/V_022-V-Start-4.stp
+!/for_interior-rd-generator/all_models/V_022-V-Start-4_1.stp
+!/for_interior-rd-generator/all_models/V_023-V-sky.stp
+!/for_interior-rd-generator/all_models/V_023-V-sky_1.stp
+!/for_interior-rd-generator/all_models/V_024-VH-2.stp
+!/for_interior-rd-generator/all_models/V_024-VH-2_1.stp
+!/for_interior-rd-generator/all_models/V_025-Профиль_VH-1.stp
+!/for_interior-rd-generator/all_models/V_025-Профиль_VH-1_1.stp
+!/for_interior-rd-generator/all_models/V_026-V-Start-2.stp
+!/for_interior-rd-generator/all_models/V_026-V-Start-2_1.stp
+!/for_interior-rd-generator/all_models/V_027-V-F-Clip.stp
+!/for_interior-rd-generator/all_models/V_027-V-F-Clip_1.stp
+!/for_interior-rd-generator/all_models/V_028-V-Drop.stp
+!/for_interior-rd-generator/all_models/V_028-V-Drop_1.stp
+!/for_interior-rd-generator/all_models/V_029-Клаймер.stp
+!/for_interior-rd-generator/all_models/V_029-Клаймер_1.stp
+!/for_interior-rd-generator/all_models/V_03-Уголок\ 10х10.stp
+!/for_interior-rd-generator/all_models/V_03-Уголок\ 10х10_1.stp
+!/for_interior-rd-generator/all_models/V_030-Уголок\ 25х25.stp
+!/for_interior-rd-generator/all_models/V_030-Уголок\ 25х25_1.stp
+!/for_interior-rd-generator/all_models/V_031-Плинтус\ V-start5.stp
+!/for_interior-rd-generator/all_models/V_031-Плинтус\ V-start5_1.stp
+!/for_interior-rd-generator/all_models/V_032-V-Т2.stp
+!/for_interior-rd-generator/all_models/V_032-V-Т2_1.stp
+!/for_interior-rd-generator/all_models/V_038-Т-профиль-гвоздь_V-T-1.stp
+!/for_interior-rd-generator/all_models/V_038-Т-профиль-гвоздь_V-T-1_1.stp
+!/for_interior-rd-generator/all_models/V_04-Саморез.stp
+!/for_interior-rd-generator/all_models/V_04-Саморез_1.stp
+!/for_interior-rd-generator/all_models/V_040-Т-профиль_V-base\ light.stp
+!/for_interior-rd-generator/all_models/V_040-Т-профиль_V-base\ light_1.stp
+!/for_interior-rd-generator/all_models/V_05-Профиль-V-WS(\ 60х27).stp
+!/for_interior-rd-generator/all_models/V_06-Профиль_V-WT(ПН_27х28).stp
+!/for_interior-rd-generator/all_models/V_07-Профиль\ VH-4.stp
+!/for_interior-rd-generator/all_models/V_07-Профиль\ VH-4_1.stp
+!/for_interior-rd-generator/all_models/V_09-Профиль\ VH-3.stp
+!/for_interior-rd-generator/all_models/V_13-V-Start-3.stp
+/for_interior-rd-generator/manuals/*
+!/for_interior-rd-generator/manuals/3437E9AC-2F0B-4731-8EAA-A36EEE9A5707.jpeg
+!/for_interior-rd-generator/manuals/53C3324B-B5BD-4556-BA37-D9916B3ED9A3.jpeg
+!/for_interior-rd-generator/manuals/closed.pdf
+!/for_interior-rd-generator/manuals/opened.pdf
+!/for_interior-rd-generator/manuals/public-violet/
+!/for_interior-rd-generator/manuals/Мартынова-кляймеры(020626).pdf
+!/for_interior-rd-generator/manuals/Профили\ 220826.pdf
+/resources/vendor/*
+!/resources/vendor/manual-facts.json
+!/resources/vendor/mount-context-symbols.json
+!/resources/vendor/profile-facts.json
+!/resources/vendor/public-installation-facts.json
+/backend/documents/fonts/*
+!/backend/documents/fonts/NotoSans-Bold.ttf
+!/backend/documents/fonts/NotoSans-Regular.ttf
+!/backend/documents/fonts/OFL.txt
+/desktop/build/licenses/*
+!/desktop/build/licenses/OCCT-7.9.3-LGPL-2.1.txt
+!/desktop/build/licenses/OCCT-7.9.3-exception.txt
+!/desktop/build/licenses/OCP-7.9.3.0-Apache-2.0.txt
+/for_interior-rd-generator/manuals/public-violet/*
+!/for_interior-rd-generator/manuals/public-violet/violet-concealed-installation-public.pdf
+!/for_interior-rd-generator/manuals/public-violet/violet-open-installation-public.pdf
