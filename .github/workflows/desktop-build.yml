@@ -30,6 +30,8 @@ jobs:
     # Configure this environment's reviewers before allowing production secrets.
     environment: ${{ inputs.release && 'desktop-release' || 'desktop-preview' }}
     env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
       VIOLET_RELEASE: ${{ inputs.release && '1' || '0' }}
       VIOLET_OS_SIGNING: ${{ inputs.certified && '1' || '0' }}
       VIOLET_GITHUB_OWNER: ${{ vars.VIOLET_GITHUB_OWNER || github.repository_owner }}

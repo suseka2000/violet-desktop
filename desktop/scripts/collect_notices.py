@@ -25,7 +25,7 @@ def native_inventory(distributions, review):
     evidence_by_binary = {}
     target_id = f"{sys.platform}-{platform.machine()}"
     for evidence_file in (ROOT / "desktop/build/licenses").glob("native-evidence-*.json"):
-        evidence = json.loads(evidence_file.read_text())
+        evidence = json.loads(evidence_file.read_text(encoding="utf-8"))
         distribution = evidence.get("distribution", {})
         if distribution.get("target") != target_id:
             continue
@@ -144,7 +144,7 @@ def main():
     # Full native-wheel obligations must be reviewed per OS/architecture. A URL
     # or guessed license name is not a substitute for bundled license texts.
     native_review = ROOT / "desktop/build/native-license-review.json"
-    review = json.loads(native_review.read_text()) if native_review.is_file() else {"redistribution_reviewed": False}
+    review = json.loads(native_review.read_text(encoding="utf-8")) if native_review.is_file() else {"redistribution_reviewed": False}
     for path in (ROOT / "desktop/build/licenses").rglob("*") if (ROOT / "desktop/build/licenses").exists() else []:
         if path.is_file():
             destination = target / "native" / path.relative_to(ROOT / "desktop/build/licenses")

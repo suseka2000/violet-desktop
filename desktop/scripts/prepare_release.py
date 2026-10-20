@@ -43,7 +43,7 @@ def release_configuration(env, system=None, architecture=None):
     if not re.fullmatch(r"[A-Za-z0-9_.-]{1,100}", repo) or repo in {".", ".."}:
         raise ValueError("Production needs VIOLET_GITHUB_REPOSITORY for the actual release repository")
     pinned = ROOT / "desktop/build/update-public-key.json"
-    pem = env.get("VIOLET_UPDATE_PUBLIC_KEY") or (json.loads(pinned.read_text()).get("publicKeyPem") if pinned.is_file() else "")
+    pem = env.get("VIOLET_UPDATE_PUBLIC_KEY") or (json.loads(pinned.read_text(encoding="utf-8")).get("publicKeyPem") if pinned.is_file() else "")
     key = public_key_pem(pem)
     certified = env.get("VIOLET_OS_SIGNING") == "1"
     if certified:
@@ -76,13 +76,13 @@ def main():
         report_path = ROOT / "desktop/stage/notices/inventory.json"
         if not report_path.is_file():
             parser.error("Generate the dependency notices inventory before packaging")
-        if not json.loads(report_path.read_text()).get("release_ready"):
+        if not json.loads(report_path.read_text(encoding="utf-8")).get("release_ready"):
             print("NOTICE REVIEW PENDING: this build does not certify third-party license completeness; review before redistribution.",
                   file=os.sys.stderr)
         inventory_path = ROOT / "desktop/stage/backend/bundle-inventory.json"
         if not inventory_path.is_file():
             parser.error("Build the native backend first")
-        inventory = json.loads(inventory_path.read_text())
+        inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
         if inventory.get("platform") != os.sys.platform or inventory.get("architecture") != platform.machine():
             parser.error("The backend bundle was built for another OS/architecture")
     destination = ROOT / "desktop/stage/release-config.json"

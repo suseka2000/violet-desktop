@@ -1,9 +1,15 @@
 from __future__ import annotations
+import ast
+import contextlib
 import importlib.util
+import io
 import json
+import os
 from pathlib import Path
+import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("bundle_policy", ROOT / "desktop/build/bundle_policy.py")
@@ -103,6 +109,59 @@ class DesktopPackagingTests(unittest.TestCase):
             self.assertEqual(report[0]["sha256"], policy.digest(root / "unknown.dll"))
             self.assertIsNone(report[0]["source_version"])
             self.assertEqual(report[0]["license_text_status"], "unmapped")
+
+    def test_release_policy_reads_unicode_artifacts_with_windows_legacy_locale(self):
+        entry = importlib.util.spec_from_file_location("prepare_release", ROOT / "desktop/scripts/prepare_release.py")
+        release = importlib.util.module_from_spec(entry)
+        entry.loader.exec_module(release)
+        public_key = json.loads((ROOT / "desktop/build/update-public-key.json").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixtures = {
+                "desktop/build/update-public-key.json": {**public_key, "note": "сечение профиля"},
+                "desktop/stage/notices/inventory.json": {"release_ready": True, "note": "сечение профиля"},
+                "desktop/stage/backend/bundle-inventory.json": {
+                    "platform": "win32", "architecture": "AMD64",
+                    "files": [{"path": "Библиотека/сечение профиля.step"}]},
+            }
+            for relative, value in fixtures.items():
+                path = root / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
+            original_read_text, reads = Path.read_text, []
+
+            def legacy_windows_read(path, encoding=None, errors=None):
+                reads.append((path.relative_to(root).as_posix(), encoding))
+                # Deliberately reproduce Windows' non-UTF-8 default even on a
+                # developer's Mac. An implicit read would fail on Cyrillic.
+                return original_read_text(path, encoding=encoding or "cp1252", errors=errors)
+
+            with patch.object(release, "ROOT", root), patch.dict(os.environ, {}, clear=True), \
+                    patch.object(sys, "argv", ["prepare_release.py", "--release"]), \
+                    patch.object(sys, "platform", "win32"), \
+                    patch.object(release.platform, "system", return_value="Windows"), \
+                    patch.object(release.platform, "machine", return_value="AMD64"), \
+                    patch.object(Path, "read_text", new=legacy_windows_read), \
+                    contextlib.redirect_stdout(io.StringIO()):
+                release.main()
+            self.assertEqual(set(fixtures), {relative for relative, _ in reads})
+            self.assertTrue(all(encoding == "utf-8" for _, encoding in reads))
+            config = json.loads((root / "desktop/stage/release-config.json").read_text(encoding="utf-8"))
+            self.assertEqual("github-public", config["provider"])
+            self.assertEqual(public_key["publicKeyPem"], config["publicKeyPem"])
+
+    def test_build_scripts_never_use_locale_dependent_text_artifacts(self):
+        paths = list((ROOT / "desktop/scripts").glob("*.py")) + \
+            list((ROOT / "tests").glob("verify_desktop*.py"))
+        for path in paths:
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and \
+                        node.func.attr in {"read_text", "write_text"}:
+                    with self.subTest(path=path.name, line=node.lineno):
+                        encoding = next((item.value for item in node.keywords if item.arg == "encoding"), None)
+                        self.assertIsInstance(encoding, ast.Constant)
+                        self.assertEqual("utf-8", encoding.value)
 
 
 if __name__ == "__main__":

@@ -4,13 +4,13 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 348,
-  "total_bytes": 74783747,
+  "total_bytes": 74787511,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 5929,
-      "sha256": "3d6e06dd028426ca2ed9eeb4fb89fa459fab047c6e5ab72e095347fd8bd37f97",
+      "bytes": 5983,
+      "sha256": "7cd5e0a00b1395acc29b71445886f0016725373e555f8b55da2075849a2b03b0",
       "kind": "source"
     },
     {
@@ -1179,8 +1179,8 @@
     },
     {
       "path": "desktop/scripts/collect_notices.py",
-      "bytes": 9799,
-      "sha256": "23a139bf6c54f12e1c21f408439b9384d3523f41bfbe9ceeed302a6c89e7725a",
+      "bytes": 9831,
+      "sha256": "5aa5102763335ca55f2830e87ee9a32d571ca2a42cd7fe65a57c0050fa446d06",
       "kind": "source"
     },
     {
@@ -1191,8 +1191,8 @@
     },
     {
       "path": "desktop/scripts/prepare_release.py",
-      "bytes": 5224,
-      "sha256": "01974e140ac18857c013d1e4c71751b53a60981e40cdf3c3acfff4648e76d39e",
+      "bytes": 5272,
+      "sha256": "3b5e4b3ab8bfbfbd4056eb17bc54a51d8828e35b0b01580d990250fc201ca15a",
       "kind": "source"
     },
     {
@@ -2067,8 +2067,8 @@
     },
     {
       "path": "tests/test_desktop_packaging.py",
-      "bytes": 6352,
-      "sha256": "535a8d540798eeb6ea91cf5346f2244945b6310dc43c6b3aef4dc54b2d8e375f",
+      "bytes": 9982,
+      "sha256": "230b293883fd905447c56da0a1d5d73d6d1cbf039ee56b8742d4f1d531b085a4",
       "kind": "source"
     },
     {
