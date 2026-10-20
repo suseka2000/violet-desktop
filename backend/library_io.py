@@ -88,6 +88,22 @@ def _windows_api():
     kernel.GetFileType.argtypes = (wintypes.HANDLE,)
     kernel.GetFileType.restype = wintypes.DWORD
 
+    class RenameInformation(ctypes.Structure):
+        # FILE_RENAME_INFORMATION: union BOOLEAN/ULONG occupies four bytes;
+        # HANDLE and trailing name are naturally aligned on each architecture.
+        _fields_ = [("replace", wintypes.ULONG), ("root", wintypes.HANDLE),
+                    ("name_bytes", wintypes.ULONG), ("name", wintypes.WCHAR * 1)]
+
+    class IOStatus(ctypes.Structure):
+        _fields_ = [("status_or_pointer", ctypes.c_void_p), ("information", ctypes.c_size_t)]
+
+    native = ctypes.WinDLL("ntdll")
+    native.NtSetInformationFile.argtypes = (wintypes.HANDLE, ctypes.POINTER(IOStatus),
+                                           ctypes.c_void_p, wintypes.ULONG, wintypes.ULONG)
+    native.NtSetInformationFile.restype = wintypes.LONG
+    native.RtlNtStatusToDosError.argtypes = (wintypes.LONG,)
+    native.RtlNtStatusToDosError.restype = wintypes.ULONG
+
     class API:
         @staticmethod
         def close(handle):
@@ -107,13 +123,15 @@ def _windows_api():
             return buffer.value
 
         @staticmethod
-        def open(path, *, directory=False, create=False):
+        def open(path, *, directory=False, create=False, rename=False):
             flags = 0x00200000 | (0x02000000 if directory else 0)  # OPEN_REPARSE_POINT / BACKUP_SEMANTICS
             # Attribute-only opens do not participate in Windows share-access
             # checks: omitting SHARE_DELETE on such a handle does NOT prevent
             # renaming its directory. FILE_LIST_DIRECTORY makes this a real
             # read open, while requesting fewer rights than GENERIC_READ.
             access = 0x81 if directory else (0x40000000 if create else 0x80000000)
+            if rename:
+                access |= 0x10000  # DELETE is required for rename-by-handle.
             # In particular omit FILE_SHARE_DELETE: ancestors cannot be swapped.
             # Omit FILE_SHARE_WRITE to prevent reparse conversion while held.
             handle = kernel.CreateFileW(str(path), access, 1 if not create else 0,
@@ -149,6 +167,40 @@ def _windows_api():
             except BaseException:
                 kernel.CloseHandle(handle)
                 raise
+
+        @staticmethod
+        def rename_file(parent, source, destination):
+            source, destination = _component(source), _component(destination)
+            handle = API.open(parent / source, rename=True)
+            try:
+                # Never intentionally replace a directory, reparse point or
+                # hardlink. The native rename changes only the destination
+                # directory entry; it does not follow a late replacement link.
+                try:
+                    existing = API.open(parent / destination)
+                except FileNotFoundError:
+                    pass
+                else:
+                    API.close(existing)
+                encoded = destination.encode("utf-16-le")
+                buffer = ctypes.create_string_buffer(ctypes.sizeof(RenameInformation) + len(encoded))
+                information = RenameInformation.from_buffer(buffer)
+                information.replace = 1
+                information.root = None
+                information.name_bytes = len(encoded)
+                ctypes.memmove(ctypes.addressof(buffer) + RenameInformation.name.offset, encoded, len(encoded))
+                status = IOStatus()
+                # A simple filename with NULL RootDirectory is explicitly a
+                # same-directory rename. MoveFileEx/os.replace instead pass a
+                # full path and reopen its parent for FILE_WRITE_DATA, which
+                # conflicts with the no-write-sharing ancestor locks. Do not
+                # release those locks or substitute a full destination path.
+                result = native.NtSetInformationFile(handle, ctypes.byref(status), buffer,
+                                                     len(buffer), 10)  # FileRenameInformation
+                if result < 0:
+                    raise ctypes.WinError(native.RtlNtStatusToDosError(result))
+            finally:
+                API.close(handle)
 
     return API
 
@@ -252,7 +304,7 @@ def replace_file(parent, source, destination):
     _component(source)
     _component(destination)
     if isinstance(parent, WindowsDirectory):
-        os.replace(parent.path / source, parent.path / destination)
+        _windows_api().rename_file(parent.path, source, destination)
     else:
         os.replace(source, destination, src_dir_fd=parent, dst_dir_fd=parent)
 

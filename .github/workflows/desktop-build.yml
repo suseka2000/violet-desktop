@@ -10,6 +10,13 @@ on:
         description: "Optional paid OS certificates/notarization (not needed for private Ed25519 updates)"
         type: boolean
         default: false
+      target:
+        description: "Native target (use windows for a Windows-only repair build)"
+        type: choice
+        options:
+          - all
+          - windows
+        default: all
 permissions:
   contents: read
 jobs:
@@ -19,19 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - runner: macos-15
-            platform: mac
-            arch: arm64
-            backend: violet-backend
-          - runner: macos-15-intel
-            platform: mac
-            arch: x64
-            backend: violet-backend
-          - runner: windows-2022
-            platform: win
-            arch: x64
-            backend: violet-backend.exe
+        include: ${{ fromJSON(inputs.target == 'windows' && '[{"runner":"windows-2022","platform":"win","arch":"x64","backend":"violet-backend.exe"}]' || '[{"runner":"macos-15","platform":"mac","arch":"arm64","backend":"violet-backend"},{"runner":"macos-15-intel","platform":"mac","arch":"x64","backend":"violet-backend"},{"runner":"windows-2022","platform":"win","arch":"x64","backend":"violet-backend.exe"}]') }}
     runs-on: ${{ matrix.runner }}
     # Configure this environment's reviewers before allowing production secrets.
     environment: ${{ inputs.release && 'desktop-release' || 'desktop-preview' }}

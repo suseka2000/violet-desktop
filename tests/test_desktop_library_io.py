@@ -41,6 +41,9 @@ class FakeWindowsAPI:
     def descriptor(self, handle, *, writable=False):
         return handle
 
+    def rename_file(self, parent, source, destination):
+        os.replace(parent / source, parent / destination)
+
 
 @contextmanager
 def windows_routing():
@@ -131,6 +134,20 @@ class DesktopLibraryIOTests(unittest.TestCase):
         with windows_routing():
             with self.assertRaises(OSError):
                 io.entry_stat(io.WindowsDirectory(source.parent, []), entry)
+
+    def test_windows_replace_uses_checked_parent_and_only_validated_leaf_names(self):
+        directory = io.WindowsDirectory(self.root, [123])
+        calls = []
+        api = SimpleNamespace(rename_file=lambda *args: calls.append(args))
+        with patch.object(io, "_windows_api", return_value=api):
+            io.replace_file(directory, ".random.tmp", "разрез.json")
+            self.assertEqual([(self.root, ".random.tmp", "разрез.json")], calls)
+            self.assertEqual([123], directory.handles)
+            for source, destination in (("../outside", "entry.json"), ("temp.tmp", "../outside"),
+                                        ("temp.tmp", "entry.json:stream")):
+                with self.subTest(source=source, destination=destination), self.assertRaises(OSError):
+                    io.replace_file(directory, source, destination)
+            self.assertEqual(1, len(calls))
 
     def test_windows_routing_cannot_read_or_write_linked_root(self):
         cache = self.base / "linked"
@@ -314,6 +331,30 @@ class NativeWindowsLibraryIOTests(unittest.TestCase):
             finally:
                 io.close_directory(handle)
             ancestor.rename(root / "replaced")
+
+    def test_native_cache_replace_preserves_directory_lock_and_replaces_unicode_leaf(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            cache = root / "derived"
+            library = ModelLibrary(root, cache_dir=cache)
+            replace = io.replace_file
+            seen = []
+
+            def checked_replace(directory, source, destination):
+                with self.assertRaises(OSError):
+                    cache.rename(root / "moved-cache")
+                replace(directory, source, destination)
+                with self.assertRaises(OSError):
+                    cache.rename(root / "moved-cache")
+                seen.append(destination)
+
+            with patch("backend.model_library.replace_file", side_effect=checked_replace):
+                library._cache_write("Разрез профиля.json", b"first")
+                library._cache_write("Разрез профиля.json", b"second")
+            self.assertEqual(["Разрез профиля.json"] * 2, seen)
+            self.assertEqual(b"second", library._cache_read("Разрез профиля.json", 99))
+            self.assertEqual(["Разрез профиля.json"], [item.name for item in cache.iterdir()])
+            cache.rename(root / "moved-cache")
 
     def test_native_junction_and_hardlink_are_not_library_sources(self):
         import subprocess
