@@ -206,4 +206,6 @@ if __name__ == "__main__":
     result = verify(executable)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    # Redirected Windows CI stdout may be cp1252 even though the JSON artifact
+    # is UTF-8. Keep console diagnostics portable without changing that file.
+    print(json.dumps(result, ensure_ascii=True, indent=2))

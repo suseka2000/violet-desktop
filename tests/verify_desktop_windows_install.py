@@ -238,7 +238,8 @@ if __name__ == "__main__":
     parser.add_argument("report", type=lambda value: Path(value).absolute())
     arguments = parser.parse_args()
     try:
-        print(json.dumps(verify(arguments.installer, arguments.report), ensure_ascii=False, indent=2))
+        print(json.dumps(verify(arguments.installer, arguments.report), ensure_ascii=True, indent=2))
     except Exception as error:
-        print(f"Windows installer smoke failed: {error}", file=sys.stderr)
+        message = f"Windows installer smoke failed: {error}".encode("ascii", errors="backslashreplace").decode("ascii")
+        print(message, file=sys.stderr)
         sys.exit(1)

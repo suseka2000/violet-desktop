@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 348,
-  "total_bytes": 74783507,
+  "total_bytes": 74783747,
   "supplier_files": 88,
   "files": [
     {
@@ -2085,14 +2085,14 @@
     },
     {
       "path": "tests/verify_desktop_frozen.py",
-      "bytes": 11402,
-      "sha256": "dff6b5e487fb5e7deb8c57d39f729a9f06fc1e3a9a729bfd977a0faf386240b2",
+      "bytes": 11558,
+      "sha256": "994aaca6a400dcd8db9c46fb11e5d8e1e3b86125d4b92585b70a47fe3bc70a9f",
       "kind": "source"
     },
     {
       "path": "tests/verify_desktop_windows_install.py",
-      "bytes": 12970,
-      "sha256": "1eb416c7d63094e847750f3ad424ca780eb1f2662173b39baf4ff1b7fb592b29",
+      "bytes": 13054,
+      "sha256": "24c1f9eabe3affbb417483d1a208006e2cfccdcc903d60da274c62e6fac224a4",
       "kind": "source"
     }
   ],
