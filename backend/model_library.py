@@ -22,7 +22,7 @@ from .vendor_library import (
     MAX_DEPTH, MAX_ENTRIES, MAX_FILE_BYTES, MAX_TOTAL_BYTES, SHA256,
     VendorLibraryError, _root_fd, _safe_file, _signature,
 )
-from .library_io import (child_directory, close_directory, open_file, is_link,
+from .library_io import (child_directory, close_directory, open_file, is_link, entry_stat,
                          make_directory, replace_file, unlink_file)
 
 FORMATS = {".step", ".stp"}
@@ -75,7 +75,7 @@ class ModelLibrary:
                         continue
                     relative = f"{prefix}/{entry.name}" if prefix else entry.name
                     try:
-                        info = entry.stat(follow_symlinks=False)
+                        info = entry_stat(directory, entry)
                         if is_link(info):
                             warnings.append(f"Символическая ссылка пропущена: {relative}")
                         elif stat.S_ISDIR(info.st_mode):

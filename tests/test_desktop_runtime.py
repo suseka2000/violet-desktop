@@ -6,6 +6,7 @@ import http.client
 import json
 import os
 from pathlib import Path
+import queue
 import sqlite3
 import subprocess
 import sys
@@ -22,6 +23,42 @@ from backend.desktop_runtime import (WORKER_MODULES, asset_root, physical_memory
 
 ROOT = Path(__file__).resolve().parents[1]
 TOKEN = "desktop-test-" + "a" * 48
+
+
+def startup_line(process, errors, *, timeout=60):
+    """Bound readiness even when a child stays alive without writing stdout.
+
+    A daemon reader works for Windows pipes as well as POSIX. The caller owns
+    child cleanup in its finally block; killing the child releases the reader.
+    """
+    result = queue.Queue(maxsize=1)
+
+    def read():
+        try:
+            result.put((process.stdout.readline(), None))
+        except Exception as error:
+            result.put((None, error))
+
+    threading.Thread(target=read, daemon=True, name="desktop-test-readiness").start()
+
+    def diagnostic(reason):
+        errors.seek(0, os.SEEK_END)
+        end = errors.tell()
+        errors.seek(max(0, end - 8192))
+        tail = errors.read().decode("utf-8", errors="replace")
+        return AssertionError(
+            f"{reason}; pid={process.pid}; exit={process.poll()}; stderr tail:\n{tail}"
+        )
+
+    try:
+        line, error = result.get(timeout=timeout)
+    except queue.Empty:
+        raise diagnostic(f"Desktop readiness timed out after {timeout:g}s") from None
+    if error is not None:
+        raise diagnostic(f"Desktop readiness pipe failed: {type(error).__name__}") from error
+    if not line:
+        raise diagnostic("Desktop exited before readiness")
+    return line
 
 
 def request(port, method, path, body=None, *, token=TOKEN, extra=None):
@@ -190,6 +227,34 @@ class DesktopHttpTests(unittest.TestCase):
 
 
 class DesktopProcessTests(unittest.TestCase):
+    def test_startup_line_times_out_when_live_child_never_writes(self):
+        release, finished = threading.Event(), threading.Event()
+
+        class SilentPipe:
+            def readline(self):
+                try:
+                    release.wait()
+                    return ""
+                finally:
+                    finished.set()
+
+        class LiveChild:
+            pid = 12345
+            stdout = SilentPipe()
+
+            @staticmethod
+            def poll():
+                return None
+
+        try:
+            with self.assertRaisesRegex(AssertionError, "readiness timed out") as failure:
+                startup_line(LiveChild(), BytesIO(b"native import stalled\n"), timeout=0.01)
+            self.assertIn("pid=12345; exit=None", str(failure.exception))
+            self.assertIn("native import stalled", str(failure.exception))
+        finally:
+            release.set()
+            self.assertTrue(finished.wait(2), "test readiness reader was not released")
+
     def test_lost_parent_closes_backend_without_leaving_listener(self):
         with tempfile.TemporaryDirectory(prefix="violet-orphan-test-") as temporary:
             owner = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(0.2)"])
@@ -213,10 +278,7 @@ class DesktopProcessTests(unittest.TestCase):
                     cwd=ROOT, stdout=subprocess.PIPE, stderr=errors, text=True,
                     env={**os.environ, "VIOLET_DESKTOP_TOKEN": TOKEN})
                 try:
-                    line = process.stdout.readline()
-                    if not line:
-                        errors.seek(0)
-                        self.fail(errors.read().decode("utf-8", errors="replace"))
+                    line = startup_line(process, errors)
                     ready = json.loads(line)
                     self.assertEqual(ready["type"], "ready")
                     owner.terminate()
@@ -229,7 +291,7 @@ class DesktopProcessTests(unittest.TestCase):
                     for child in (owner, process):
                         if child.poll() is None:
                             child.kill()
-                        child.wait()
+                        child.wait(timeout=5)
                     process.stdout.close()
 
     def test_orphan_worker_stops_even_when_waiting_for_input(self):
@@ -245,7 +307,7 @@ class DesktopProcessTests(unittest.TestCase):
         finally:
             if process.poll() is None:
                 process.kill()
-            process.wait()
+            process.wait(timeout=5)
             for stream in (process.stdin, process.stdout, process.stderr):
                 stream.close()
 
@@ -258,10 +320,7 @@ class DesktopProcessTests(unittest.TestCase):
                     cwd=ROOT, stdout=subprocess.PIPE, stderr=errors, text=True,
                     env={**os.environ, "VIOLET_DESKTOP_TOKEN": TOKEN})
                 try:
-                    line = process.stdout.readline()
-                    if not line:
-                        errors.seek(0)
-                        self.fail("Desktop exited before readiness: " + errors.read().decode("utf-8", errors="replace"))
+                    line = startup_line(process, errors)
                     ready = json.loads(line)
                     self.assertEqual(ready["type"], "ready")
                     self.assertEqual(ready["protocol"], 1)
@@ -276,7 +335,7 @@ class DesktopProcessTests(unittest.TestCase):
                 finally:
                     if process.poll() is None:
                         process.kill()
-                    process.wait()
+                    process.wait(timeout=5)
                     process.stdout.close()
 
     def test_missing_session_secret_never_starts_server(self):

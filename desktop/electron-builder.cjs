@@ -1,6 +1,7 @@
 "use strict";
 const fs = require("node:fs");
 const path = require("node:path");
+const electronNotices = require("./build/electron_notices.cjs");
 const release = process.env.VIOLET_RELEASE === "1";
 const certified = process.env.VIOLET_OS_SIGNING === "1";
 const policyPath = path.join(__dirname, "stage", "release-config.json");
@@ -46,6 +47,8 @@ module.exports = {
   ],
   asar: true,
   asarUnpack: ["update-helpers/**"],
+  afterExtract: context => electronNotices.preserve(context, path.join(__dirname, "stage/notices/electron")),
+  afterPack: electronNotices.verify,
   npmRebuild: false,
   forceCodeSigning: certified,
   // Free private updates use our pinned-key manifests, not latest.yml trust.

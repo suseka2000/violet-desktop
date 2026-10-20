@@ -109,7 +109,11 @@ def _windows_api():
         @staticmethod
         def open(path, *, directory=False, create=False):
             flags = 0x00200000 | (0x02000000 if directory else 0)  # OPEN_REPARSE_POINT / BACKUP_SEMANTICS
-            access = 0x80 if directory else (0x40000000 if create else 0x80000000)
+            # Attribute-only opens do not participate in Windows share-access
+            # checks: omitting SHARE_DELETE on such a handle does NOT prevent
+            # renaming its directory. FILE_LIST_DIRECTORY makes this a real
+            # read open, while requesting fewer rights than GENERIC_READ.
+            access = 0x81 if directory else (0x40000000 if create else 0x80000000)
             # In particular omit FILE_SHARE_DELETE: ancestors cannot be swapped.
             # Omit FILE_SHARE_WRITE to prevent reparse conversion while held.
             handle = kernel.CreateFileW(str(path), access, 1 if not create else 0,
@@ -214,6 +218,26 @@ def open_file(parent, name, *, create=False):
         return _windows_api().descriptor(handle, writable=create)
     flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL if create else os.O_RDONLY | os.O_NONBLOCK
     return os.open(name, flags | os.O_NOFOLLOW, mode=0o600, dir_fd=parent)
+
+
+def entry_stat(parent, entry):
+    """Return no-follow metadata with real file identity/link counts.
+
+    Windows DirEntry.stat caches enumeration data, with st_ino/st_dev/st_nlink
+    always zero. Those zeros must neither reject every ordinary source nor be
+    accepted as proof that the source has no hardlinks. Inspect a checked,
+    no-follow file handle instead. Ancestors remain held by the caller.
+    Directory/reparse metadata is used only to decide traversal; opening the
+    child directory subsequently performs its own no-reparse handle checks.
+    """
+    info = entry.stat(follow_symlinks=False)
+    if isinstance(parent, WindowsDirectory) and not is_link(info) and stat.S_ISREG(info.st_mode):
+        descriptor = open_file(parent, entry.name)
+        try:
+            return os.fstat(descriptor)
+        finally:
+            os.close(descriptor)
+    return info
 
 
 def make_directory(parent, name):

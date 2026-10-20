@@ -25,7 +25,7 @@ from pydantic import Field, JsonValue, model_validator
 
 from .domain.models import Model
 from .library_io import (root_directory as _root_fd, child_directory, close_directory,
-                         open_file, is_link)
+                         open_file, is_link, entry_stat)
 from .desktop_runtime import worker_command, worker_launch_options
 
 MAX_FILE_BYTES = 64 * 1024 * 1024
@@ -309,7 +309,7 @@ class VendorLibrary:
                         continue
                     relative = f"{prefix}/{entry.name}" if prefix else entry.name
                     try:
-                        info = entry.stat(follow_symlinks=False)
+                        info = entry_stat(fd, entry)
                         if is_link(info):
                             warnings.append(f"Символическая ссылка пропущена: {relative}")
                         elif stat.S_ISDIR(info.st_mode):

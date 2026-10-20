@@ -3,14 +3,14 @@
   "private_distribution_only": true,
   "git_initialized": false,
   "uploaded": false,
-  "file_count": 336,
-  "total_bytes": 74702927,
+  "file_count": 347,
+  "total_bytes": 74752263,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 5464,
-      "sha256": "7c729db271da021a8dd1978fb23bc568cc9de19ddfcf8a5f1b6d5ac6dbe31782",
+      "bytes": 5467,
+      "sha256": "d375b1a549a906b7b92519bf6fdeb24f8380f8063458884be94183f86e46ed06",
       "kind": "source"
     },
     {
@@ -495,14 +495,14 @@
     },
     {
       "path": "backend/library_io.py",
-      "bytes": 10157,
-      "sha256": "5c6a278c32a7a181c2d99894cbc04c52a127c55b9d50ed192b9b40b339a55825",
+      "bytes": 11345,
+      "sha256": "a55e948803a35ed43ee28e0df32c7b524d5aac1b8e2790ebf8a2fd067ff75fa6",
       "kind": "source"
     },
     {
       "path": "backend/model_library.py",
-      "bytes": 16626,
-      "sha256": "b04ba15e5d42a41f49328dffe3f6d38a2823544d810857ff21dcdf906088b2cf",
+      "bytes": 16633,
+      "sha256": "a2012c694e386c14808d15c5dd0467106ccb483117b72c96ba5ad8d374bc4e9d",
       "kind": "source"
     },
     {
@@ -706,7 +706,7 @@
     {
       "path": "backend/vendor_library.py",
       "bytes": 37689,
-      "sha256": "02bd68d411364fe3bfa82e6de4f22e55f8b8efd71a5fa2aefb21884dcc1f2301",
+      "sha256": "26baf7849f9be8a2b35e25ec6749d3f3324ec784672b81dad7d12d87a342de30",
       "kind": "source"
     },
     {
@@ -818,6 +818,12 @@
       "kind": "source"
     },
     {
+      "path": "desktop/build/electron_notices.cjs",
+      "bytes": 2005,
+      "sha256": "8477445e3349b0c08951950f3f45ae5668a5e663f160a48ad4ce4bbde4c35d50",
+      "kind": "source"
+    },
+    {
       "path": "desktop/build/entitlements.mac.plist",
       "bytes": 243,
       "sha256": "85d97186afc33c073b2c524f88c5f8031601c844b3e10d9c71c82f845fcc3a6f",
@@ -887,6 +893,42 @@
       "path": "desktop/build/licenses/Imath-3.2.2-LICENSE.txt",
       "bytes": 1497,
       "sha256": "c20236d3b39fd20eba8e3d1fb3b892a5483df2e7d8d61bf43f165d3fac22f601",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/JPEGXR-1.1-source-header-notice.txt",
+      "bytes": 1529,
+      "sha256": "4f9c6d60e7b2843b2f157478ee59ddba2d0ae2b7ef1fbc8834eaa75a16abd00f",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/JPEGXR-conda-recipe-LICENSE.txt",
+      "bytes": 1407,
+      "sha256": "223d21eac633788ada036025b083079bbd7b7f62ec82379cc45f75d1380931ce",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/LLVM-libcxx-upstream-LICENSE.txt",
+      "bytes": 16703,
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/Lerc-upstream-4.0.0-NOTICE.txt",
+      "bytes": 656,
+      "sha256": "4b8d57eb6a9257a154739ce6c26e666805cae7bbe24e1c5361d5e3719131f4e5",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/Lerc-upstream-4.1-4.2-NOTICE.txt",
+      "bytes": 656,
+      "sha256": "2bb381d933088c349478c435dfe0faef2a377dca4679b1338b204e4f2faf3f51",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/Lerc-upstream-4x-LICENSE.txt",
+      "bytes": 9199,
+      "sha256": "c5be5d7c9035d132f68f8f245dee082102fd48465cd8ff11c8db55c8a03e2200",
       "kind": "source"
     },
     {
@@ -986,6 +1028,18 @@
       "kind": "source"
     },
     {
+      "path": "desktop/build/licenses/libdeflate-upstream-1.19-1.20-COPYING.txt",
+      "bytes": 1052,
+      "sha256": "5d246dd2537307b80fed9ba5fdddf5d0fe7a8f023393a071182b9daed56b40fe",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/build/licenses/libdeflate-upstream-1.21-1.26-COPYING.txt",
+      "bytes": 1078,
+      "sha256": "4ad69099cb4374836fd27583d9991e2838cd86b6e4666ab26b2d32582c91e73a",
+      "kind": "source"
+    },
+    {
       "path": "desktop/build/licenses/libjpeg-turbo-3.1.2-LICENSE.txt",
       "bytes": 5620,
       "sha256": "2189dc45a8fe96204069f8124caa53a148dfdc193f50f584c6ca7849a6072872",
@@ -1022,6 +1076,12 @@
       "kind": "source"
     },
     {
+      "path": "desktop/build/licenses/supplemental-upstream-evidence.json",
+      "bytes": 5618,
+      "sha256": "a55f9b5d92364fb51311e5d5f56337dbe0d8ad14d9e8e56c9d94770fc8fa3c97",
+      "kind": "source"
+    },
+    {
       "path": "desktop/build/licenses/zlib-1.3.1-LICENSE.txt",
       "bytes": 1002,
       "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243",
@@ -1035,8 +1095,8 @@
     },
     {
       "path": "desktop/build/source-files.json",
-      "bytes": 10003,
-      "sha256": "28f62e0c270a7d96f9c5bb2e50f23524f3ecd5fb6ac810894901c30c05cfe749",
+      "bytes": 10676,
+      "sha256": "735cfc1c53d6f1852896462bff09b8a42a950238e645b5a4132007c141457e1f",
       "kind": "source"
     },
     {
@@ -1059,8 +1119,8 @@
     },
     {
       "path": "desktop/electron-builder.cjs",
-      "bytes": 3817,
-      "sha256": "4a695fa7fbfa9cb16c9f90bb69cdfdd0e5196a9ed8b8f7fd64a12a547acb2f0e",
+      "bytes": 4029,
+      "sha256": "c21662bddf30553e24773055845be2502b57eb9bf0d8d39bb8d361f524acd1ad",
       "kind": "source"
     },
     {
@@ -1119,8 +1179,8 @@
     },
     {
       "path": "desktop/scripts/collect_notices.py",
-      "bytes": 9673,
-      "sha256": "e45c12d28a6a05e3ceea73684550b85b0473a9e6a89745b7cad4e975b6a01cc7",
+      "bytes": 9799,
+      "sha256": "23a139bf6c54f12e1c21f408439b9384d3523f41bfbe9ceeed302a6c89e7725a",
       "kind": "source"
     },
     {
@@ -1143,8 +1203,8 @@
     },
     {
       "path": "desktop/scripts/stage_sources.py",
-      "bytes": 12109,
-      "sha256": "c568b814af9e2164daed896201ee10994671f543f15b853eaf105261632061d7",
+      "bytes": 12217,
+      "sha256": "4063e53a7614266929ac66bddef75ea9783f62b584cb1f25b85efea82c7b137f",
       "kind": "source"
     },
     {
@@ -1163,6 +1223,12 @@
       "path": "desktop/tests/credentials.test.cjs",
       "bytes": 1407,
       "sha256": "44969d997ea4f9628d2078abb86d7b9f7649d1c629ef105637ac597edfe0d694",
+      "kind": "source"
+    },
+    {
+      "path": "desktop/tests/electron-notices.test.cjs",
+      "bytes": 1597,
+      "sha256": "fd24083cb18088a3611f8e9ced0e8b6d4c5f313ec933b8c8ef6ecc507eaf9e53",
       "kind": "source"
     },
     {
@@ -1995,8 +2061,8 @@
     },
     {
       "path": "tests/test_desktop_library_io.py",
-      "bytes": 13943,
-      "sha256": "e17ea833df0238eb841473a4c6f31d1c90854be3542f705174b433643fbda255",
+      "bytes": 17491,
+      "sha256": "db6a9aa469f849251d3c93530cd50d81b420852f6e8182e31317f76b947e2744",
       "kind": "source"
     },
     {
@@ -2007,8 +2073,8 @@
     },
     {
       "path": "tests/test_desktop_runtime.py",
-      "bytes": 22091,
-      "sha256": "abc70563055de67e61f66361ce9dc6adb0fc9857884a95975b0f82e11fc64db0",
+      "bytes": 24062,
+      "sha256": "c72c325f2fbaba68e022ebccc44e986d95f27e6d36ed62ae7dacb474e438557e",
       "kind": "source"
     },
     {

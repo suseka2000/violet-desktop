@@ -165,7 +165,7 @@ def main():
         "native_components_with_upstream_texts_pending_source_review": sorted({
             record["component"] for record in native_files if record["license_text_status"] == "upstream-texts-collected"}),
         "release_ready": not unresolved and not native_unresolved and review.get("redistribution_reviewed") is True and target_id in review.get("reviewed_targets", []),
-        "note": "Electron/Chromium licenses are also supplied by electron-builder in the installed app. This report does not authorize customer-file redistribution.",
+        "note": "The Electron packaging afterExtract hook preserves the actual native distribution LICENSE and LICENSES.chromium.html before macOS branding removes them; afterPack verifies they reached resources/notices/electron. This report does not authorize customer-file redistribution.",
     }
     (target / "inventory.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Collected notices for {len(dependencies)} Python distributions; release ready: {report['release_ready']}")

@@ -59,7 +59,7 @@ jobs:
         working-directory: desktop
         run: pnpm install --frozen-lockfile
       - name: Verify bundle allowlist and runtime tests
-        run: python -m unittest tests.test_desktop_packaging tests.test_desktop_library_io tests.test_desktop_runtime tests.test_desktop_source_staging
+        run: python -m unittest -v tests.test_desktop_packaging tests.test_desktop_library_io tests.test_desktop_runtime tests.test_desktop_source_staging
       - name: Verify desktop shell
         working-directory: desktop
         run: pnpm test

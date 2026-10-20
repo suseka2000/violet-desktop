@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "target": "darwin-arm64",
+  "note": "Collected for later review; no assertion that library source build/version or all redistribution obligations are verified. No project source, allowlist, or release gate was changed.",
+  "source_directory": ".venv/lib/python3.12/site-packages/OCP/.dylibs",
+  "wheel": "cadquery-ocp-novtk 7.9.3.0",
+  "components": [
+    {
+      "name": "Lerc",
+      "binary": [
+        {
+          "filename": "libLerc.4.dylib",
+          "sha256": "8c4a6a87a5ec237cd5301588b6ca968f31d8e0eb2392042a47121b9bcc33c889"
+        }
+      ],
+      "exact_source_version": null,
+      "evidence": "ABI 4 only. LICENSE bytes identical in checked tags v4.0.0, v4.1.0, v4.1.1, v4.2.0. NOTICE varies: 2015-2022 in v4.0.0 and 2015-2026 in later checked tags; both preserved, neither selected as binary-exact.",
+      "files": [
+        {
+          "file": "Lerc-upstream-4x-LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/Esri/lerc/v4.0.0/LICENSE"
+        },
+        {
+          "file": "Lerc-upstream-4.0.0-NOTICE.txt",
+          "url": "https://raw.githubusercontent.com/Esri/lerc/v4.0.0/NOTICE"
+        },
+        {
+          "file": "Lerc-upstream-4.1-4.2-NOTICE.txt",
+          "url": "https://raw.githubusercontent.com/Esri/lerc/v4.1.0/NOTICE"
+        }
+      ]
+    },
+    {
+      "name": "LLVM libc++",
+      "binary": [
+        {
+          "filename": "libc++.1.0.dylib",
+          "sha256": "72b4f7c6fe8eacec07014379cd1c50c3ac97c75f1c4689a80b7226e298beed3e"
+        }
+      ],
+      "exact_source_version": null,
+      "evidence": "ABI 1, LC_SOURCE_VERSION 0.0; full LICENSE.TXT including LLVM exceptions and legacy notices identical in sampled llvmorg-9.0.0, llvmorg-13.0.0, llvmorg-17.0.6, llvmorg-21.1.5, llvmorg-23.1.3. This does not identify installed LLVM version or audit all intermediate tags.",
+      "files": [
+        {
+          "file": "LLVM-libcxx-upstream-LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-17.0.6/libcxx/LICENSE.TXT"
+        }
+      ]
+    },
+    {
+      "name": "libdeflate",
+      "binary": [
+        {
+          "filename": "libdeflate.0.dylib",
+          "sha256": "4566a0b71098b64ae1748b9ca29407fd7370c65ca31a2979668aab96be74be70"
+        }
+      ],
+      "exact_source_version": null,
+      "evidence": "ABI 0 does not establish version. COPYING identical in checked v1.19-v1.20 and separately identical in checked v1.21-v1.26; later variant adds Copyright 2024 Google LLC. Both preserved, neither selected as binary-exact.",
+      "files": [
+        {
+          "file": "libdeflate-upstream-1.19-1.20-COPYING.txt",
+          "url": "https://raw.githubusercontent.com/ebiggers/libdeflate/v1.19/COPYING"
+        },
+        {
+          "file": "libdeflate-upstream-1.21-1.26-COPYING.txt",
+          "url": "https://raw.githubusercontent.com/ebiggers/libdeflate/v1.21/COPYING"
+        }
+      ]
+    },
+    {
+      "name": "JPEG XR",
+      "binary": [
+        {
+          "filename": "libjpegxr.1.1.dylib",
+          "sha256": "1a67fae79753546a5305692673ef55cd694cb58039b9e90fec1cc4cade7d6261"
+        },
+        {
+          "filename": "libjxrglue.1.1.dylib",
+          "sha256": "ff29d12ff8485e9944e68cf90be70d16904de5526a7c63aca64b90106e0cba8a"
+        }
+      ],
+      "upstream_version_evidence": "1.1 dylib current version and filename; conda recipe also 1.1, but exact conda package build/patch provenance not established.",
+      "source_archive": {
+        "url": "https://deb.debian.org/debian/pool/main/j/jxrlib/jxrlib_1.1.orig.tar.gz",
+        "archive_sha256": "c7287b86780befa0914f2eeb8be2ac83e672ebd4bd16dc5574a36a59d9708303",
+        "path": "jxrlib-1.1/jxrgluelib/JXRGlue.h"
+      },
+      "conda_recipe_url": "https://raw.githubusercontent.com/conda-forge/jxrlib-feedstock/main/recipe/meta.yaml",
+      "recipe_commit": "4295661437b927aa8f4d141f06c304a532b14d4b",
+      "files": [
+        {
+          "file": "JPEGXR-1.1-source-header-notice.txt",
+          "url": "https://deb.debian.org/debian/pool/main/j/jxrlib/jxrlib_1.1.orig.tar.gz",
+          "path": "jxrlib-1.1/jxrgluelib/JXRGlue.h",
+          "note": "Full leading copyright/license comment, decoded cp1252 then UTF-8; original source archive has no standalone LICENSE."
+        },
+        {
+          "file": "JPEGXR-conda-recipe-LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/conda-forge/jxrlib-feedstock/main/recipe/LICENSE",
+          "note": "Conda publisher-provided notice, not an archive file."
+        }
+      ]
+    }
+  ],
+  "notice_files_sha256": {
+    "JPEGXR-1.1-source-header-notice.txt": "4f9c6d60e7b2843b2f157478ee59ddba2d0ae2b7ef1fbc8834eaa75a16abd00f",
+    "JPEGXR-conda-recipe-LICENSE.txt": "223d21eac633788ada036025b083079bbd7b7f62ec82379cc45f75d1380931ce",
+    "LLVM-libcxx-upstream-LICENSE.txt": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b",
+    "Lerc-upstream-4.0.0-NOTICE.txt": "4b8d57eb6a9257a154739ce6c26e666805cae7bbe24e1c5361d5e3719131f4e5",
+    "Lerc-upstream-4.1-4.2-NOTICE.txt": "2bb381d933088c349478c435dfe0faef2a377dca4679b1338b204e4f2faf3f51",
+    "Lerc-upstream-4x-LICENSE.txt": "c5be5d7c9035d132f68f8f245dee082102fd48465cd8ff11c8db55c8a03e2200",
+    "libdeflate-upstream-1.19-1.20-COPYING.txt": "5d246dd2537307b80fed9ba5fdddf5d0fe7a8f023393a071182b9daed56b40fe",
+    "libdeflate-upstream-1.21-1.26-COPYING.txt": "4ad69099cb4374836fd27583d9991e2838cd86b6e4666ab26b2d32582c91e73a"
+  },
+  "normalization": "Notice texts saved as UTF-8; source CRLF normalized to LF and exactly one final newline. Source header originally cp1252 decoded."
+}

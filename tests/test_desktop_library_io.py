@@ -97,6 +97,41 @@ class DesktopLibraryIOTests(unittest.TestCase):
             self.assertIsNone(library._cache_read("entry.json", 1))
             self.assertEqual(["entry.json"], [p.name for p in cache.iterdir()])
 
+    def test_windows_enumeration_zero_identity_is_replaced_by_checked_handle_metadata(self):
+        source = self.root / "models" / "Профиль.step"
+        zeros = SimpleNamespace(st_mode=stat.S_IFREG, st_nlink=0, st_ino=0,
+                                st_dev=0, st_size=len(self.content))
+        entry = SimpleNamespace(name=source.name, stat=lambda **_: zeros)
+        with windows_routing():
+            directory = io.WindowsDirectory(source.parent, [])
+            info = io.entry_stat(directory, entry)
+            actual = source.stat()
+            self.assertEqual(1, info.st_nlink)
+            self.assertEqual((actual.st_ino, actual.st_dev), (info.st_ino, info.st_dev))
+            self.assertEqual(actual.st_size, info.st_size)
+
+    def test_windows_entry_metadata_does_not_accept_unknown_link_count(self):
+        source = self.root / "models" / "Профиль.step"
+        os.link(source, self.root / "second.step")
+        zeros = SimpleNamespace(st_mode=stat.S_IFREG, st_nlink=0, st_ino=0,
+                                st_dev=0, st_size=len(self.content))
+        entry = SimpleNamespace(name=source.name, stat=lambda **_: zeros)
+        with windows_routing():
+            with self.assertRaises(OSError):
+                io.entry_stat(io.WindowsDirectory(source.parent, []), entry)
+
+    def test_windows_entry_metadata_checks_current_file_not_stale_enumeration(self):
+        source = self.root / "models" / "Профиль.step"
+        stale = source.stat()
+        source.unlink()
+        target = self.base / "private.step"
+        target.write_bytes(b"private")
+        source.symlink_to(target)
+        entry = SimpleNamespace(name=source.name, stat=lambda **_: stale)
+        with windows_routing():
+            with self.assertRaises(OSError):
+                io.entry_stat(io.WindowsDirectory(source.parent, []), entry)
+
     def test_windows_routing_cannot_read_or_write_linked_root(self):
         cache = self.base / "linked"
         try:
@@ -224,12 +259,32 @@ class NativeWindowsLibraryIOTests(unittest.TestCase):
     def test_native_files_are_read_and_cache_survives_restart(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            (root / "source.step").write_bytes(b"ISO-10303-21;fixture")
+            content = b"ISO-10303-21;fixture"
+            source = root / "source.step"
+            source.write_bytes(content)
             library = ModelLibrary(root, cache_dir=root / "derived")
-            self.assertEqual(1, len(library.inventory()["assets"]))
-            self.assertEqual(1, len(VendorLibrary(root).inventory()["assets"]))
+            inventory = library.inventory()
+            self.assertEqual(1, len(inventory["assets"]), inventory["warnings"])
+            self.assertTrue(inventory["complete"])
+            self.assertEqual(hashlib.sha256(content).hexdigest(), inventory["assets"][0]["id"])
+            vendor = VendorLibrary(root).inventory()
+            self.assertEqual(1, len(vendor["assets"]), vendor["warnings"])
+            self.assertEqual(content, _safe_file(root, "source.step")[0])
+            parent = io.root_directory(root)
+            try:
+                with os.scandir(parent) as entries:
+                    entry = next(item for item in entries if item.name == "source.step")
+                    actual = io.entry_stat(parent, entry)
+                self.assertEqual(1, actual.st_nlink)
+                self.assertEqual(source.stat().st_ino, actual.st_ino)
+            finally:
+                io.close_directory(parent)
             library._cache_write("entry.json", b"fixture")
-            self.assertEqual(b"fixture", ModelLibrary(root, cache_dir=root / "derived")._cache_read("entry.json", 99))
+            restarted = ModelLibrary(root, cache_dir=root / "derived")
+            self.assertEqual(b"fixture", restarted._cache_read("entry.json", 99))
+            restarted_inventory = restarted.inventory()
+            self.assertEqual(1, len(restarted_inventory["assets"]), restarted_inventory["warnings"])
+            self.assertEqual(inventory["assets"][0]["id"], restarted_inventory["assets"][0]["id"])
             library._cache_write("entry.json", b"changed")
             self.assertEqual(b"changed", library._cache_read("entry.json", 99))
 
@@ -245,6 +300,20 @@ class NativeWindowsLibraryIOTests(unittest.TestCase):
             finally:
                 io.close_directory(handle)
             directory.rename(root / "replaced")
+
+    def test_native_ancestor_handle_blocks_replacement(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            ancestor = root / "ancestor"
+            directory = ancestor / "library"
+            directory.mkdir(parents=True)
+            handle = io.root_directory(directory)
+            try:
+                with self.assertRaises(OSError):
+                    ancestor.rename(root / "replaced")
+            finally:
+                io.close_directory(handle)
+            ancestor.rename(root / "replaced")
 
     def test_native_junction_and_hardlink_are_not_library_sources(self):
         import subprocess
