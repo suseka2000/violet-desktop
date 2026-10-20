@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 348,
-  "total_bytes": 74781153,
+  "total_bytes": 74783507,
   "supplier_files": 88,
   "files": [
     {
@@ -489,8 +489,8 @@
     },
     {
       "path": "backend/importing/source_store.py",
-      "bytes": 12710,
-      "sha256": "39b8174d3161d2c2401848207fa4b118a70bfee126ba2f2d7df86c4ea9f1b539",
+      "bytes": 12962,
+      "sha256": "3c9ae7076b99a21ee3a9407bf6a1f87c93908d5f76f6717f28ef7742b4b9f446",
       "kind": "source"
     },
     {
@@ -2061,8 +2061,8 @@
     },
     {
       "path": "tests/test_desktop_library_io.py",
-      "bytes": 19820,
-      "sha256": "db6a9c24467b0990b99404e612db6f1947cc9e5686c8511303acd897343be162",
+      "bytes": 21922,
+      "sha256": "574bf60be17ac7a7e4351a8ae1ac619d0c76b2dd9004a1231db7e343960b9ca1",
       "kind": "source"
     },
     {

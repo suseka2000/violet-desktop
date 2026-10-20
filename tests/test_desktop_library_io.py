@@ -17,8 +17,45 @@ import unittest
 from unittest.mock import patch
 
 from backend import library_io as io
+from backend.importing.source_store import SourceStore
 from backend.model_library import ModelLibrary
 from backend.vendor_library import VendorLibrary, _safe_file
+
+
+class DesktopSourceStoreBinaryTests(unittest.TestCase):
+    def test_source_roundtrip_preserves_crlf_ctrl_z_and_all_bytes_after_restart(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            payload = b"ISO-10303-21;\r\nHEADER;\r\nENDSEC;\r\n\x1a" + bytes(range(256)) + b"\r\nEND"
+            store = SourceStore(root)
+            record = store.put("Профиль.step", payload)
+            self.assertEqual(len(payload), record.byte_length)
+            self.assertEqual(hashlib.sha256(payload).hexdigest(), record.source_id)
+            self.assertEqual(payload, store.get_bytes(record.source_id))
+            restarted = SourceStore(root)
+            self.assertEqual(record, restarted.get_record(record.source_id))
+            self.assertEqual(payload, restarted.get_bytes(record.source_id))
+            self.assertEqual(record, restarted.put("same-source.step", payload))
+
+    def test_raw_descriptor_read_explicitly_requests_binary_mode(self):
+        # The actual round-trip above runs on Windows too. This assertion also
+        # catches removal of O_BINARY while working on a POSIX development host.
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "source"
+            path.write_bytes(b"a\r\nb\x1ac")
+            marker = getattr(os, "O_BINARY", 1 << 29)
+            original_open, flags_seen = os.open, []
+
+            def checked_open(filename, flags):
+                flags_seen.append(flags)
+                actual_flags = flags if os.name == "nt" else flags & ~marker
+                return original_open(filename, actual_flags)
+
+            with patch.object(os, "O_BINARY", marker, create=True), \
+                    patch("backend.importing.source_store.os.open", side_effect=checked_open):
+                self.assertEqual(b"a\r\nb\x1ac", SourceStore._read_regular_file(path, max_bytes=20))
+            self.assertEqual(1, len(flags_seen))
+            self.assertTrue(flags_seen[0] & marker)
 
 
 class FakeWindowsAPI:
@@ -276,7 +313,7 @@ class NativeWindowsLibraryIOTests(unittest.TestCase):
     def test_native_files_are_read_and_cache_survives_restart(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            content = b"ISO-10303-21;fixture"
+            content = b"ISO-10303-21;\r\nfixture\x1a" + bytes(range(256))
             source = root / "source.step"
             source.write_bytes(content)
             library = ModelLibrary(root, cache_dir=root / "derived")

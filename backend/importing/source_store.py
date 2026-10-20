@@ -232,7 +232,10 @@ class SourceStore:
 
     @staticmethod
     def _read_regular_file(path: Path, *, max_bytes: int) -> bytes:
-        flags = os.O_RDONLY
+        # Unlike open(..., "rb"), os.open defaults to CRT text mode on
+        # Windows: os.read would translate CRLF and treat Ctrl-Z as EOF.
+        # Content-addressed originals must preserve every byte and their hash.
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0)
         if hasattr(os, "O_NOFOLLOW"):
             flags |= os.O_NOFOLLOW
         try:
