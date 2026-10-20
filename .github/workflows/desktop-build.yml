@@ -11,6 +11,7 @@ permissions:
 jobs:
   desktop:
     if: ${{ github.event.repository.private == true }}
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:

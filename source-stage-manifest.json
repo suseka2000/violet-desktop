@@ -4,13 +4,13 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 297,
-  "total_bytes": 74363863,
+  "total_bytes": 74363887,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 4592,
-      "sha256": "5cb6d0d3203bfd7e2fc567fefc18e9175da7a4d8012c35461ba0d6cf1607d920",
+      "bytes": 4616,
+      "sha256": "177250116b79502217797b36684b969967d3374eec471c3f69e7394501f756f1",
       "kind": "source"
     },
     {
