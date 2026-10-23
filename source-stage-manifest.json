@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 348,
-  "total_bytes": 74787511,
+  "total_bytes": 74787895,
   "supplier_files": 88,
   "files": [
     {
@@ -819,8 +819,8 @@
     },
     {
       "path": "desktop/build/electron_notices.cjs",
-      "bytes": 2005,
-      "sha256": "8477445e3349b0c08951950f3f45ae5668a5e663f160a48ad4ce4bbde4c35d50",
+      "bytes": 2150,
+      "sha256": "7a05bfae16478cf0c30b04240bd044c305e23666ff63c8d5480f021e69bac9ee",
       "kind": "source"
     },
     {
@@ -1227,8 +1227,8 @@
     },
     {
       "path": "desktop/tests/electron-notices.test.cjs",
-      "bytes": 1597,
-      "sha256": "fd24083cb18088a3611f8e9ced0e8b6d4c5f313ec933b8c8ef6ecc507eaf9e53",
+      "bytes": 1836,
+      "sha256": "76510d5b74f8e1e64c0be034f329925487906ea7a62c56626d11bb79139b8117",
       "kind": "source"
     },
     {

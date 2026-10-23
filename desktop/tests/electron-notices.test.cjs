@@ -12,12 +12,14 @@ for (const platform of ["darwin","win32"]) {
     try {
       const extracted=path.join(directory,"extracted"), resources=path.join(directory,platform,"resources");
       fs.mkdirSync(extracted);
-      fs.writeFileSync(path.join(extracted,"LICENSE"),"Electron license fixture");
+      const extractedLicense = platform === "win32" ? "LICENSE.electron.txt" : "LICENSE";
+      fs.writeFileSync(path.join(extracted,extractedLicense),"Electron license fixture");
       fs.writeFileSync(path.join(extracted,"LICENSES.chromium.html"),"<html>Chromium notice fixture</html>");
-      const context={appOutDir:extracted,packager:{info:{framework:{version:"44.9.0"}},getResourcesDir:()=>resources}};
+      const context={appOutDir:extracted,electronPlatformName:platform,packager:{info:{framework:{version:"44.9.0"}},getResourcesDir:()=>resources}};
       const destination=path.join(resources,"notices/electron");
       await preserve(context,destination);
-      fs.unlinkSync(path.join(extracted,"LICENSE"));
+      assert.equal(fs.readFileSync(path.join(destination,"LICENSE"),"utf8"),"Electron license fixture");
+      fs.unlinkSync(path.join(extracted,extractedLicense));
       fs.unlinkSync(path.join(extracted,"LICENSES.chromium.html"));
       await verify(context);
       assert.equal(JSON.parse(fs.readFileSync(path.join(destination,"inventory.json"))).electronVersion,"44.9.0");

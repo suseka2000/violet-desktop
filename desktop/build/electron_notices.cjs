@@ -5,13 +5,15 @@ const crypto = require("node:crypto");
 const names = ["LICENSE", "LICENSES.chromium.html"];
 
 async function preserve(context, destination) {
-  // Both official macOS and Windows Electron ZIPs carry these at their root.
-  // Branding removes the macOS originals later; use this extraction, not a
-  // possibly different locally installed runtime's notices.
+  // electron-builder renames Windows LICENSE during cleanupAfterUnpack,
+  // before afterExtract runs. macOS keeps LICENSE until branding. Preserve
+  // these exact extracted notices under the same names in every app.
   fs.mkdirSync(destination, {recursive:true});
   const files = [];
   for (const filename of names) {
-    const source = path.join(context.appOutDir, filename), stat = fs.lstatSync(source);
+    const extractedName = filename === "LICENSE" && context.electronPlatformName === "win32"
+      ? "LICENSE.electron.txt" : filename;
+    const source = path.join(context.appOutDir, extractedName), stat = fs.lstatSync(source);
     if (!stat.isFile() || stat.isSymbolicLink()) throw new Error("Missing regular Electron license: " + filename);
     const bytes = fs.readFileSync(source);
     fs.writeFileSync(path.join(destination, filename), bytes);
