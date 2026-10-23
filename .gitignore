@@ -45,6 +45,8 @@
 !/backend/engineering/
 !/backend/exterior_mount.py
 !/backend/fastening_records.py
+!/backend/finish_geometry.py
+!/backend/finish_presentation.py
 !/backend/fitted_wall_reuse.py
 !/backend/geometry/
 !/backend/importing/
@@ -133,6 +135,11 @@
 !/frontend/drafting.js
 !/frontend/editor-cad.css
 !/frontend/engineering-jobs.js
+!/frontend/finish-presentation.css
+!/frontend/finish-presentation.js
+!/frontend/finish-presentation.test.js
+!/frontend/finish-viewer.js
+!/frontend/finish-viewer.test.js
 !/frontend/index.html
 !/frontend/model-editor.js
 !/frontend/mount-assemblies.css
@@ -159,6 +166,7 @@
 !/tests/test_desktop_packaging.py
 !/tests/test_desktop_runtime.py
 !/tests/test_desktop_source_staging.py
+!/tests/test_finish_geometry.py
 !/tests/verify_desktop_frozen.py
 !/tests/verify_desktop_windows_install.py
 /.github/workflows/*
@@ -168,6 +176,7 @@
 !/backend/api/building_assembly.py
 !/backend/api/cad_assets.py
 !/backend/api/extended.py
+!/backend/api/finish_presentation.py
 !/backend/api/model_library.py
 !/backend/api/mount_assemblies.py
 !/backend/api/mount_sections.py
@@ -185,6 +194,7 @@
 !/backend/documents/assemblies.py
 !/backend/documents/cad_sections.py
 !/backend/documents/catalog.py
+!/backend/documents/client_panels.py
 !/backend/documents/component_legend.py
 !/backend/documents/dxf_album.py
 !/backend/documents/fonts/

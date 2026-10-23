@@ -12,6 +12,40 @@ LAYOUT_VERSION = "concealed-safe-infill/2"
 EPS = 1e-7
 
 
+def layout_pieces(length, height, config, openings, *, terminal_infill_mm=0.):
+    """Shared visible panel layout; no STEP, node selection or native solids.
+
+    The customer viewer and album must use the same opening subtraction and
+    concealed-system infills as the engineering preview, not a second grid.
+    """
+    from .engineering import _subtract_rectangles
+    usable = height - config.floor_gap_mm - config.ceiling_gap_mm
+    if length <= 1e-6 or usable <= 0:
+        raise ValueError("Размер стены и зазоры не оставляют места для панелей")
+    if not all(math.isfinite(value) for value in (
+            length / (config.panel_width_mm + config.joint_mm),
+            usable / (config.panel_height_mm + config.joint_mm))):
+        raise ValueError("Размер панели не представим с точностью расчёта; проверьте единицы размеров")
+    columns, rows, layout = concealed_layout(length, usable, config.floor_gap_mm,
+        config, openings, terminal_infill_mm=terminal_infill_mm)
+    cutters = [(o["x_mm"], o["y_mm"], o["width_mm"], o["height_mm"]) for o in openings]
+    panels = []
+    for row, (y, h) in enumerate(rows):
+        for col, (x, w) in enumerate(columns):
+            if min(w, h) <= 1e-6:
+                continue
+            cell_id = f"panel-{row+1}-{col+1}"
+            for part, (px, py, pw, ph) in enumerate(_subtract_rectangles((x, y, w, h), cutters, EPS), 1):
+                if min(round(pw, 6), round(ph, 6)) <= 0:
+                    continue
+                panels.append({"id": f"{cell_id}-{part}", "panel_id": cell_id, "index": len(panels)+1,
+                    "x_mm": round(px, 6), "y_mm": round(py, 6), "width_mm": round(pw, 6), "height_mm": round(ph, 6),
+                    "polygon": [[px, py], [px+pw, py], [px+pw, py+ph], [px, py+ph]], "holes": [],
+                    "area_m2": round(pw*ph/1e6, 9), "is_cut": pw != config.panel_width_mm or ph != config.panel_height_mm,
+                    "thickness_mm": config.panel_thickness_mm})
+    return panels, columns, rows, layout
+
+
 def regular_axis(length, maximum, gap):
     return [(i * (maximum + gap), min(maximum, length - i * (maximum + gap)))
             for i in range(math.ceil(length / (maximum + gap)))

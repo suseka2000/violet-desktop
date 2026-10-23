@@ -41,6 +41,7 @@ TEST_FILES = {
     "tests/test_desktop_library_io.py", "tests/test_desktop_runtime.py",
     "tests/test_desktop_source_staging.py", "tests/verify_desktop_frozen.py",
     "tests/verify_desktop_windows_install.py",
+    "tests/test_finish_geometry.py",
 }
 FIXED_FILES = ROOT_FILES | TEST_FILES | set(RESOURCE_FILES) | {
     "backend/documents/fonts/NotoSans-Regular.ttf",

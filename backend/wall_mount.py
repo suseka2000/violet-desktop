@@ -564,28 +564,12 @@ def preview_wall_mount(project, wall_id, face_id, configuration, snapshot, asset
         x = length - o.offset_mm - o.width_mm if face.side == "right" else o.offset_mm
         openings.append({"id": o.id, "kind": o.kind, "name": o.name, **_rect(x, o.sill_mm, o.width_mm, o.height_mm),
                          **opening_details(o, face.side)})
-    from .panel_layout import concealed_layout
-    column_spans, row_spans, layout = concealed_layout(length, usable_height, config.floor_gap_mm, config, openings,
-                                                    terminal_infill_mm=terminal_infill_mm)
+    from .panel_layout import layout_pieces
+    panels, column_spans, row_spans, layout = layout_pieces(length, height, config, openings,
+                                                        terminal_infill_mm=terminal_infill_mm)
     columns, rows = len(column_spans), len(row_spans)
     cutters = [(o["x_mm"], o["y_mm"], o["width_mm"], o["height_mm"]) for o in openings]
-    panels, joint_lines = [], []
-    for row, (y, h) in enumerate(row_spans):
-        for col, (x, w) in enumerate(column_spans):
-            if min(w, h) <= 1e-6:
-                continue
-            cell_id = f"panel-{row+1}-{col+1}"
-            pieces = _subtract_rectangles((x, y, w, h), cutters, 1e-7)
-            for part, (px, py, pw, ph) in enumerate(pieces, 1):
-                # Output dimensions are stored to six decimal places. A
-                # floating-point sliver left at an open wall boundary must
-                # not become a zero-width panel after that rounding.
-                if min(round(pw, 6), round(ph, 6)) <= 0:
-                    continue
-                panels.append({"id": f"{cell_id}-{part}", "panel_id": cell_id, "index": len(panels)+1,
-                               **_rect(px, py, pw, ph), "polygon": [[px, py], [px+pw, py], [px+pw, py+ph], [px, py+ph]],
-                               "holes": [], "area_m2": round(pw*ph/1e6, 9), "is_cut": pw != config.panel_width_mm or ph != config.panel_height_mm,
-                               "thickness_mm": config.panel_thickness_mm})
+    joint_lines = []
     # Seams are elevation guides, not fastener axes or quantities. Clip them at
     # every opening, including overlaps, so no mounting line crosses a void.
     def segments(kind, a, b):

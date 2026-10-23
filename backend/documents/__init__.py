@@ -294,6 +294,9 @@ class DocumentSet:
 
 
 def build_documents(project: Project, *, paper_format="A3", report=None, derived_assemblies=False) -> DocumentSet:
+    if paper_format == "PANELS":
+        from .client_panels import build_client_documents
+        return build_client_documents(project)
     from ..engineering import build_engineering
     if paper_format not in FORMATS:
         raise DocumentError("Допустимы форматы ALBUM, A3 и A2")

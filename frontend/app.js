@@ -25,6 +25,7 @@
   let trashProjects = [], emptyTrashRequest = null;
   let baseSnapshot = null, jsonEditorReference = "", jsonEditorProject = null, jsonEditorSerial = -1;
   let modelChangeSerial = 0, mountPreparationTask = null, lastMountPreparation = null, saveInFlight = false, backgroundBuilds = null;
+  let finishPresentation = null;
 
   class ApiError extends Error {
     constructor(status, payload) {
@@ -207,7 +208,7 @@
     dom.previewPdfButton.addEventListener("click", async () => {if (await prepareDocumentAssemblies()) setTab("engineering");}); dom.downloadPdfButton.addEventListener("click", () => downloadDocument("pdf")); dom.downloadDxfButton.addEventListener("click", () => downloadDocument("dxf")); dom.downloadZipButton.addEventListener("click", () => downloadDocument("zip"));
     window.addEventListener("beforeunload", (event) => { if (state.dirty || mountPreparationHasUnappliedInputs()) { event.preventDefault(); event.returnValue = ""; } });
     document.addEventListener("keydown", (event) => {
-      if ([dom.newProjectDialog, dom.entityDialog, dom.historyDialog, dom.deleteProjectDialog, dom.projectTrashDialog, dom.wallMountDialog, dom.batchMountDialog, dom.mountSectionsDialog, dom.mountAssembliesDialog, dom.specialAssembliesDialog, dom.wholeWallDialog, dom.roomAssemblyDialog, dom.buildingAssemblyDialog].some((dialog) => dialog?.open)) return;
+      if ([dom.newProjectDialog, dom.entityDialog, dom.historyDialog, dom.deleteProjectDialog, dom.projectTrashDialog, dom.wallMountDialog, dom.batchMountDialog, dom.mountSectionsDialog, dom.mountAssembliesDialog, dom.specialAssembliesDialog, dom.wholeWallDialog, dom.roomAssemblyDialog, dom.buildingAssemblyDialog, dom.finishPresentationDialog].some((dialog) => dialog?.open)) return;
       if (state.activeTab !== "model") {
         if (state.activeTab === "sources" && event.key === "Escape" && !isTyping(event.target)) { state.sourceSelection=[];state.sourceDraftPoints=[];state.calibrationClicks=[];state.sourceRegionPoints=[];if(state.sourceMode==="region")setSourceMode("select");dom.markupPoints.value="";paintSourceOverlay();renderSourceSelection();event.preventDefault(); }
         if (state.activeTab === "sources" && event.key === "Enter" && !isTyping(event.target) && state.sourceDraftPoints.length) {event.preventDefault();addMarkup();}
@@ -358,6 +359,15 @@
       });
       dom.buildingAssemblyDialog.addEventListener("cancel", event => {event.preventDefault(); buildingAssembly.close();});
       window.addEventListener("pagehide", () => buildingAssembly?.close());
+    }
+    if (window.VioletFinishPresentation) {
+      finishPresentation = window.VioletFinishPresentation.create(dom.finishPresentationHost, {
+        getProject: () => state.project, request, mutate, download: downloadBlob,
+        onClose: () => {dom.finishPresentationDialog.close(); state.planSvg?.focus({preventScroll:true});},
+        onTechnical: scope => scope.kind === "space" ? openRoomAssembly(scope, true) : openBuildingAssembly(true, scope),
+      });
+      dom.finishPresentationDialog.addEventListener("cancel", event => {event.preventDefault(); finishPresentation.close();});
+      window.addEventListener("pagehide", () => finishPresentation?.close());
     }
     await Promise.all([loadProjects(true), loadSourceCapabilities()]);
   }
@@ -623,6 +633,7 @@
     wholeWall?.refresh();
     roomAssembly?.refresh();
     buildingAssembly?.refresh();
+    finishPresentation?.refresh();
     if(isStepSource()){stepViewer?.refreshContexts(cadSectionContexts());stepViewer?.refreshSavedSections(arrays(state.project?.properties?.cad_assets).find(a=>a.source_id===state.source.id)?.sections || []);}
   }
   function renderDraftState() {
@@ -1510,7 +1521,12 @@
     if (!scope) return toast("Сначала выберите этаж или помещение.", "error");
     if (wholeWall.open(scope)) dom.wholeWallDialog.showModal();
   }
-  async function openRoomAssembly(scope) {
+  async function openRoomAssembly(scope, technical = false) {
+    if (!technical && finishPresentation && state.project && scope) {
+      if (state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs()) return toast("Сначала завершите построение и примените изменённые параметры.", "error");
+      if (finishPresentation.open(scope)) dom.finishPresentationDialog.showModal();
+      return;
+    }
     if (!roomAssembly) return toast("Модуль 3D комнаты не загрузился. Обновите страницу.", "error");
     if (!state.project || !scope) return toast("Сначала создайте помещение на этаже.", "error");
     if (state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs()) return toast("Сначала завершите построение и примените изменённые параметры. Они не будут сброшены при открытии 3D.", "error", 8000);
@@ -1520,13 +1536,19 @@
     if (state.project?.id !== projectId || state.dirty || state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs()) return;
     if (roomAssembly.open({floor_id:floorId,space_id:spaceId}) && !dom.roomAssemblyDialog.open) dom.roomAssemblyDialog.showModal();
   }
-  async function openBuildingAssembly() {
+  async function openBuildingAssembly(technical = false, target = null) {
+    if (!technical && finishPresentation && state.project?.buildings.length) {
+      if (state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs()) return toast("Сначала завершите построение и примените изменённые параметры.", "error");
+      const building = state.project.buildings.find(b => b.floors.some(f => f.id === state.selectedFloorId)) || state.project.buildings[0];
+      if (finishPresentation.open({kind:"building", id:building.id})) dom.finishPresentationDialog.showModal();
+      return;
+    }
     if (!buildingAssembly) return toast("Модуль 3D здания не загрузился. Обновите страницу.", "error");
     if (!state.project || !arrays(state.project.buildings).length) return toast("Сначала добавьте здание.", "error");
     if (state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs()) return toast("Завершите построение и примените изменённые параметры перед открытием 3D.", "error", 8000);
     if (saveInFlight) return toast("Сохранение уже выполняется. Откройте 3D после его завершения.");
     const projectId = state.project.id;
-    const building = state.project.buildings.find(item => arrays(item.floors).some(floor => floor.id === state.selectedFloorId)) || state.project.buildings[0];
+    const building = state.project.buildings.find(item => target?.kind === "building" ? item.id === target.id : arrays(item.floors).some(floor => floor.id === (target?.id || state.selectedFloorId))) || state.project.buildings[0];
     if (state.dirty) {toast("Сохраняем проект перед 3D-сборкой здания…"); await saveDraft();}
     if (state.project?.id !== projectId || state.dirty || state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs()) return;
     if (buildingAssembly.open({building_id:building.id}) && !dom.buildingAssemblyDialog.open) dom.buildingAssemblyDialog.showModal();
@@ -2030,6 +2052,7 @@
   function attachCatalog() { if (!state.catalogValid || !state.catalog) return; mutate("приложение кандидата каталога", (project) => { project.properties = project.properties || {}; project.properties.node_catalog = M.clone(state.catalog); }); setResult(dom.catalogResult, "Проверенный кандидат приложен к локальному черновику. Сохраните проект, чтобы зафиксировать его.", true); }
 
   function changeDocumentFormat() {
+    [dom.prepareSpecialButton,dom.prepareWholeWallButton].forEach(button=>{if(button)button.hidden=dom.documentFormat.value==="PANELS";});
     state.sheetContext = null; state.engineeringStale = true;
     dom.sheetPreview.replaceChildren(node("p", "empty-note", "Загружаем листы выбранного комплекта…"));
     dom.sheetList.replaceChildren();
@@ -2042,7 +2065,7 @@
     if (!state.project) return;
     const projectId = state.project.id, revision = state.baseRevision, format = dom.documentFormat.value, sequence = state.engineeringSequence = (state.engineeringSequence || 0) + 1;
     const query = `?revision=${encodeURIComponent(revision)}`, current = () => state.project?.id === projectId && state.baseRevision === revision && dom.documentFormat.value === format && state.engineeringSequence === sequence;
-    try { const [report, sheets] = await busy("Расчёт развёрток…", () => Promise.all([request(`/projects/${encodeURIComponent(projectId)}/engineering${query}`), request(`/projects/${encodeURIComponent(projectId)}/sheets${query}&format=${encodeURIComponent(format)}`)])); if (!current()) return; state.sheetContext = { projectId, revision, format }; state.engineeringStale = state.dirty; renderEngineering(report, sheets); }
+    try { const [report, sheets] = await busy("Расчёт развёрток…", () => Promise.all([format === "PANELS" ? Promise.resolve({issues:[],readiness:{purpose:"client_presentation"}}) : request(`/projects/${encodeURIComponent(projectId)}/engineering${query}`), request(`/projects/${encodeURIComponent(projectId)}/sheets${query}&format=${encodeURIComponent(format)}`)])); if (!current()) return; state.sheetContext = { projectId, revision, format }; state.engineeringStale = state.dirty; renderEngineering(report, sheets); }
     catch (error) { if (current()) setResult(dom.engineeringSummary, errorText(error, "Производные данные недоступны"), false); }
   }
   function renderEngineering(report, sheetData) {
@@ -2066,6 +2089,7 @@
     const sheetKinds={cad_section:"Сечение из STEP",wall_mount:"Развёртки монтажа",wall_mount_assembly:"Сборка узла · сечение",wall_mount_detail:"Узел примыкания · схема",wall_mount_nodes:"Ведомость узлов",wall_mount_quantities:"Ведомость облицовки",wall_mount_register:"Ведомость стен",wall_mount_requirements:"Условия монтажа",wall_mount_pieces:"Участки панелей",assembly_components:"Состав сборок",assembly_machining:"Пазы и выборки панелей",assembly_assumptions:"Посадки и происхождение",assembly_notes:"Примечания к сборкам",assembly_decisions:"Проектные решения",assembly_stale:"Сборки, требующие пересчёта",cover:"Обложка",contents:"Содержание",general:"Общие данные",plan:"План помещений",elevation:"Развёртка",elevations:"Развёртки стен",openings:"Двери, окна и проёмы",mount_checks:"Проверки монтажа",issues:"Замечания к проекту",table:"Ведомость",specification:"Спецификация",nodes:"Узлы",node:"Узел",node_candidate:"Узел из библиотеки",manual:"Методические указания",readiness:"Проверки документации"};
     const sheets = state.engineeringSheets = arrays(sheetData.sheets); state.selectedSheetNumber = null;
     if (dom.sheetListTitle) dom.sheetListTitle.textContent = `Листы · ${sheets.length}`;
+    Object.assign(sheetKinds,{client_cover:"Для заказчика",client_plan:"План раскладок",client_elevations:"Цветные раскладки панелей",client_schedule:"Ведомость панелей"});
     dom.sheetList.replaceChildren(); dom.sheetList.scrollTop = 0; sheets.forEach((sheet) => { const button = node("button", "sheet-item"); button.type = "button"; button.setAttribute("data-sheet-number", String(sheet.number)); button.setAttribute("aria-current", "false"); button.setAttribute("aria-controls", "sheetPreview"); button.append(node("strong", "", `${sheet.number}. ${sheet.title}`), node("span", "", sheetKinds[sheet.kind] || "Лист документации")); button.addEventListener("click", () => showSheet(sheet, {reveal: true})); dom.sheetList.append(button); });
     if (sheets.length) showSheet(sheets[0]);
     else {dom.sheetList.append(node("p", "empty-note", "Листы не сформированы.")); dom.sheetPreview?.replaceChildren(node("p", "empty-note", "В выбранном комплекте пока нет листов.")); if (dom.sheetPreviewTitle) dom.sheetPreviewTitle.textContent = "Нет листов"; if (dom.sheetPreviousButton) dom.sheetPreviousButton.disabled = true; if (dom.sheetNextButton) dom.sheetNextButton.disabled = true;}
@@ -2103,6 +2127,8 @@
       toast("Сначала примените правки и нажмите «Проверить и сохранить». Тогда в альбом попадёт текущий монтаж.", "error", 10000);
       return false;
     }
+    // Customer layouts need no native CAD or background engineering jobs.
+    if (dom.documentFormat.value === "PANELS") return true;
     const id = state.project.id;
     if (backgroundBuilds) {
       try {

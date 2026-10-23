@@ -50,7 +50,7 @@ def _report(snapshot: str):
 @lru_cache(maxsize=2)
 def _documents(snapshot: str, paper_format: str, derived_assemblies=False):
     from ..documents import build_documents
-    return build_documents(Project.model_validate_json(snapshot), paper_format=paper_format, report=_report(snapshot),
+    return build_documents(Project.model_validate_json(snapshot), paper_format=paper_format, report=None if paper_format == "PANELS" else _report(snapshot),
                            derived_assemblies=derived_assemblies)
 
 
@@ -129,10 +129,13 @@ def handle_extended(handler, method, path, repository, service, source_store, *,
             if revision < 1:
                 raise ValueError("Версия должна быть положительным целым числом")
         project = repository.get(parts[3], revision=revision)
-        if project_overlay is not None:
+        paper = query.get("format", ["A3"])[0]
+        if project_overlay is not None and paper != "PANELS":
             project = project_overlay(project, historical=revision is not None)
         snapshot = project.model_dump_json()
-        with BUILD_LOCK:
+        # Customer layouts are independent of heavy engineering report builds.
+        from contextlib import nullcontext
+        with (nullcontext() if paper == "PANELS" and action != "engineering" else BUILD_LOCK):
             if action == "engineering" and len(parts) == 5:
                 handler.send_json(_report(snapshot))
                 return True

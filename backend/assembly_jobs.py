@@ -42,6 +42,9 @@ def input_signature(project: Project) -> str:
     value = source_project(project).model_dump(mode="json")
     for key in ("revision", "created_at", "updated_at"):
         value.pop(key, None)
+    # Presentation colour cannot invalidate or enqueue a physical CAD build.
+    # Keep it in source_project/persistence; exclude it only from this key.
+    value.get("properties", {}).pop("finish_presentation", None)
     return digest({"policy": POLICY, "panel_layout": LAYOUT_VERSION,
                    "perimeter": PERIMETER_VERSION, "project": value})
 

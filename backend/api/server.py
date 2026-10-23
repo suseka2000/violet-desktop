@@ -289,7 +289,7 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
                         if path.startswith("/api/"):
                             self.server.desktop_requests += 1
                             counted = True
-                if method == "GET" and path in {"/", "/index.html", "/app.js", "/engineering-jobs.js", "/project-history.js", "/styles.css", "/model-editor.js", "/snapping.js", "/drafting.js", "/cad-mapping.js", "/vendor-library.js", "/cad-workspace.js", "/draft-recovery.js", "/editor-cad.css", "/wall-mount.js", "/wall-mount.css", "/batch-mount.js", "/batch-mount.css", "/mount-sections.js", "/mount-sections.css", "/mount-assemblies.js", "/mount-assemblies.css", "/special-assemblies.js", "/special-assemblies.css", "/whole-wall.js", "/whole-wall.css", "/room-assembly.js", "/room-assembly.css", "/building-assembly.js", "/building-assembly.css"}:
+                if method == "GET" and path in {"/", "/index.html", "/app.js", "/engineering-jobs.js", "/project-history.js", "/styles.css", "/model-editor.js", "/snapping.js", "/drafting.js", "/cad-mapping.js", "/vendor-library.js", "/cad-workspace.js", "/draft-recovery.js", "/editor-cad.css", "/wall-mount.js", "/wall-mount.css", "/batch-mount.js", "/batch-mount.css", "/mount-sections.js", "/mount-sections.css", "/mount-assemblies.js", "/mount-assemblies.css", "/special-assemblies.js", "/special-assemblies.css", "/whole-wall.js", "/whole-wall.css", "/room-assembly.js", "/room-assembly.css", "/building-assembly.js", "/building-assembly.css", "/finish-viewer.js", "/finish-presentation.js", "/finish-presentation.css"}:
                     filename = "index.html" if path == "/" else path[1:]
                     resource = root / "frontend" / filename
                     if not resource.is_file():
@@ -360,6 +360,9 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
                     return
                 from .whole_wall import handle_whole_wall
                 if handle_whole_wall(self, method, path, model_library, source_store, geometry_cache=assembly_jobs.wall_geometry_cache):
+                    return
+                from .finish_presentation import handle_finish_presentation
+                if handle_finish_presentation(self, method, path):
                     return
                 from .room_assembly import handle_room_assembly
                 if handle_room_assembly(self, method, path, room_assembly_jobs):
