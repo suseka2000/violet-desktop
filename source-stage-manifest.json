@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 375,
-  "total_bytes": 75083729,
+  "total_bytes": 75085438,
   "supplier_files": 88,
   "files": [
     {
@@ -2205,8 +2205,8 @@
     },
     {
       "path": "tests/test_agent_api.py",
-      "bytes": 4383,
-      "sha256": "731e050ec7b847613b00e381b32f5802cbbd701191902d976f40a764e9a04e2b",
+      "bytes": 5149,
+      "sha256": "283bdd1c036c4472a29aeb649c8d5ba8bb06ef772ad6e8359bc165846ef981d4",
       "kind": "source"
     },
     {
@@ -2247,8 +2247,8 @@
     },
     {
       "path": "tests/verify_desktop_frozen.py",
-      "bytes": 14675,
-      "sha256": "576a374aa54d04df57efd5bb7577d0f28f8dc39348a8d326c5362f50701dda02",
+      "bytes": 15618,
+      "sha256": "c7664a06697481e0e2eec7f08a1e4c17997ff940fc67754b55f1b808eb9b029b",
       "kind": "source"
     },
     {

@@ -48,6 +48,19 @@ class AgentApiTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertIn("mount", [x["target"] for x in result["destinations"]])
 
+    def test_native_acceptance_customer_album_fixture_has_mounted_panels(self):
+        from tests.test_agent import fixture
+        from tests.verify_desktop_frozen import verify_customer_presentation
+        from types import SimpleNamespace
+        def ok(method, path, value=None):
+            status, result = self.request(method, path, value)
+            self.assertTrue(200 <= status < 300, (status, result))
+            return result
+        project = ok("POST", "/api/v1/import", {"project": fixture().model_dump(mode="json")})["project"]
+        report = verify_customer_presentation(SimpleNamespace(ok=ok), f'/api/v1/projects/{project["id"]}')
+        self.assertGreater(report["panels"], 0)
+        self.assertGreater(report["panel_album_bytes"], 1000)
+
     def test_draft_api_never_saves_and_refuses_conflicting_apply(self):
         _, created = self.request("POST", "/api/v1/projects", {"name": "API agent test"})
         project = created["project"]

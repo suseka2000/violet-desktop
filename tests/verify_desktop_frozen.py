@@ -82,6 +82,27 @@ class Session:
             raise AssertionError(f"Desktop backend exit {self.process.returncode}: {stderr[-12000:]}")
 
 
+def verify_customer_presentation(session, project_path):
+    current = session.ok("GET", project_path)["project"]
+    wall = current["buildings"][0]["floors"][0]["walls"][0]
+    preview = session.ok("POST", "/api/v1/wall-mount/preview", {
+        "project": current, "wall_id": wall["id"],
+        "configuration": {"material": "veneer", "panel_thickness_mm": 16, "joint_mm": 8}})
+    current["properties"]["wall_mounting"] = {
+        "schema_version": "wall-mounting/1.0", "snapshot": preview["snapshot"],
+        "walls": [{"wall_id": wall["id"], "face_id": preview["wall"]["face_id"],
+                   "configuration": preview["configuration"], "geometry_signature": preview["geometry_signature"]}]}
+    # A customer layout requires a mounted face, but not expensive STEP jobs.
+    current = session.ok("PUT", project_path, {"project": current,
+        "expected_revision": current["revision"], "defer_assemblies": False})["project"]
+    presentation = session.ok("POST", "/api/v1/finish-presentation/preview", {"project": current})
+    assert presentation.get("floors") and presentation.get("panels"), presentation
+    panels_pdf = session.ok("GET", project_path + "/documents.pdf?format=PANELS")
+    assert panels_pdf.startswith(b"%PDF-") and b"%%EOF" in panels_pdf
+    return {"floors": len(presentation["floors"]), "panels": len(presentation["panels"]),
+            "panel_album_bytes": len(panels_pdf)}
+
+
 def verify(executable):
     start = time.monotonic()
     report = {"platform": platform.platform(), "architecture": platform.machine(),
@@ -202,13 +223,7 @@ def verify(executable):
             parsed = json.loads(worker.stdout)
             assert "error" not in parsed and parsed.get("entities"), parsed
             report["agent"]["frozen_dxf_reader"] = True
-            current = session.ok("GET", project_path)["project"]
-            presentation = session.ok("POST", "/api/v1/finish-presentation/preview", {"project": current})
-            assert presentation.get("floors"), presentation
-            panels_pdf = session.ok("GET", project_path + "/documents.pdf?format=PANELS")
-            assert panels_pdf.startswith(b"%PDF-") and b"%%EOF" in panels_pdf
-            report["customer_presentation"] = {"floors": len(presentation["floors"]),
-                                               "panel_album_bytes": len(panels_pdf)}
+            report["customer_presentation"] = verify_customer_presentation(session, project_path)
         finally:
             session.close()
         # The same binary, labelled as a newer release, exercises pre-migration
