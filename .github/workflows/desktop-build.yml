@@ -11,11 +11,12 @@ on:
         type: boolean
         default: false
       target:
-        description: "Native target (use windows for a Windows-only repair build)"
+        description: "Native target (rebuild one platform without repeating successful jobs)"
         type: choice
         options:
           - all
           - windows
+          - mac-intel
         default: all
 permissions:
   contents: read
@@ -25,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJSON(inputs.target == 'windows' && '[{"runner":"windows-2022","platform":"win","arch":"x64","backend":"violet-backend.exe"}]' || '[{"runner":"macos-15","platform":"mac","arch":"arm64","backend":"violet-backend"},{"runner":"macos-15-intel","platform":"mac","arch":"x64","backend":"violet-backend"},{"runner":"windows-2022","platform":"win","arch":"x64","backend":"violet-backend.exe"}]') }}
+        include: ${{ fromJSON(inputs.target == 'windows' && '[{"runner":"windows-2022","platform":"win","arch":"x64","backend":"violet-backend.exe"}]' || inputs.target == 'mac-intel' && '[{"runner":"macos-15-intel","platform":"mac","arch":"x64","backend":"violet-backend"}]' || '[{"runner":"macos-15","platform":"mac","arch":"arm64","backend":"violet-backend"},{"runner":"macos-15-intel","platform":"mac","arch":"x64","backend":"violet-backend"},{"runner":"windows-2022","platform":"win","arch":"x64","backend":"violet-backend.exe"}]') }}
     runs-on: ${{ matrix.runner }}
     # Configure this environment's reviewers before allowing production secrets.
     environment: ${{ inputs.release && 'desktop-release' || 'desktop-preview' }}

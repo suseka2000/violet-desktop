@@ -4,13 +4,13 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 375,
-  "total_bytes": 75085438,
+  "total_bytes": 75085783,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 6289,
-      "sha256": "4e52c5047c271673b054e53ea7e85b80369ed87a7fa7abf004b16245d20c1a4e",
+      "bytes": 6446,
+      "sha256": "5509b90c69765e4fa7a1ece0ed613197914650cac4285fef0e441f79677e1b6b",
       "kind": "source"
     },
     {
@@ -2205,8 +2205,8 @@
     },
     {
       "path": "tests/test_agent_api.py",
-      "bytes": 5149,
-      "sha256": "283bdd1c036c4472a29aeb649c8d5ba8bb06ef772ad6e8359bc165846ef981d4",
+      "bytes": 5337,
+      "sha256": "dd2310c473e671db11d3b9011d9a900a6126a78008825beb35a488ff8a6508b9",
       "kind": "source"
     },
     {

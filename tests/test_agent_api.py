@@ -27,8 +27,8 @@ class AgentApiTests(unittest.TestCase):
         cls.thread.join(timeout=5)
         cls.directory.cleanup()
 
-    def request(self, method, path, data=None, extra_headers=None):
-        connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=5)
+    def request(self, method, path, data=None, extra_headers=None, timeout=5):
+        connection = http.client.HTTPConnection("127.0.0.1", self.port, timeout=timeout)
         body = json.dumps(data, ensure_ascii=False).encode() if data is not None else None
         headers = {"Content-Type": "application/json"} if body is not None else {}
         headers.update(extra_headers or {})
@@ -53,7 +53,9 @@ class AgentApiTests(unittest.TestCase):
         from tests.verify_desktop_frozen import verify_customer_presentation
         from types import SimpleNamespace
         def ok(method, path, value=None):
-            status, result = self.request(method, path, value)
+            # Cold library/model indexing on hosted Intel Macs can exceed 5 s.
+            # Keep short timeouts for API safety tests; this is an export test.
+            status, result = self.request(method, path, value, timeout=90)
             self.assertTrue(200 <= status < 300, (status, result))
             return result
         project = ok("POST", "/api/v1/import", {"project": fixture().model_dump(mode="json")})["project"]
