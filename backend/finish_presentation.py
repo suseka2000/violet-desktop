@@ -15,6 +15,7 @@ from .domain.models import Identifier, Model, Project
 from .panel_layout import layout_pieces
 from .wall_mount import MountConfiguration, mount_scope_targets
 from .finish_geometry import FloorGeometry, outline
+from .finish_surfaces import FLOOR_COLOR, PROFILE_COLOR, disjoint_profiles, floor_slabs, joint_rectangles
 
 Color = Annotated[str, Field(pattern=r"^#[0-9a-fA-F]{6}$")]
 DEFAULT_COLOR = "#c4ab86"
@@ -25,6 +26,11 @@ class Appearance(Model):
     panel_color: Color = DEFAULT_COLOR
     face_colors: dict[Identifier, Color] = Field(default_factory=dict)
     panel_colors: dict[Identifier, Color] = Field(default_factory=dict)
+    profile_color: Color = PROFILE_COLOR
+    face_profile_colors: dict[Identifier, Color] = Field(default_factory=dict)
+    floor_color: Color = FLOOR_COLOR
+    floor_colors: dict[Identifier, Color] = Field(default_factory=dict)
+    floor_thickness_mm: Annotated[float, Field(gt=0, le=2000)] = 200.
     # Visual finish overrides do not change manufacturing materials or STEP.
     surface: Literal["auto", "veneer", "hpl", "painted"] = "auto"
     face_surfaces: dict[Identifier, Literal["auto", "veneer", "hpl", "painted"]] = Field(default_factory=dict)
@@ -185,7 +191,7 @@ def build_finish_presentation(project, scope=None):
             openings.append({"id": o.id, "name": o.name, "kind": o.kind,
                 "x_mm": round(o.offset_mm if direction == 1 else length-o.offset_mm-o.width_mm, 6),
                 "y_mm": round(o.sill_mm, 6), "width_mm": round(o.width_mm, 6), "height_mm": round(o.height_mm, 6)})
-        panels, _, _, layout = layout_pieces(length, wall.height_mm, config, openings)
+        panels, columns, rows, layout = layout_pieces(length, wall.height_mm, config, openings)
         cavity = cavities.get(key, 80.)
         if isinstance(cavity, bool) or not isinstance(cavity, (int, float)) or not math.isfinite(cavity) or not 0 <= cavity <= 10000:
             raise ValueError("Некорректная глубина облицовки")
@@ -202,13 +208,20 @@ def build_finish_presentation(project, scope=None):
             "panel_colors": {p["id"]: style.panel_colors.get(face.id+":"+p["id"],
                                style.face_colors.get(face.id, style.panel_color)).lower() for p in panels},
             "panels": panels, "openings": openings, "layout": layout, "clips": []})
+        profile, strips = joint_rectangles(views[-1], columns, rows)
+        views[-1].update(joint_profile=profile, profile_strips=strips,
+                         profile_color=style.face_profile_colors.get(face.id, style.profile_color))
     _miters(views)
     floor_geometry = {f.id: FloorGeometry(f, floor_map[f.id], [v for v in views if v["floor_id"] == f.id],
                                         framing_by_key, warnings)
                       for b in project.buildings for f in b.floors if f.id in allowed}
     structures = [part for geometry in floor_geometry.values()
                   for part in geometry.structures({key[0] for key in targets} if targets is not None else None)]
-    solids, schematic, counts, area = [], [], Counter(), 0.
+    slabs = [part for b in project.buildings for f in b.floors if f.id in allowed
+             for part in floor_slabs(f, floor_map[f.id], style, warnings,
+                                    space_id=scope.id if scope and scope.kind == "space" else None,
+                                    tolerance=project.settings.geometry_tolerance_mm)]
+    solids, profiles, schematic, counts, area = [], [], [], Counter(), 0.
     for index, view in enumerate(views, 1):
         view["mark"] = f"П{index:03d}"
         t, n, origin = view["tangent"], view["normal"], view["start"]
@@ -248,6 +261,31 @@ def build_finish_presentation(project, scope=None):
                                [a[i]+t[i]*min(25, w*.15) for i in range(2)]+[z+h*fraction]]})
             counts[view["floor_id"]] += 1
             area += p["area_m2"]
+        profile = view["joint_profile"]
+        for number, strip in enumerate(view["profile_strips"], 1):
+            x, y, w, h = (strip[k] for k in ("x_mm", "y_mm", "width_mm", "height_mm"))
+            front = depth+profile["front_mm"]
+            footprint = [[origin[i]+t[i]*xx+n[i]*dd for i in range(2)]
+                         for xx, dd in ((x, front), (x+w, front),
+                                        (x+w, front-profile["depth_mm"]), (x, front-profile["depth_mm"]))]
+            for normal, offset in view["clips"]:
+                if footprint:
+                    footprint = _clip(footprint, normal, offset)
+            if len(footprint) < 3:
+                continue
+            parts = floor_geometry[view["floor_id"]].panel_parts(view, footprint, view["elevation_mm"]+y, h)
+            if not parts:
+                continue
+            meshes = [{**outline(poly), "bottom_mm": low, "height_mm": high-low}
+                      for (low, high), poly in parts]
+            profiles.append({"id": f"profile:{view['face_id']}:{number}", "kind": "profile",
+                "face_id": view["face_id"], "wall_id": view["wall_id"], "floor_id": view["floor_id"],
+                "label": profile["family"], "material": "metal", "color": view["profile_color"],
+                "orientation": strip["orientation"], "representation": profile["basis"],
+                "joint_mm": view["configuration"]["joint_mm"], "face_width_mm": profile["width_mm"],
+                "front_normal": n, "tangent": t, "texture_origin_mm": origin+[view["elevation_mm"]],
+                "footprint_mm": meshes[0]["footprint_mm"], "bottom_mm": view["elevation_mm"]+y,
+                "height_mm": h, "meshes": meshes})
         view.pop("clips")
         view.pop("miter_wall_ids", None)
     if any(f["auto_stacked"] for f in floors if f["id"] in allowed):
@@ -257,6 +295,7 @@ def build_finish_presentation(project, scope=None):
     return {"schema_version": "finish-scene/1.0", "project_id": project.id, "source_revision": project.revision,
         "scope": scope.model_dump() if scope else None, "appearance": style.model_dump(),
         "floors": [{**f, "panel_count": counts[f["id"]]} for f in floors if f["id"] in allowed],
-        "views": views, "panels": solids, "structures": structures, "schematic_fixings": schematic,
+        "views": views, "panels": solids, "profiles": disjoint_profiles(profiles), "slabs": slabs,
+        "structures": structures, "schematic_fixings": schematic,
         "warnings": list(dict.fromkeys(warnings)), "summary": {"wall_count": len(views), "piece_count": len(solids), "area_m2": round(area, 3)},
         "representation": "solid_panels_schematic_fixings", "fixings_are_schematic": True}

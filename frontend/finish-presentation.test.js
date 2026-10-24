@@ -48,3 +48,17 @@ test("latest scope wins when older requests return out of order",async()=>{
 test("a stale saved revision cannot populate the view",async()=>{
   const h=setup();h.api.open({kind:"floor",id:"f"});h.pending.shift()({...h.result,source_revision:3});await tick();assert.equal(h.draws.filter(Boolean).length,0);assert.ok(h.nodes().some(e=>e.textContent==="Модель относится к другой версии проекта"));
 });
+test("profile and floor colours are independent, scoped, saved, and do not request new geometry",async()=>{
+  const h=setup();h.api.open({kind:"building",id:"b"});h.pending.shift()(h.result);await tick();
+  const find=label=>h.nodes().find(e=>e.attributes["aria-label"]===label),change=(label,value)=>{const e=find(label);e.value=value;e.fire("change");};
+  change("Цвет межпанельных профилей","#112233");change("Цвет пола","#667788");
+  h.viewer.options.onSelect({id:"face:panel-1",face_id:"face",label:"П001 / 1",width_mm:600,height_mm:3000,thickness_mm:12});
+  change("Где изменить цвет профилей","wall");change("Цвет межпанельных профилей","#aabbcc");
+  change("Где изменить цвет пола","f");change("Цвет пола","#998877");
+  let style=h.project.properties.finish_presentation;
+  assert.equal(style.panel_color,"#abcdef");assert.equal(style.profile_color,"#112233");assert.equal(style.face_profile_colors.face,"#aabbcc");assert.equal(style.floor_color,"#667788");assert.equal(style.floor_colors.f,"#998877");
+  assert.equal(h.calls.length,1);assert.equal(h.mutations.length,4);
+  change("Где изменить цвет профилей","all");change("Цвет межпанельных профилей","#ffffff");
+  style=h.project.properties.finish_presentation;assert.deepEqual(style.face_profile_colors,{});assert.equal(style.floor_colors.f,"#998877");
+  assert.ok(h.nodes().some(e=>e.textContent==="Полы (непрозрачные)"));
+});

@@ -47,6 +47,7 @@
 !/backend/fastening_records.py
 !/backend/finish_geometry.py
 !/backend/finish_presentation.py
+!/backend/finish_surfaces.py
 !/backend/fitted_wall_reuse.py
 !/backend/geometry/
 !/backend/importing/
@@ -167,6 +168,7 @@
 !/tests/test_desktop_runtime.py
 !/tests/test_desktop_source_staging.py
 !/tests/test_finish_geometry.py
+!/tests/test_finish_surfaces.py
 !/tests/verify_desktop_frozen.py
 !/tests/verify_desktop_windows_install.py
 /.github/workflows/*

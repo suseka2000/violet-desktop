@@ -44,7 +44,7 @@ test("opaque depth-tested rendering uses two batches and never reuploads on orbi
 test("colour and hidden walls update batches; picking selects nearest opaque face",()=>{
   const {viewer,calls,flush}=harness();viewer.setScene(scene);viewer.view("front");flush();
   assert.equal(viewer.pick(500,350).face_id,"wall");
-  const before=calls.filter(c=>c[0]==="bufferData").length;viewer.setAppearance({panel_color:"#123456"});flush();assert.equal(calls.filter(c=>c[0]==="bufferData").length,before+4);
+  const before=calls.filter(c=>c[0]==="bufferData").length;viewer.setAppearance({panel_color:"#123456"});flush();assert.equal(calls.filter(c=>c[0]==="bufferData").length,before+6);
   viewer.setHidden(["wall"]);flush();assert.equal(viewer.pick(500,350),null);assert.equal(viewer.stats().panels,0);viewer.dispose();
 });
 test("right-handed camera has the same plan orientation as the editor at every orbit",()=>{
@@ -62,4 +62,41 @@ test("a trimmed panel retains one selectable identity and per-panel visual mater
   const p=V.prepare({...scene,panels:[split]});assert.equal(p.parts.length,2);assert.ok(p.parts.every(p=>p.panel.id==="one"));
   assert.equal(V.surface(panel,{surface:"painted",face_surfaces:{wall:"hpl"},panel_surfaces:{one:"veneer"}}),"veneer");
   assert.equal(V.surface({...panel,material:"veneer"},{surface:"hpl",panel_surfaces:{one:"auto"}}),"veneer");
+});
+test("opaque upper floor occludes lower panels even with both floors selected, independently of walls",()=>{
+  const {viewer,gl,calls,events,flush}=harness();
+  const slab={id:"slab",floor_id:"upper",kind:"floor",color:"#cccccc",footprint_mm:[[0,0],[800,0],[800,16],[0,16]],bottom_mm:5600,height_mm:200};
+  viewer.setScene({...scene,slabs:[slab]});viewer.setFloors(["floor","upper"]);viewer.setLayers(true,false,false);viewer.view("top");flush();
+  assert.equal(viewer.pick(500,350),null);assert.equal(viewer.stats().panels,1);assert.equal(viewer.stats().floors,1);
+  assert.equal(calls.filter(c=>c[0]==="drawArrays").length,3);
+  assert.ok(calls.some(c=>c[0]==="disable"&&c[1]===gl.BLEND));
+  const uploads=calls.filter(c=>c[0]==="bufferData").length;
+  events.wheel({deltaY:-10,clientX:500,clientY:350,preventDefault(){}});flush();assert.equal(calls.filter(c=>c[0]==="bufferData").length,uploads);
+  viewer.setLayers(true,false,false,true,false);flush();assert.equal(viewer.pick(500,350).id,"one");
+  viewer.setLayers(true,false,false);viewer.setFloors(["floor"]);flush();assert.equal(viewer.pick(500,350).id,"one");viewer.dispose();
+});
+test("profiles and floors have their own colours and batches, not panel texture, count or wireframes",()=>{
+  const style={panel_color:"#112233",profile_color:"#ededed",floor_color:"#aabbcc",face_profile_colors:{wall:"#223344"},floor_colors:{upper:"#a0b0c0"}};
+  assert.equal(V.partColor({...panel,kind:"profile"},style),"#223344");assert.equal(V.partColor({...panel,kind:"floor"},style),"#aabbcc");
+  assert.equal(V.partColor({...panel,kind:"floor",floor_id:"upper"},style),"#a0b0c0");assert.equal(V.partColor(panel,style),"#112233");
+  const profile={...panel,id:"trim",kind:"profile",height_mm:3000},h=harness();
+  h.viewer.setScene({...scene,profiles:[profile]});h.flush();assert.equal(h.viewer.stats().panels,1);assert.equal(h.viewer.stats().profiles,1);
+  assert.equal(h.calls.filter(c=>c[0]==="drawArrays"&&c[1]===h.gl.LINES).length,1);assert.equal(h.calls.filter(c=>c[0]==="drawArrays").length,3);
+  h.viewer.setFloors([]);h.flush();assert.equal(h.viewer.stats().profiles,0);h.viewer.dispose();
+});
+test("thin visible profile centrelines stay depth tested and use one static batch during orbit",()=>{
+  const h=harness(),profile={...panel,id:"thin",kind:"profile",front_normal:[0,-1],orientation:"vertical"};
+  h.viewer.setScene({...scene,profiles:[profile]});h.flush();
+  const lines=h.calls.filter(c=>c[0]==="drawArrays"&&c[1]===h.gl.LINES);
+  assert.equal(lines.length,2);assert.ok(lines.some(c=>c[2]>0&&c[3]===2));
+  const uploads=h.calls.filter(c=>c[0]==="bufferData").length;
+  h.events.pointerdown({button:0,pointerId:1,clientX:300,clientY:300,preventDefault(){}});
+  h.events.pointermove({pointerId:1,clientX:500,clientY:350});h.flush();
+  assert.equal(h.calls.filter(c=>c[0]==="bufferData").length,uploads);h.viewer.dispose();
+});
+test("an opaque floor wins picking and depth bias at a coplanar lower wall top",()=>{
+  const h=harness(),slab={...panel,id:"slab",floor_id:"upper",kind:"floor",bottom_mm:5300,height_mm:200};
+  h.viewer.setScene({...scene,slabs:[slab]});h.viewer.view("top");h.flush();
+  assert.equal(h.viewer.pick(500,350),null);assert.ok(h.calls.some(c=>c[0]==="polygonOffset"&&c[1]<0&&c[2]<0));
+  h.viewer.setFloors(["floor"]);h.flush();assert.equal(h.viewer.pick(500,350).id,"one");h.viewer.dispose();
 });
