@@ -59,6 +59,10 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Verify bundle allowlist and runtime tests
         run: python -m unittest -v tests.test_desktop_packaging tests.test_desktop_library_io tests.test_desktop_runtime tests.test_desktop_source_staging
+      - name: Verify agent draft safety and customer 3D geometry (no API calls)
+        run: python -m unittest -v tests.test_agent tests.test_agent_api tests.test_finish_geometry tests.test_finish_surfaces
+      - name: Verify editor and presentation interface
+        run: node --test frontend/*.test.js
       - name: Build native backend (approved assets, no personal projects)
         run: python desktop/scripts/build_backend.py
       - name: Verify frozen STEP/PDF workers and safe data upgrade

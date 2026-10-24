@@ -4,13 +4,13 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 375,
-  "total_bytes": 75076780,
+  "total_bytes": 75079547,
   "supplier_files": 88,
   "files": [
     {
       "path": ".github/workflows/desktop-build.yml",
-      "bytes": 5983,
-      "sha256": "7cd5e0a00b1395acc29b71445886f0016725373e555f8b55da2075849a2b03b0",
+      "bytes": 6289,
+      "sha256": "4e52c5047c271673b054e53ea7e85b80369ed87a7fa7abf004b16245d20c1a4e",
       "kind": "source"
     },
     {
@@ -1234,7 +1234,7 @@
     {
       "path": "desktop/package.json",
       "bytes": 784,
-      "sha256": "35c127f39be336f02e9e7f4a28225937059677eed32d0ad38fa18cfad4776e93",
+      "sha256": "7d5d0257ff967e8ef3edb328f936bcdc5b74f62c0bfa88bfdc0f6b48027fea71",
       "kind": "source"
     },
     {
@@ -2247,8 +2247,8 @@
     },
     {
       "path": "tests/verify_desktop_frozen.py",
-      "bytes": 11558,
-      "sha256": "994aaca6a400dcd8db9c46fb11e5d8e1e3b86125d4b92585b70a47fe3bc70a9f",
+      "bytes": 14019,
+      "sha256": "99499943ab564ce7e6b7cbcea0eae219c098e0f1df3fe036976c4b5b7c45ef18",
       "kind": "source"
     },
     {

@@ -5,6 +5,7 @@ Run: python -m tests.verify_desktop_frozen /absolute/violet-backend /tmp/report.
 """
 from __future__ import annotations
 
+import base64
 import hashlib
 import http.client
 import json
@@ -26,7 +27,7 @@ class Session:
         self.token = secrets.token_hex(32)
         self.errors = tempfile.TemporaryFile("w+b")
         env = {key: value for key, value in os.environ.items()
-               if key not in {"PYTHONPATH", "PYTHONHOME", "VIOLET_DESKTOP_PROCESS", "VIOLET_WORKER_PARENT_PID"}}
+               if key not in {"PYTHONPATH", "PYTHONHOME", "VIOLET_DESKTOP_PROCESS", "VIOLET_WORKER_PARENT_PID", "OPENAI_API_KEY"}}
         env.update(VIOLET_DESKTOP_TOKEN=self.token, VIOLET_DESKTOP_VERSION=version)
         self.process = subprocess.Popen([str(executable), "--data-dir", str(directory),
                                          "--parent-pid", str(os.getpid())],
@@ -93,6 +94,17 @@ def verify(executable):
                 assert session.request("GET", path, authorized=False)[0] == 401
             report["auth"] = "all tested unauthenticated routes rejected"
             assert b"<!doctype html>" in session.ok("GET", "/").lower()
+            for path in ("/agent-panel.js", "/agent-panel.css", "/finish-presentation.js", "/finish-viewer.js"):
+                assert len(session.ok("GET", path)) > 100, path
+            settings = session.ok("GET", "/api/v1/agent/settings")
+            assert not settings["configured"], settings
+            destinations = session.ok("GET", "/api/v1/agent/help")["destinations"]
+            assert {"mount", "appearance", "documents"} <= {item["target"] for item in destinations}
+            attached = session.ok("POST", "/api/v1/agent/files", {
+                "filename": "acceptance.txt", "content_base64": base64.b64encode(b"Local-only file").decode()})
+            assert attached["uploaded_to_openai"] is False, attached
+            report["agent"] = {"ui_included": True, "navigation": True, "local_attachment": True,
+                               "paid_api_calls": 0}
             health = session.ok("GET", "/api/v1/desktop/health")
             assert health["active_jobs"] == 0 and not health["closing"], health
             assert session.ok("GET", "/api/v1/projects")["projects"] == []
@@ -170,6 +182,25 @@ def verify(executable):
             assert b"SECTION" in album_dxf and b"EOF" in album_dxf
             report["room_album"] = {"pdf_bytes": len(pdf), "embedded_font": True,
                                     "editable_dxf_bytes": len(album_dxf)}
+            # Exercise the actual new frozen worker, not the developer Python.
+            worker_env = {key: value for key, value in os.environ.items() if key not in {
+                "PYTHONPATH", "PYTHONHOME", "VIOLET_DESKTOP_PROCESS", "VIOLET_WORKER_PARENT_PID",
+                "VIOLET_DESKTOP_TOKEN", "OPENAI_API_KEY"}}
+            worker = subprocess.run([str(executable), "--worker", "backend.agent.file_reader"],
+                                    input=json.dumps({"filename": "album.pdf", "content": base64.b64encode(pdf).decode(),
+                                                      "mode": "text", "page": 1}).encode(),
+                                    capture_output=True, timeout=90, cwd=directory, env=worker_env)
+            assert worker.returncode == 0, worker.stderr[-1000:]
+            parsed = json.loads(worker.stdout)
+            assert "error" not in parsed and parsed.get("text"), parsed
+            report["agent"]["frozen_pdf_reader"] = True
+            current = session.ok("GET", project_path)["project"]
+            presentation = session.ok("POST", "/api/v1/finish-presentation/preview", {"project": current})
+            assert presentation.get("floors"), presentation
+            panels_pdf = session.ok("GET", project_path + "/documents.pdf?format=PANELS")
+            assert panels_pdf.startswith(b"%PDF-") and b"%%EOF" in panels_pdf
+            report["customer_presentation"] = {"floors": len(presentation["floors"]),
+                                               "panel_album_bytes": len(panels_pdf)}
         finally:
             session.close()
         # The same binary, labelled as a newer release, exercises pre-migration
