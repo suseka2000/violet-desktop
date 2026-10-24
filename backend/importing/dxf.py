@@ -134,10 +134,11 @@ def _read_document(content: bytes, filename: str):
     payload = bounded_content(content)
     safe_name = safe_filename(filename)
     try:
-        with tempfile.NamedTemporaryFile(suffix=".dxf") as source:
-            source.write(payload)
-            source.flush()
-            document = ezdxf.readfile(source.name)
+        # Close the writer before ezdxf reopens the file (required on Windows).
+        with tempfile.TemporaryDirectory(prefix="violet-dxf-import-") as directory:
+            source = Path(directory) / "drawing.dxf"
+            source.write_bytes(payload)
+            document = ezdxf.readfile(source)
     except (OSError, DXFError, UnicodeError, ValueError, TypeError, OverflowError) as exc:
         raise MalformedSourceError(f"Не удалось прочитать DXF {safe_name!r}: файл повреждён или имеет неверный формат") from exc
 

@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 375,
-  "total_bytes": 75079547,
+  "total_bytes": 75081913,
   "supplier_files": 88,
   "files": [
     {
@@ -459,8 +459,8 @@
     },
     {
       "path": "backend/dxf_workspace.py",
-      "bytes": 18060,
-      "sha256": "8a389005e6a9ac7e58ffd44c55aff17caf596dc596b1040125b93e57e0c5f955",
+      "bytes": 18289,
+      "sha256": "37bf27363198c86b1133ec8c1630352906be984546b6124bdfce13da41da3e0a",
       "kind": "source"
     },
     {
@@ -555,8 +555,8 @@
     },
     {
       "path": "backend/importing/dxf.py",
-      "bytes": 46866,
-      "sha256": "001be8f04d29a10b301e51e4bd404e9beace4bc05336b30f6d5e10d6266a004e",
+      "bytes": 46990,
+      "sha256": "f467c2303cbaed5c077add59e89d2ef143854472c94163fe7cf3b8115b9ba7b2",
       "kind": "source"
     },
     {
@@ -2199,8 +2199,8 @@
     },
     {
       "path": "tests/test_agent.py",
-      "bytes": 18881,
-      "sha256": "e9922db0417ee55c67d429e8805755187816a670f90b5d055f874a71687eb76d",
+      "bytes": 20238,
+      "sha256": "d7a258aaa103d91c18edc39bf092205a0c2361476a36248a702e10991c943778",
       "kind": "source"
     },
     {
@@ -2247,8 +2247,8 @@
     },
     {
       "path": "tests/verify_desktop_frozen.py",
-      "bytes": 14019,
-      "sha256": "99499943ab564ce7e6b7cbcea0eae219c098e0f1df3fe036976c4b5b7c45ef18",
+      "bytes": 14675,
+      "sha256": "576a374aa54d04df57efd5bb7577d0f28f8dc39348a8d326c5362f50701dda02",
       "kind": "source"
     },
     {

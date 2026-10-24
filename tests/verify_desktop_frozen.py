@@ -194,6 +194,14 @@ def verify(executable):
             parsed = json.loads(worker.stdout)
             assert "error" not in parsed and parsed.get("text"), parsed
             report["agent"]["frozen_pdf_reader"] = True
+            worker = subprocess.run([str(executable), "--worker", "backend.agent.file_reader"],
+                                    input=json.dumps({"filename": "section.dxf", "content": base64.b64encode(dxf).decode(),
+                                                      "mode": "text", "page": 1}).encode(),
+                                    capture_output=True, timeout=90, cwd=directory, env=worker_env)
+            assert worker.returncode == 0, worker.stderr[-1000:]
+            parsed = json.loads(worker.stdout)
+            assert "error" not in parsed and parsed.get("entities"), parsed
+            report["agent"]["frozen_dxf_reader"] = True
             current = session.ok("GET", project_path)["project"]
             presentation = session.ok("POST", "/api/v1/finish-presentation/preview", {"project": current})
             assert presentation.get("floors"), presentation

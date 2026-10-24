@@ -9,6 +9,7 @@ import base64
 from collections import Counter
 import io
 import math
+from pathlib import Path
 import re
 import tempfile
 
@@ -42,10 +43,12 @@ def _read(content):
     if not content or len(content) > MAX_BYTES:
         raise SourceLimitError("DXF должен быть непустым и не превышать 64 МиБ")
     try:
-        with tempfile.NamedTemporaryFile(suffix=".dxf") as source:
-            source.write(content)
-            source.flush()
-            doc = ezdxf.readfile(source.name)
+        # ezdxf opens the path itself. Windows forbids reopening a still-open
+        # delete-on-close NamedTemporaryFile; close the writer before parsing.
+        with tempfile.TemporaryDirectory(prefix="violet-dxf-workspace-") as directory:
+            source = Path(directory) / "drawing.dxf"
+            source.write_bytes(content)
+            doc = ezdxf.readfile(source)
         if len(doc.entitydb) > MAX_ENTITIES or len(doc.layouts) > MAX_LAYOUTS:
             raise SourceLimitError("DXF превышает лимит 300 000 объектов или 128 пространств")
         audit = doc.audit()

@@ -174,6 +174,34 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(result["entities"][0]["block"], "DOOR_900")
         self.assertEqual(result["entities"][0]["geometry"][0]["start"], [1000, 2000])
 
+    def test_dxf_readers_close_and_clean_up_temporary_files(self):
+        import ezdxf
+        from backend.dxf_workspace import _read
+        from backend.importing.dxf import _read_document
+        from backend.importing.errors import MalformedSourceError
+        doc = ezdxf.new(); doc.modelspace().add_line((0, 0), (100, 100))
+        stream = StringIO(); doc.write(stream)
+        content = stream.getvalue().encode()
+        original_read = ezdxf.readfile
+        for reader in (lambda: _read(content), lambda: _read_document(content, "source.dxf")):
+            for fails in (False, True):
+                observed = []
+                def read(path):
+                    source = Path(path)
+                    observed.append(source)
+                    self.assertEqual(source.read_bytes(), content)
+                    if fails:
+                        raise OSError("Cannot read temporary file")
+                    return original_read(path)
+                with patch("ezdxf.readfile", side_effect=read):
+                    if fails:
+                        with self.assertRaises(MalformedSourceError): reader()
+                    else:
+                        reader()
+                self.assertEqual(len(observed), 1)
+                self.assertFalse(observed[0].exists())
+                self.assertFalse(observed[0].parent.exists())
+
     def test_cad_crop_and_arc_bulges_cannot_be_mistaken_for_straight_room(self):
         import ezdxf
         doc = ezdxf.new()
