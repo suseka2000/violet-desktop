@@ -197,7 +197,9 @@ def main():
         result = process(content, filename, payload)
     except Exception as error:
         result = {"error": str(error)[:800]}
-    sys.stdout.write(json.dumps(result, ensure_ascii=False, allow_nan=False))
+    # Frozen Windows stdout may use cp1252 even with PYTHONUTF8 set. ASCII JSON
+    # preserves Unicode after decoding and is portable across all pipe encodings.
+    sys.stdout.write(json.dumps(result, ensure_ascii=True, allow_nan=False))
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@
   "git_initialized": false,
   "uploaded": false,
   "file_count": 375,
-  "total_bytes": 75081913,
+  "total_bytes": 75083729,
   "supplier_files": 88,
   "files": [
     {
@@ -39,8 +39,8 @@
     },
     {
       "path": "backend/agent/file_reader.py",
-      "bytes": 11011,
-      "sha256": "6ed7f4584321fb526c33de1373a92482c2a90390dfa6b905cc4b1164e34d8b80",
+      "bytes": 11172,
+      "sha256": "79fedb3bcc807c5decd5727e28efff2403fceee7ce0e7946d167e0d4265d18e2",
       "kind": "source"
     },
     {
@@ -729,8 +729,8 @@
     },
     {
       "path": "backend/source_worker.py",
-      "bytes": 3873,
-      "sha256": "0d47a079b4e766ce01170083d8c6bc6fbe6ec20e103d98a01e5f0253468288b4",
+      "bytes": 4032,
+      "sha256": "8dd794a449ef0ac38170d0280a8a12776e5df252bbd96231284d3a45370a6868",
       "kind": "source"
     },
     {
@@ -2199,8 +2199,8 @@
     },
     {
       "path": "tests/test_agent.py",
-      "bytes": 20238,
-      "sha256": "d7a258aaa103d91c18edc39bf092205a0c2361476a36248a702e10991c943778",
+      "bytes": 21734,
+      "sha256": "d667ef276fce8b52a0c8550f36e4550dc47d2fe5f054fefbb233237d1c8496cd",
       "kind": "source"
     },
     {

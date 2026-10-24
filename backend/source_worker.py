@@ -75,7 +75,9 @@ def main():
         response = {"error": exc.as_dict()}
     except Exception:
         response = {"error": {"code": "SOURCE_PARSE_FAILED", "message": "Не удалось безопасно разобрать исходник", "details": {}}}
-    sys.stdout.write(json.dumps(response, ensure_ascii=False, allow_nan=False))
+    # Frozen Windows ignores Python's locale environment during initialization.
+    # Escaped JSON keeps Russian room/layer names intact through any code page.
+    sys.stdout.write(json.dumps(response, ensure_ascii=True, allow_nan=False))
 
 
 if __name__ == "__main__":

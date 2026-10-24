@@ -1,6 +1,6 @@
 import base64
 from copy import deepcopy
-from io import BytesIO, StringIO
+from io import BytesIO, StringIO, TextIOWrapper
 import json
 from pathlib import Path
 import tempfile
@@ -173,6 +173,29 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(result["millimetre_factor"], 1)
         self.assertEqual(result["entities"][0]["block"], "DOOR_900")
         self.assertEqual(result["entities"][0]["geometry"][0]["start"], [1000, 2000])
+
+    def test_file_worker_keeps_russian_text_on_ascii_console(self):
+        from backend.agent.file_reader import main
+        payload = json.dumps({"filename": "текст.txt", "content": base64.b64encode("Окно и дверь".encode()).decode()}).encode()
+        incoming = TextIOWrapper(BytesIO(payload), encoding="ascii")
+        raw = BytesIO(); outgoing = TextIOWrapper(raw, encoding="ascii")
+        with patch("sys.stdin", incoming), patch("sys.stdout", outgoing), patch.dict("sys.modules", {"resource": None}):
+            main()
+            outgoing.flush()
+        self.assertEqual(json.loads(raw.getvalue())["text"], "Окно и дверь")
+
+    def test_source_worker_keeps_russian_names_on_ascii_console(self):
+        from backend.source_worker import main
+        payload = json.dumps({"operation": "inspect", "content": base64.b64encode(b"test").decode(),
+                              "parameters": {"filename": "чертёж.dxf"}}).encode()
+        incoming = TextIOWrapper(BytesIO(payload), encoding="ascii")
+        raw = BytesIO(); outgoing = TextIOWrapper(raw, encoding="ascii")
+        with patch("sys.stdin", incoming), patch("sys.stdout", outgoing), \
+                patch.dict("sys.modules", {"resource": None}), \
+                patch("backend.importing.inspect_source", return_value={"name": "Дверь"}):
+            main()
+            outgoing.flush()
+        self.assertEqual(json.loads(raw.getvalue())["result"]["name"], "Дверь")
 
     def test_dxf_readers_close_and_clean_up_temporary_files(self):
         import ezdxf
