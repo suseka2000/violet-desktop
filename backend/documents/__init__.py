@@ -661,6 +661,8 @@ def build_documents(project: Project, *, paper_format="A3", report=None, derived
             sheets = compose_album(sheets, project, report, whole_walls, stale_whole_walls,derived_assemblies=derived_assemblies,assembly_records=node_records)
         except ValueError as error:
             raise DocumentError(str(error)) from error
+    from .preferences import apply_preferences
+    apply_preferences(sheets, project, width, height)
     _populate_contents(sheets)
     if paper_format == "ALBUM":
         from .album_graphics import resolve_album_graphic_links

@@ -7,7 +7,7 @@ name = "interior-rd-generator"
 version = "0.3.0"
 description = "Parametric interior project model and local persistence foundation"
 requires-python = ">=3.11"
-dependencies = ["pydantic==2.13.5", "ezdxf==1.4.4", "reportlab==4.4.10", "pypdf==6.9.2", "Pillow==12.1.1", "pypdfium2==5.13.0", "shapely==2.1.2"]
+dependencies = ["pydantic==2.13.5", "ezdxf==1.4.4", "reportlab==4.4.10", "pypdf==6.9.2", "Pillow==12.1.1", "pypdfium2==5.13.0", "shapely==2.1.2", "certifi==2026.10.23"]
 
 [project.optional-dependencies]
 cad = ["cadquery-ocp-novtk==7.9.3.0"]

@@ -95,12 +95,14 @@ class DesktopCommandTests(unittest.TestCase):
                 worker_command(module)
             with self.assertRaises(ValueError):
                 dispatch_worker([module])
-        self.assertEqual(len(WORKER_MODULES), 9)
+        self.assertEqual(len(WORKER_MODULES), 10)
+        self.assertIn("backend.agent.file_reader", WORKER_MODULES)
 
     def test_worker_environment_removes_secret_and_sets_owner(self):
-        with patch.dict(os.environ, {"VIOLET_DESKTOP_TOKEN": TOKEN, "VIOLET_DESKTOP_PROCESS": "1"}):
+        with patch.dict(os.environ, {"VIOLET_DESKTOP_TOKEN": TOKEN, "VIOLET_DESKTOP_PROCESS": "1", "OPENAI_API_KEY": "test-only"}):
             options = worker_launch_options()
         self.assertNotIn("VIOLET_DESKTOP_TOKEN", options["env"])
+        self.assertNotIn("OPENAI_API_KEY", options["env"])
         self.assertEqual(options["env"]["VIOLET_WORKER_PARENT_PID"], str(os.getpid()))
         self.assertEqual(options["env"]["PYTHONIOENCODING"], "utf-8")
         self.assertIn(str(ROOT), options["env"]["PYTHONPATH"])

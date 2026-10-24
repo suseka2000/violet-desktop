@@ -3,8 +3,8 @@
   "private_distribution_only": false,
   "git_initialized": false,
   "uploaded": false,
-  "file_count": 348,
-  "total_bytes": 74787895,
+  "file_count": 375,
+  "total_bytes": 75076780,
   "supplier_files": 88,
   "files": [
     {
@@ -15,8 +15,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 7413,
-      "sha256": "79fe51f240a222a25c58b176cb92f549424862387df87ef73c671e083ca58fcc",
+      "bytes": 7796,
+      "sha256": "ff0d4e60111d1914055147c97ecb3b11a183f7304f0e0b6feb6a40cb32e69324",
       "kind": "source"
     },
     {
@@ -32,9 +32,63 @@
       "kind": "source"
     },
     {
+      "path": "backend/agent/__init__.py",
+      "bytes": 77,
+      "sha256": "795622451c6d7ccc1a12df9125ac902759d13f3fbe0885051de0c6fcd8b4a397",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/file_reader.py",
+      "bytes": 11011,
+      "sha256": "6ed7f4584321fb526c33de1373a92482c2a90390dfa6b905cc4b1164e34d8b80",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/navigation.py",
+      "bytes": 3728,
+      "sha256": "88db3bc18c56f6148fdf800bc7d927dcd13fcd6a573ef0d76982f337cdbbc348",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/project.py",
+      "bytes": 9640,
+      "sha256": "fcefaccf973ff7c7fe6e6e6bc8edc9e8feccf8715f553798e6df9e39a0e0c8a7",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/provider.py",
+      "bytes": 7484,
+      "sha256": "8470adccfe6b4bbaf68588ee24e99c3866b7b73bd360342140e3350b74fd6a53",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/runner.py",
+      "bytes": 20028,
+      "sha256": "811cb606a7136904cce325af30429432adabdb96e53a47647497bf51b791a1db",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/tools.py",
+      "bytes": 21044,
+      "sha256": "e79a4d1e0cbc71a0d752821b8ff07074a0617d7581ddc230def6478be50b243b",
+      "kind": "source"
+    },
+    {
+      "path": "backend/agent/validation.py",
+      "bytes": 2190,
+      "sha256": "b49a5fb97d5fabe6ae0a28a08eead14e9dcd5c787cb33e3e7ebd2a0498e04cb7",
+      "kind": "source"
+    },
+    {
       "path": "backend/api/__init__.py",
       "bytes": 76,
       "sha256": "c8ecd93e7082d6f8858549fb1a389416e1ae1e2961b60792c5828ad38c3dd8a1",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/agent.py",
+      "bytes": 4646,
+      "sha256": "faa0fe0e3222e1fa94f0ef6f78b4b8ecab5e8db9b827c06554944b40494ed4f2",
       "kind": "source"
     },
     {
@@ -51,8 +105,14 @@
     },
     {
       "path": "backend/api/extended.py",
-      "bytes": 8233,
-      "sha256": "283c5ee1ca01b8893d2255a7905cf33a3396834417ab45c735b8cf050be8540e",
+      "bytes": 8532,
+      "sha256": "2be6f65abcc26bdec239e3641c6a0449d744574b80834996ecf08bb4d0ffb405",
+      "kind": "source"
+    },
+    {
+      "path": "backend/api/finish_presentation.py",
+      "bytes": 603,
+      "sha256": "2c275c3331a161cf66ad25b22e586de67e453c7295f353cbf6b83f15cad30133",
       "kind": "source"
     },
     {
@@ -81,8 +141,8 @@
     },
     {
       "path": "backend/api/server.py",
-      "bytes": 30578,
-      "sha256": "d89dee6f5540c3d54e65d7c473f86d6023b4ea69c8657eacbeeb7b9dbe0f0606",
+      "bytes": 31512,
+      "sha256": "30de6f04484fbbbc53ad37a23d96510eff4922f7b316f86822ec9aa799d500b2",
       "kind": "source"
     },
     {
@@ -123,8 +183,8 @@
     },
     {
       "path": "backend/assembly_jobs.py",
-      "bytes": 35656,
-      "sha256": "df87e328223c5359add1bccbce76527fb1200eab6d5ada3b5cd60b19668281b6",
+      "bytes": 35940,
+      "sha256": "cdeb61dd121d8cc2b8f8f3d1db4665ec0405aadd35fd4d3932939f9fe9d9385e",
       "kind": "source"
     },
     {
@@ -201,14 +261,14 @@
     },
     {
       "path": "backend/desktop_runtime.py",
-      "bytes": 7032,
-      "sha256": "ccce9e46a8cc2751a84499c5e5a14b9d49e447d4458e9e06e4353b4cb9a07022",
+      "bytes": 7097,
+      "sha256": "29fb51330921b48257724252e80f8628fae7832015bc78a80cac1198569c8655",
       "kind": "source"
     },
     {
       "path": "backend/documents/__init__.py",
-      "bytes": 57801,
-      "sha256": "46c7af8ab1e9363e1dbec98c178941259616241891632433bc23da45f742f3bd",
+      "bytes": 58040,
+      "sha256": "4bd26b0e86331c8f76a0d7019fa1576996cf165ea4d3123bfd526864e5cff3b4",
       "kind": "source"
     },
     {
@@ -245,6 +305,12 @@
       "path": "backend/documents/catalog.py",
       "bytes": 1874,
       "sha256": "d124bec7ce5d9b728fc047825baa122072e1597ba2d3ab986f62af0ce5204feb",
+      "kind": "source"
+    },
+    {
+      "path": "backend/documents/client_panels.py",
+      "bytes": 12863,
+      "sha256": "ed6153c771ce4ada69962189935c26b33540afae8f4bc52bcf9cb4fdc3002711",
       "kind": "source"
     },
     {
@@ -338,6 +404,12 @@
       "kind": "source"
     },
     {
+      "path": "backend/documents/preferences.py",
+      "bytes": 1750,
+      "sha256": "9ff0dd7ad3e2e64dcf9862c4240216ecd9eb8c1055c09373bb9ddf1242e8db2a",
+      "kind": "source"
+    },
+    {
       "path": "backend/documents/scene.py",
       "bytes": 10745,
       "sha256": "f052f0453e7765d3b44e0e477ca08372f4b8afd41f33f0ba17ff9f1140540eb6",
@@ -419,6 +491,24 @@
       "path": "backend/fastening_records.py",
       "bytes": 9003,
       "sha256": "7ee9517ed09ec427393fa899b819f19c5bbcca45f44ac5c673603705c4428ee6",
+      "kind": "source"
+    },
+    {
+      "path": "backend/finish_geometry.py",
+      "bytes": 13391,
+      "sha256": "17e64b7a646748177c3a94f3157afe56315d90f98bfb4c5d426fb82fa27bd625",
+      "kind": "source"
+    },
+    {
+      "path": "backend/finish_presentation.py",
+      "bytes": 18512,
+      "sha256": "82e01e6f2c4435f20dfaaebeee1d5814562cf068b3b88b4f11a2db5f27006886",
+      "kind": "source"
+    },
+    {
+      "path": "backend/finish_surfaces.py",
+      "bytes": 9792,
+      "sha256": "20ae1cf6d6fe4cf76586ae8da33e8c1cb0a1c9d761afed983eaea16c3d8e6c9f",
       "kind": "source"
     },
     {
@@ -537,8 +627,8 @@
     },
     {
       "path": "backend/panel_layout.py",
-      "bytes": 10089,
-      "sha256": "8c91d6529e622d3f730aba6ad3e9b0c66e1e56b52c0c64591f058d23c38c2099",
+      "bytes": 12221,
+      "sha256": "052d2a2b775a961ccdc0eba829d3c226d4bdc2a0b4730689c2e484408e801c68",
       "kind": "source"
     },
     {
@@ -741,8 +831,8 @@
     },
     {
       "path": "backend/wall_mount.py",
-      "bytes": 66725,
-      "sha256": "8942ed6c3c728490e22aaf8dad75e640fefe759febb9b949bf00cad21e2bc841",
+      "bytes": 65605,
+      "sha256": "49bff9b06ce7697d4a235a5a5e709f69eb01a1e09b551fb830d1943dac6d0378",
       "kind": "source"
     },
     {
@@ -771,8 +861,8 @@
     },
     {
       "path": "backend/workspace.py",
-      "bytes": 17413,
-      "sha256": "b8ea35b677369aa8da286914c7fbcc2f71696400dc48b567b895c51b67fa0c8d",
+      "bytes": 17797,
+      "sha256": "c3804370dfadc18d39890c8cb6e6efd17bfb792cf355366717cb3e186c52f5ea",
       "kind": "source"
     },
     {
@@ -1095,8 +1185,8 @@
     },
     {
       "path": "desktop/build/source-files.json",
-      "bytes": 10723,
-      "sha256": "98608528f6a457d834885666340d723a4e89956c1c5843cad8a2f0be363cdb11",
+      "bytes": 11671,
+      "sha256": "7458f45a87b302f2428fd0a463ba003f014dbf8cba8b23992d1824e3f414a9a7",
       "kind": "source"
     },
     {
@@ -1107,8 +1197,8 @@
     },
     {
       "path": "desktop/build/violet-backend.spec",
-      "bytes": 1796,
-      "sha256": "5a30ff04f6b0cde21d804f0ead382b7f766c4206572ce3f9556617eb7cf18139",
+      "bytes": 1807,
+      "sha256": "c627c7977590decc0514c85c6d021ea25b35a201b2f0724ad5b8d95162a2c2b9",
       "kind": "source"
     },
     {
@@ -1179,8 +1269,8 @@
     },
     {
       "path": "desktop/scripts/collect_notices.py",
-      "bytes": 9831,
-      "sha256": "5aa5102763335ca55f2830e87ee9a32d571ca2a42cd7fe65a57c0050fa446d06",
+      "bytes": 9842,
+      "sha256": "a70c632ebaad58c816050ea456daefa8a9494a7c124a15b8c55b2260d3e7d6e0",
       "kind": "source"
     },
     {
@@ -1203,8 +1293,8 @@
     },
     {
       "path": "desktop/scripts/stage_sources.py",
-      "bytes": 12348,
-      "sha256": "040870e24bd5b276a573b492f45a00bc4f739e1669e7c78eeff87360ad8646cc",
+      "bytes": 12476,
+      "sha256": "3e19746f55cefd54349241b1483b9039ebe80c76ae444ce621173bc5764eb331",
       "kind": "source"
     },
     {
@@ -1299,8 +1389,8 @@
     },
     {
       "path": "docs/desktop-release.md",
-      "bytes": 14635,
-      "sha256": "300303f90c22e342aeb921a76ad49f817c23ed2dd3c2c89baacd62fb8f979237",
+      "bytes": 17767,
+      "sha256": "e52591dd440a557ecde97736670cf4677734211a72b0cce2bdea98bddb3e6f33",
       "kind": "source"
     },
     {
@@ -1832,9 +1922,27 @@
       "kind": "approved_supplier"
     },
     {
+      "path": "frontend/agent-panel.css",
+      "bytes": 5852,
+      "sha256": "a037e05d75802b34fb2e8cad3ef2c06d421f5547d2551412e5171d3a2405edb3",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/agent-panel.js",
+      "bytes": 22250,
+      "sha256": "e4db9bd0fbae40c769e6dd0b6a0d4325be04ee6557e04e0b54ddc184de01bdfd",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/agent-panel.test.js",
+      "bytes": 6931,
+      "sha256": "054f08b87493c2d6e58ac4c76aff0b6feb20a9359d8c9c876e7ef97432a17b9f",
+      "kind": "source"
+    },
+    {
       "path": "frontend/app.js",
-      "bytes": 295690,
-      "sha256": "bc4f50fff660619bff43ee14f8ebf09d209ed490820948cc8dd620e387d4d568",
+      "bytes": 301790,
+      "sha256": "954989ad758384c69f241c70ba9cedf6084da99ea2b9fc27ef91531528f0fcc7",
       "kind": "source"
     },
     {
@@ -1898,9 +2006,39 @@
       "kind": "source"
     },
     {
+      "path": "frontend/finish-presentation.css",
+      "bytes": 3377,
+      "sha256": "ca3e1ad6b415013b8d52384fb15810063a0bf3be3d40a45e0e463c8286f14b29",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/finish-presentation.js",
+      "bytes": 18205,
+      "sha256": "b938f3239f76349b5d811ddeaa6bb667048abb5f544d24b3d171c8c35dc92e4a",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/finish-presentation.test.js",
+      "bytes": 6725,
+      "sha256": "2ceea3daa78f23921c664d2c71aea295ad9456e387911bbd0aa48c0b622e3d1f",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/finish-viewer.js",
+      "bytes": 22228,
+      "sha256": "3a2d6f39f3d80bbb64203ea9ee7a086f8b26e564fd2f8999d182906bc859e026",
+      "kind": "source"
+    },
+    {
+      "path": "frontend/finish-viewer.test.js",
+      "bytes": 9603,
+      "sha256": "4605c5ac67e6175b087dd252b398597842ccd61e92ca18604d059849ed3874e9",
+      "kind": "source"
+    },
+    {
       "path": "frontend/index.html",
-      "bytes": 48073,
-      "sha256": "77056f9048d06b4736b9a854a139af5ea40351efb92b61943733b72aa0f43267",
+      "bytes": 49408,
+      "sha256": "7ab0c3bfb91b393176a8696f40a85380494cc9a1a81c69d2b96afe4b7e1ac50b",
       "kind": "source"
     },
     {
@@ -2007,8 +2145,8 @@
     },
     {
       "path": "pyproject.toml",
-      "bytes": 669,
-      "sha256": "20244a8ecdca7556e07ddf1892efdbc3e61f38a1b8fb9f61c001b3e62467f502",
+      "bytes": 692,
+      "sha256": "27ac681cb8254f4b6c1556008eec340a63eb69a869f03114f3cedecc13bcacd1",
       "kind": "source"
     },
     {
@@ -2025,8 +2163,8 @@
     },
     {
       "path": "requirements.txt",
-      "bytes": 109,
-      "sha256": "ca65bc255de4580ba844ac96637cfddbca888a772221da2eda5a02e66d9759a2",
+      "bytes": 129,
+      "sha256": "41e072862900f90da5ce4f4fed0e48af2bd768953413fd467e8e5da4f3a553d3",
       "kind": "source"
     },
     {
@@ -2060,6 +2198,18 @@
       "kind": "source"
     },
     {
+      "path": "tests/test_agent.py",
+      "bytes": 18881,
+      "sha256": "e9922db0417ee55c67d429e8805755187816a670f90b5d055f874a71687eb76d",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_agent_api.py",
+      "bytes": 4383,
+      "sha256": "731e050ec7b847613b00e381b32f5802cbbd701191902d976f40a764e9a04e2b",
+      "kind": "source"
+    },
+    {
       "path": "tests/test_desktop_library_io.py",
       "bytes": 21922,
       "sha256": "574bf60be17ac7a7e4351a8ae1ac619d0c76b2dd9004a1231db7e343960b9ca1",
@@ -2073,14 +2223,26 @@
     },
     {
       "path": "tests/test_desktop_runtime.py",
-      "bytes": 24062,
-      "sha256": "c72c325f2fbaba68e022ebccc44e986d95f27e6d36ed62ae7dacb474e438557e",
+      "bytes": 24220,
+      "sha256": "2331308fb298868a7639582d745c310b32daf025d57bb707eb1e0cc433c0713a",
       "kind": "source"
     },
     {
       "path": "tests/test_desktop_source_staging.py",
       "bytes": 5383,
       "sha256": "6d64185350c27d4ecfac8032517359295279c82e612c4fe97be84e03d510aae7",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_finish_geometry.py",
+      "bytes": 9118,
+      "sha256": "f80c1d81e731482034185e8027578e1a50e9968272306297f71d99758e0d51c0",
+      "kind": "source"
+    },
+    {
+      "path": "tests/test_finish_surfaces.py",
+      "bytes": 9107,
+      "sha256": "19fcf45da38d6220f62e7dfa13c659ec9789e4d7cb4496f9e2258ccee380d05e",
       "kind": "source"
     },
     {

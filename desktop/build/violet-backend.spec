@@ -8,7 +8,7 @@ ROOT = Path(SPECPATH).parent.parent
 manifest = json.loads((ROOT / "desktop/stage/bundle-inputs.json").read_text(encoding="utf-8"))
 datas = [(row["source"], str(Path(row["path"]).parent)) for row in manifest["files"]]
 binaries, hiddenimports = [], collect_submodules("backend")
-for package in ("OCP", "pypdfium2", "pypdfium2_raw", "shapely"):
+for package in ("OCP", "pypdfium2", "pypdfium2_raw", "shapely", "certifi"):
     package_data, package_binaries, package_imports = collect_all(package)
     datas += package_data
     binaries += package_binaries

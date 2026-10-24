@@ -12,7 +12,7 @@ import hashlib
 from packaging.requirements import Requirement
 
 ROOT = Path(__file__).resolve().parents[2]
-DIRECT = ["pydantic", "ezdxf", "reportlab", "pypdf", "Pillow", "pypdfium2", "shapely", "cadquery-ocp-novtk"]
+DIRECT = ["pydantic", "ezdxf", "reportlab", "pypdf", "Pillow", "pypdfium2", "shapely", "cadquery-ocp-novtk", "certifi"]
 
 
 def native_inventory(distributions, review):

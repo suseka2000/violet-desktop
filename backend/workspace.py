@@ -208,6 +208,12 @@ def validate_workspace(project: Project, *, derived_assemblies=False, resolve_wh
     Nothing is cached or accepted as previously trusted input across calls.
     """
     validate_project_properties_budget(project,derived_assemblies=derived_assemblies)
+    if "document_preferences" in project.properties:
+        from .documents.preferences import DocumentPreferences
+        DocumentPreferences.model_validate(project.properties["document_preferences"])
+    if "finish_presentation" in project.properties:
+        from .finish_presentation import Appearance
+        Appearance.model_validate(project.properties["finish_presentation"])
     if "special_installations" in project.properties or "special_assemblies" in project.properties:
         from .special_assemblies import validate_special
         validate_special(project,derived_assemblies=derived_assemblies)

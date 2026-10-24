@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./room-assembly.css">
   <link rel="stylesheet" href="./building-assembly.css">
   <link rel="stylesheet" href="./finish-presentation.css">
+  <link rel="stylesheet" href="./agent-panel.css">
 </head>
 <body>
   <div class="app-shell">
@@ -37,6 +38,7 @@
         <button class="workspace-switch" id="toggleProjectsButton" type="button" aria-controls="projectsDrawer" aria-expanded="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 5.5h6l2-2h7v13h-15z"/></svg>Проекты</button>
         <span class="workspace-brand">Violet <span>· Редактор помещений</span></span>
         <div class="workspace-view-controls" aria-label="Панели редактора">
+          <button class="view-button agent-launcher" id="agentButton" type="button" aria-controls="agentHost" aria-expanded="false" title="Помощник проекта: правки, файлы, методички и навигация">✦ Агент</button>
           <button class="view-button" id="toggleStructureButton" type="button" aria-controls="hierarchyPanel" aria-expanded="false" title="Показать или скрыть дерево объектов"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3v12h4M4 7h4M10 4h7v5h-7zM10 12h7v5h-7z"/></svg>Структура</button>
           <button class="view-button" id="toggleInspectorButton" type="button" aria-controls="inspectorPanel" aria-expanded="true" title="Показать или скрыть свойства и точные размеры"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3h14v14H3zM11 3v14M13.5 7h1M13.5 11h1"/></svg>Свойства</button>
           <button class="view-button focus-button" id="editorFocusButton" type="button" aria-pressed="false" title="Скрыть шапку и боковые панели, оставить инструменты и чертёж"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg>Развернуть чертёж</button>
@@ -199,6 +201,7 @@
     </div><div class="form-error is-hidden" id="projectTrashError" role="alert"></div>
     <footer class="dialog-footer"><button class="button button-secondary" id="refreshTrashButton" type="button">Обновить корзину</button><button class="button button-danger" id="emptyProjectTrashButton" type="button" disabled>Очистить корзину</button></footer>
   </dialog>
+  <aside class="agent-host" id="agentHost" hidden></aside>
   <dialog class="wall-mount-dialog" id="wallMountDialog" aria-label="Монтаж стены"><div id="wallMountHost"></div></dialog>
   <dialog class="batch-mount-dialog" id="batchMountDialog" aria-label="Монтаж помещения или этажа"><div id="batchMountHost"></div></dialog>
   <dialog class="mount-sections-dialog" id="mountSectionsDialog" aria-label="Сечения STEP-профилей монтажа"><div id="mountSectionsHost"></div></dialog>
@@ -209,6 +212,6 @@
   <dialog class="room-assembly-dialog" id="roomAssemblyDialog" aria-label="3D-сборка отделки комнаты"><div id="roomAssemblyHost"></div></dialog>
   <dialog class="room-assembly-dialog building-assembly-dialog" id="buildingAssemblyDialog" aria-label="3D-сборка отделки здания"><div id="buildingAssemblyHost"></div></dialog>
   <div class="toast-region" id="toastRegion" aria-live="polite"></div><div class="loading-overlay is-hidden" id="loadingOverlay"><div class="spinner"></div><span id="loadingLabel">Загрузка…</span></div>
-  <script src="./model-editor.js" defer></script><script src="./project-history.js" defer></script><script src="./snapping.js" defer></script><script src="./drafting.js" defer></script><script src="./cad-mapping.js" defer></script><script src="./cad-workspace.js" defer></script><script src="./vendor-library.js" defer></script><script src="./draft-recovery.js" defer></script><script src="./wall-mount.js" defer></script><script src="./batch-mount.js" defer></script><script src="./mount-sections.js" defer></script><script src="./mount-assemblies.js" defer></script><script src="./special-assemblies.js" defer></script><script src="./whole-wall.js" defer></script><script src="./room-assembly.js" defer></script><script src="./building-assembly.js" defer></script><script src="./finish-viewer.js" defer></script><script src="./finish-presentation.js" defer></script><script src="./engineering-jobs.js" defer></script><script src="./app.js" defer></script>
+  <script src="./model-editor.js" defer></script><script src="./project-history.js" defer></script><script src="./snapping.js" defer></script><script src="./drafting.js" defer></script><script src="./cad-mapping.js" defer></script><script src="./cad-workspace.js" defer></script><script src="./vendor-library.js" defer></script><script src="./draft-recovery.js" defer></script><script src="./wall-mount.js" defer></script><script src="./batch-mount.js" defer></script><script src="./mount-sections.js" defer></script><script src="./mount-assemblies.js" defer></script><script src="./special-assemblies.js" defer></script><script src="./whole-wall.js" defer></script><script src="./room-assembly.js" defer></script><script src="./building-assembly.js" defer></script><script src="./finish-viewer.js" defer></script><script src="./finish-presentation.js" defer></script><script src="./engineering-jobs.js" defer></script><script src="./agent-panel.js" defer></script><script src="./app.js" defer></script>
 </body>
 </html>

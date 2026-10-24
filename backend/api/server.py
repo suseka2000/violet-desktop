@@ -159,6 +159,8 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
     room_assembly_jobs = RoomAssemblyJobs(repository, assembly_jobs, start=False)
     from ..building_assembly_jobs import BuildingAssemblyJobs
     building_assembly_jobs = BuildingAssemblyJobs(repository, assembly_jobs, start=False)
+    from ..agent.runner import AgentRuns
+    agent_runs = AgentRuns(vendor_library, source_store, overlay=assembly_jobs.for_documents)
 
     class Handler(BaseHTTPRequestHandler):
         server_version = "InteriorRD/0.3"
@@ -298,6 +300,13 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
                     mime = mimetypes.guess_type(resource.name)[0] or "application/octet-stream"
                     self.headers_for(200, mime + "; charset=utf-8", len(data))
                     self.wfile.write(data)
+                    return
+                if method == "GET" and path in {"/agent-panel.js", "/agent-panel.css"}:
+                    resource = root / "frontend" / path[1:]
+                    self.send_bytes(resource.read_bytes(), "text/javascript; charset=utf-8" if path.endswith(".js") else "text/css; charset=utf-8")
+                    return
+                from .agent import handle_agent
+                if handle_agent(self, method, path, agent_runs):
                     return
                 if path == "/api/v1/health" and method == "GET":
                     self.send_json({"status": "ok", "version": "0.3.0", "schema_version": "1.0"})
@@ -491,7 +500,7 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
         def desktop_active_jobs(self):
             # Queued work also matters: an update must not silently discard it.
             active = {"queued", "waiting_for_walls", "running"}
-            count = 0
+            count = agent_runs.active_count()
             for jobs, table in ((assembly_jobs, "assembly_jobs"), (room_assembly_jobs, "room_jobs"),
                                 (building_assembly_jobs, "room_jobs")):
                 with jobs._connection() as connection:
@@ -522,6 +531,7 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
             return True
 
         def server_close(self):
+            agent_runs.close()
             building_assembly_jobs.close()
             room_assembly_jobs.close()
             assembly_jobs.close()
@@ -545,6 +555,7 @@ def build_server(db_path: str | Path, *, host: str = "127.0.0.1", port: int = 83
     server.desktop_requests = 0
     server.desktop_shutdown_started = False
     server.assembly_jobs = assembly_jobs
+    server.agent_runs = agent_runs
     server.room_assembly_jobs = room_assembly_jobs
     server.building_assembly_jobs = building_assembly_jobs
     assembly_jobs.start()

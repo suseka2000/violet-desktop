@@ -21,6 +21,7 @@
 /backend/*
 !/backend/__init__.py
 !/backend/__main__.py
+!/backend/agent/
 !/backend/api/
 !/backend/assembly_fasteners.py
 !/backend/assembly_geometry.py
@@ -125,6 +126,9 @@
 !/for_interior-rd-generator/all_models/
 !/for_interior-rd-generator/manuals/
 /frontend/*
+!/frontend/agent-panel.css
+!/frontend/agent-panel.js
+!/frontend/agent-panel.test.js
 !/frontend/app.js
 !/frontend/batch-mount.css
 !/frontend/batch-mount.js
@@ -163,6 +167,8 @@
 !/resources/vendor/
 /tests/*
 !/tests/__init__.py
+!/tests/test_agent.py
+!/tests/test_agent_api.py
 !/tests/test_desktop_library_io.py
 !/tests/test_desktop_packaging.py
 !/tests/test_desktop_runtime.py
@@ -173,8 +179,18 @@
 !/tests/verify_desktop_windows_install.py
 /.github/workflows/*
 !/.github/workflows/desktop-build.yml
+/backend/agent/*
+!/backend/agent/__init__.py
+!/backend/agent/file_reader.py
+!/backend/agent/navigation.py
+!/backend/agent/project.py
+!/backend/agent/provider.py
+!/backend/agent/runner.py
+!/backend/agent/tools.py
+!/backend/agent/validation.py
 /backend/api/*
 !/backend/api/__init__.py
+!/backend/api/agent.py
 !/backend/api/building_assembly.py
 !/backend/api/cad_assets.py
 !/backend/api/extended.py
@@ -210,6 +226,7 @@
 !/backend/documents/plan_dimensions.py
 !/backend/documents/plan_labels.py
 !/backend/documents/plan_walls.py
+!/backend/documents/preferences.py
 !/backend/documents/scene.py
 !/backend/documents/section_dimensions.py
 !/backend/documents/special_sections.py

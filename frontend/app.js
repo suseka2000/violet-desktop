@@ -26,6 +26,7 @@
   let baseSnapshot = null, jsonEditorReference = "", jsonEditorProject = null, jsonEditorSerial = -1;
   let modelChangeSerial = 0, mountPreparationTask = null, lastMountPreparation = null, saveInFlight = false, backgroundBuilds = null;
   let finishPresentation = null;
+  let agentPanel = null;
 
   class ApiError extends Error {
     constructor(status, payload) {
@@ -248,6 +249,29 @@
   async function init() {
     if (!M || !D || !C) { document.body.textContent = "Не загружены модули редактора. Обновите страницу."; return; }
     cacheDom(); bind(); renderEmpty(); initializeRecovery();
+    if (window.VioletAgent) {
+      agentPanel = window.VioletAgent.create(dom.agentHost, {
+        request, getProject: () => state.project,
+        sourceProject: () => window.VioletEngineeringJobs?.sourceProject(state.project) || state.project,
+        getContext: agentContext, navigate: navigateAgent,
+        confirm: message => window.confirm(message),
+        canStart: () => {
+          if (state.editorDirty || hasActiveDraft() || mountPreparationHasUnappliedInputs() || saveInFlight) {
+            toast("Сначала завершите построение и примените параметры в открытых формах. Агент работает с текущим черновиком, сохранять его заранее не обязательно.", "error", 8000);
+            return false;
+          }
+          return !!state.project;
+        },
+        apply: (project, label) => mutate("Агент: " + label, target => {
+          if (target.id !== project.id) throw new Error("Предложение относится к другому проекту");
+          for (const key of Object.keys(target)) delete target[key];
+          Object.assign(target, M.clone(project));
+          normalizeSelection();
+        }),
+        onToggle: opened => dom.agentButton.setAttribute("aria-expanded", String(opened)),
+      });
+      dom.agentButton.addEventListener("click", () => agentPanel.toggle());
+    }
     if (window.VioletEngineeringJobs) backgroundBuilds = window.VioletEngineeringJobs.create({
       request, getProject: () => state.project, getRevision: () => state.baseRevision,
       canApply: () => !state.dirty && !mountPreparationHasUnappliedInputs() && !saveInFlight && !wallMount?.hasDraft?.() && !batchMount?.hasDraft?.(),
@@ -618,7 +642,7 @@
     const active = Boolean(state.project); dom.emptyWorkspace.classList.toggle("is-hidden", active); dom.projectWorkspace.classList.toggle("is-hidden", !active);
   }
   function renderAll() {
-    renderEmpty(); if (!state.project) return;
+    renderEmpty(); agentPanel?.refresh(); if (!state.project) return;
     dom.projectTitle.textContent = state.project.metadata.name; dom.projectAddress.textContent = state.project.metadata.address || "Адрес не указан"; dom.revisionBadge.textContent = `r${state.baseRevision}`;
     renderDraftState(); renderFloorSelect(); renderSourceFloorSelect(); renderStats(); renderTree(); renderPlan(); renderInspector(); renderValidation(); renderAttachedSources(); renderMarkupList(); paintSourceOverlay();
     if (!state.editorDirty) syncJsonEditor();
@@ -821,6 +845,33 @@
     if (tab === "json" && !state.editorDirty) syncJsonEditor();
     else if (tab !== "json" && !state.editorDirty) clearJsonEditor();
     if (tab === "sources") {loadCadRecent();if(!modelLibrary)modelLibrary=CW.mountLibrary(dom.modelLibraryHost,{request,getAttachedIds:()=>arrays(state.project?.properties?.cad_assets).map(a=>a.source_id),open:openLibraryAsset});else modelLibrary.refreshProject();}
+  }
+
+  function agentContext() {
+    const floor = M.findFloor(state.project, state.selectedFloorId)?.floor;
+    const selected = selectionItems().slice(0, 30).map(item => ({type:item.type,id:item.id}));
+    const wall = selected.find(item => item.type === "wall");
+    const names = selected.map(item => M.findEntity(state.project,item.id,item.type)?.entity).filter(Boolean).map(item => item.name || item.code || item.id);
+    return {tab:state.activeTab,floor_id:floor?.id||null,wall_id:wall?.id||null,selection:selected,
+      label:[floor?.name,names.length?"Выбрано: "+names.join(", "):"Область: текущий проект"].filter(Boolean).join(" · ")};
+  }
+  function navigateAgent(link) {
+    if (!window.VioletAgent?.safeNavigation(link)) return;
+    if (link.target === "structure") {document.body.classList.add("structure-open");syncPanelButtons();return;}
+    if (!state.project) return toast("Сначала откройте или создайте проект.");
+    if (["model","sources","library","documents","engineering","json"].includes(link.target)) {setTab(link.target);return;}
+    if (link.target === "history") return openHistory();
+    if (link.target === "floor") {setTab("model");return openEntity("floor");}
+    if (link.target === "appearance") return openBuildingAssembly();
+    if (link.target === "mount") {
+      setTab("model");
+      const id=link.entity_id||agentContext().wall_id;
+      const found=id&&M.findEntity(state.project,id,"wall");
+      if(!found)return toast("Нажмите нужную стену на чертеже, затем «Настроить монтаж стены» в свойствах справа. Профили выбираются через систему и группы узлов.","",9000);
+      state.selectedFloorId=found.floor.id;state.selection={type:"wall",id};renderAll();return openWallMount(id);
+    }
+    if(link.target === "batch_mount")return openBatchMount(defaultBatchMountScope());
+    if(link.target === "exterior"&&state.selectedFloorId)return openBatchMount({kind:"exterior_floor",id:state.selectedFloorId});
   }
 
   function renderFloorSelect() {

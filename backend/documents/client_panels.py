@@ -180,6 +180,8 @@ def build_client_documents(project):
              num(sum(p["area_m2"] for p in v["panels"]))] for v in scene["views"]]
     table(sheets, "Ведомость раскладок и отделки", ["Вид", "Этаж / помещение", "Стена", "Модуль, мм", "t, мм", "Цвет", "Частей", "м²"], rows,
           [1, 3.5, 2, 2.3, 1, 1.4, 1, 1.3], "client_schedule", paper=(594, 420))
+    from .preferences import apply_preferences
+    apply_preferences(sheets, project, 594, 420)
     for index, sheet in enumerate(sheets, 1):
         _frame(sheet, project, index, len(sheets), "PANELS")
     report = {"source_snapshot_sha256": hashlib.sha256(project.model_dump_json().encode()).hexdigest(),

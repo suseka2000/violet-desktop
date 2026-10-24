@@ -5,3 +5,4 @@ pypdf==6.9.2
 Pillow==12.1.1
 pypdfium2==5.13.0
 shapely==2.1.2
+certifi==2026.10.23

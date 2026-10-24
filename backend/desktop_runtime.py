@@ -18,7 +18,7 @@ import weakref
 WORKER_MODULES = frozenset({
     "backend.assembly_worker", "backend.building_assembly_worker",
     "backend.dxf_workspace_worker", "backend.room_assembly_worker",
-    "backend.source_preview", "backend.source_worker", "backend.step_worker",
+    "backend.source_preview", "backend.source_worker", "backend.step_worker", "backend.agent.file_reader",
     "backend.vendor_library", "backend.wall_assembly_worker",
 })
 _workers = weakref.WeakSet()
@@ -44,6 +44,7 @@ def worker_launch_options() -> dict:
     """Give children a lifetime owner, but never the HTTP session secret."""
     env = os.environ.copy()
     env.pop("VIOLET_DESKTOP_TOKEN", None)
+    env.pop("OPENAI_API_KEY", None)
     if os.environ.get("VIOLET_DESKTOP_PROCESS") == "1":
         env["VIOLET_WORKER_PARENT_PID"] = str(os.getpid())
     env["PYTHONIOENCODING"] = "utf-8"

@@ -37,6 +37,7 @@ ROOT_FILES = {
     "requirements-desktop-build.txt", "THIRD_PARTY_NOTICES.md",
 }
 TEST_FILES = {
+    "tests/test_agent.py", "tests/test_agent_api.py",
     "tests/__init__.py", "tests/test_desktop_packaging.py",
     "tests/test_desktop_library_io.py", "tests/test_desktop_runtime.py",
     "tests/test_desktop_source_staging.py", "tests/verify_desktop_frozen.py",
